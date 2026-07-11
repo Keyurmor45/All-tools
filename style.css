@@ -16,8 +16,8 @@
 
   --white:       #f5f5f0;
   --off-white:   #d4d4cc;
-  --mid:         #888880;
-  --dim:         #444440;
+  --mid:         #a8a8a0;
+  --dim:         #6b6b66;
   --border:      #222220;
   --border-light:#2e2e2c;
 
@@ -26,8 +26,8 @@
   --accent-red:  #e8503a;
 
   --text-primary:   #f5f5f0;
-  --text-secondary: #888880;
-  --text-muted:     #444440;
+  --text-secondary: #a8a8a0;
+  --text-muted:     #7a7a75;
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'Inter', system-ui, sans-serif;
