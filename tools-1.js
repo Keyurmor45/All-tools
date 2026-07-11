@@ -17,6 +17,68 @@ const MORSE_DEC = Object.fromEntries(Object.entries(MORSE_ENC).map(([k,v])=>[v,k
 
 TOOLS.push(
 
+/* Character Map */ {
+  id:'character-map', name:'Character Map', icon:'©️', category:'text',
+  description:'Find and copy special characters, symbols, arrows, math operators, and punctuation.',
+  tags:['char','map','special','symbol','arrow','math','currency','greek'],
+  setup(el) {
+    const chars = [
+      {c:'←',n:'Left arrow'},{c:'↑',n:'Up arrow'},{c:'→',n:'Right arrow'},{c:'↓',n:'Down arrow'},{c:'↔',n:'Left right arrow'},
+      {c:'↕',n:'Up down arrow'},{c:'↖',n:'North west arrow'},{c:'↗',n:'North east arrow'},{c:'↘',n:'South east arrow'},
+      {c:'↙',n:'South west arrow'},{c:'↺',n:'Counter clockwise'},{c:'↻',n:'Clockwise'},
+      {c:'×',n:'Multiply'},{c:'÷',n:'Divide'},{c:'±',n:'Plus minus'},{c:'−',n:'Minus'},{c:'≠',n:'Not equal'},
+      {c:'≈',n:'Almost equal'},{c:'≡',n:'Identical'},{c:'≤',n:'Less than or equal'},{c:'≥',n:'Greater than or equal'},
+      {c:'∞',n:'Infinity'},{c:'√',n:'Square root'},{c:'∑',n:'Sum'},{c:'∏',n:'Product'},{c:'π',n:'Pi'},
+      {c:'$',n:'Dollar'},{c:'¢',n:'Cent'},{c:'£',n:'Pound'},{c:'¥',n:'Yen'},{c:'€',n:'Euro'},{c:'₹',n:'Rupee'},{c:'₽',n:'Ruble'},{c:'₿',n:'Bitcoin'},
+      {c:'«',n:'Left quote'},{c:'»',n:'Right quote'},{c:'“',n:'Left double quote'},{c:'”',n:'Right double quote'},
+      {c:'‘',n:'Left single quote'},{c:'’',n:'Right single quote'},{c:'•',n:'Bullet'},{c:'†',n:'Dagger'},{c:'‡',n:'Double dagger'},
+      {c:'α',n:'Alpha'},{c:'β',n:'Beta'},{c:'γ',n:'Gamma'},{c:'δ',n:'Delta'},{c:'ε',n:'Epsilon'},{c:'θ',n:'Theta'},{c:'λ',n:'Lambda'},{c:'μ',n:'Mu'},{c:'σ',n:'Sigma'},{c:'ω',n:'Omega'},
+      {c:'Δ',n:'Delta upper'},{c:'Σ',n:'Sigma upper'},{c:'Ω',n:'Omega upper'},
+      {c:'©',n:'Copyright'},{c:'®',n:'Registered'},{c:'™',n:'Trademark'},{c:'¶',n:'Paragraph'},{c:'§',n:'Section'},{c:'°',n:'Degree'},
+      {c:'⌘',n:'Command'},{c:'⌥',n:'Option'},{c:'⇧',n:'Shift'},{c:'⌃',n:'Control'},{c:'⏎',n:'Return'},{c:'⌫',n:'Delete'},
+      {c:'★',n:'Star'},{c:'✓',n:'Check'},{c:'✗',n:'Cross'},{c:'♥',n:'Heart'},{c:'⚠',n:'Warning'},{c:'⚡',n:'Lightning'},{c:'✂',n:'Scissors'}
+    ];
+    
+    el.innerHTML = `
+      <div class="tool-section">
+        <input type="text" class="tool-input mb-2" id="cmap-search" placeholder="Search characters (e.g. arrow, copyright)..." aria-label="Search characters">
+      </div>
+      <style>
+        .cmap-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:6px; max-height:400px; overflow-y:auto; padding:2px; }
+        .cmap-char { background:var(--bg-input); border:1px solid var(--border); border-radius:var(--r-sm); height:48px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; cursor:pointer; transition:var(--tr-fast); font-family:system-ui; }
+        .cmap-char:hover { background:var(--bg-hover); border-color:var(--border-light); transform:scale(1.05); }
+        .cmap-char:active { transform:scale(0.95); }
+      </style>
+      <div class="cmap-grid" id="cmap-grid"></div>
+    `;
+    
+    const grid = el.querySelector('#cmap-grid');
+    const input = el.querySelector('#cmap-search');
+    
+    function render(filter = '') {
+      const q = filter.toLowerCase();
+      const filtered = chars.filter(c => c.n.toLowerCase().includes(q) || c.c.includes(q));
+      if (!filtered.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:20px">No characters found</div>';
+        return;
+      }
+      grid.innerHTML = filtered.map(c => `<div class="cmap-char" title="${c.n}">${c.c}</div>`).join('');
+
+      
+      grid.querySelectorAll('.cmap-char').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const char = btn.textContent;
+          window.copyText(char);
+          window.showToast('Copied: ' + char);
+        });
+      });
+    }
+    
+    render();
+    input.addEventListener('input', e => render(e.target.value));
+  }
+},
+
 /* 1 */ {
   id:'word-counter', name:'Word Counter', icon:'📊', category:'text',
   description:'Count words, characters, sentences, paragraphs and more in real time.',
