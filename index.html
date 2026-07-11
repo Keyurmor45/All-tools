@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="135+ free online tools for text, developer, math, image, security, converters, and more. All tools in one beautiful place — no signup, no ads.">
+  <meta name="keywords" content="online tools, free tools, text tools, developer tools, calculators, converters, image tools, security tools">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="AllTools — 135+ Free Online Tools">
+  <meta property="og:description" content="Your ultimate online toolbox. 135+ powerful tools in one beautiful place.">
+  <title>AllTools — 135+ Free Online Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">⚡</div>
+        <span>All<span class="logo-accent">Tools</span></span>
+      </a>
+      <div class="nav-search" role="search">
+        <span class="search-icon" aria-hidden="true">↗</span>
+        <input type="text" id="nav-search" placeholder="Search tools…" autocomplete="off" aria-label="Search tools">
+        <kbd class="search-kbd" aria-label="Keyboard shortcut">⌘K</kbd>
+      </div>
+      <div class="nav-right">
+        <!-- Mobile: search + hamburger -->
+        <button class="mobile-search-btn" id="mobile-search-btn" aria-label="Search tools">↗</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <span class="theme-icon-dark">☽</span>
+          <span class="theme-icon-light">○</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <span class="tool-count-badge" aria-label="135 plus tools available">135+ Tools</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <button class="mobile-menu-link" id="mm-all">🛠️ All Tools</button>
+    <button class="mobile-menu-link" id="mm-text">📝 Text Tools</button>
+    <button class="mobile-menu-link" id="mm-dev">💻 Developer</button>
+    <button class="mobile-menu-link" id="mm-math">🔢 Math &amp; Calc</button>
+    <button class="mobile-menu-link" id="mm-image">🖼️ Image Tools</button>
+    <button class="mobile-menu-link" id="mm-color">🎨 Color &amp; Design</button>
+    <button class="mobile-menu-link" id="mm-security">🔐 Security</button>
+    <button class="mobile-menu-link" id="mm-datetime">⏱️ Time &amp; Date</button>
+    <button class="mobile-menu-link" id="mm-converter">🔄 Converters</button>
+    <button class="mobile-menu-link" id="mm-web">🌐 Web &amp; Network</button>
+  </div>
+
+  <!-- Mobile Search Overlay -->
+  <div class="mobile-search-overlay" id="mobile-search-overlay" role="search" aria-label="Search tools">
+    <div class="mobile-search-header">
+      <button class="mobile-search-close" id="mobile-search-close" aria-label="Close search">✕</button>
+      <input type="text" class="mobile-search-input" id="mobile-search-input" placeholder="Search 135+ tools…" autocomplete="off" autofocus>
+    </div>
+    <div class="mobile-search-results" id="mobile-search-results">
+      <div class="mobile-search-empty">Start typing to find tools…</div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <div class="hero-content">
+      <div class="hero-badge" role="note">Free · No Login · No Ads · 135+ Tools</div>
+      <h1 class="hero-title" id="hero-heading">
+        <span class="title-line">Your Ultimate</span>
+        <span class="title-gradient">Online Toolbox.</span>
+      </h1>
+      <p class="hero-subtitle">135+ powerful tools for text, code, math, design, security and more — everything runs locally in your browser.</p>
+      <div class="hero-search-wrapper">
+        <div class="hero-search" role="search">
+          <input type="text" id="hero-search" placeholder="Search for any tool… (e.g. JSON, password, BMI)" autocomplete="off" aria-label="Search for tools">
+          <span class="search-icon-hero" aria-hidden="true">↗</span>
+          <button class="search-clear" id="search-clear" style="display:none" aria-label="Clear search">✕</button>
+        </div>
+      </div>
+      <div class="hero-stats" role="list" aria-label="Website statistics">
+        <div class="stat" role="listitem">
+          <span class="stat-num" aria-label="135 plus tools">135+</span>
+          <span class="stat-label">Tools</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num">10</span>
+          <span class="stat-label">Categories</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Free</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num">0</span>
+          <span class="stat-label">Signups</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content" id="main">
+    <!-- Category Filter -->
+    <div class="categories-wrapper" role="navigation" aria-label="Tool categories">
+      <div class="categories" id="categories" role="tablist" aria-label="Filter by category">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+    <!-- Results info -->
+    <div class="results-info" id="results-info" style="display:none" role="status" aria-live="polite">
+      <span id="results-text"></span>
+      <button class="clear-search-btn" id="clear-search-btn">✕ Clear</button>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid" id="tools-grid" role="list" aria-label="Available tools">
+      <!-- Generated by JS -->
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" id="no-results" style="display:none" role="status">
+      <div class="no-results-icon" aria-hidden="true">↗</div>
+      <h3>No tools found</h3>
+      <p>Try different keywords or <button class="link-btn" id="show-all-btn">browse all tools</button></p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-logo" aria-label="AllTools">
+        <div class="logo-icon" aria-hidden="true">⚡</div>
+        <span>All<span class="logo-accent">Tools</span></span>
+      </div>
+      <p class="footer-tagline">135+ free tools, no signup required. Everything runs in your browser.</p>
+      <div class="footer-links">
+        <span>Text</span><span class="dot">·</span>
+        <span>Developer</span><span class="dot">·</span>
+        <span>Math</span><span class="dot">·</span>
+        <span>Security</span><span class="dot">·</span>
+        <span>Converters</span><span class="dot">·</span>
+        <span>Web</span>
+      </div>
+      <p class="footer-credits">© 2026 AllTools · Built with care · No data sent to any server · All tools run locally</p>
+    </div>
+  </footer>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon" id="modal-icon" aria-hidden="true"></span>
+          <div>
+            <h2 class="modal-title" id="modal-title-el"></h2>
+            <p class="modal-description" id="modal-description-el"></p>
+          </div>
+        </div>
+        <button class="modal-close" id="modal-close" aria-label="Close tool">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Tool UI rendered here by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="app-core.js"></script>
+  <script src="tools-1.js"></script>
+  <script src="tools-2.js"></script>
+  <script src="tools-3.js"></script>
+  <script src="app-init.js"></script>
+</body>
+</html>
