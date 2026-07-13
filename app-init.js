@@ -53,11 +53,64 @@
           html.setAttribute('data-theme', 'light');
           localStorage.setItem('alltools-theme', 'light');
         }
-        // Animate the button
         themeToggle.style.transform = 'rotate(20deg) scale(0.85)';
         setTimeout(() => { themeToggle.style.transform = ''; }, 220);
       });
     }
+
+    /* 4. Surprise Me — open a random tool */
+    const surpriseBtn = document.getElementById('surprise-btn');
+    surpriseBtn?.addEventListener('click', () => {
+      const tools = window.TOOLS;
+      const random = tools[Math.floor(Math.random() * tools.length)];
+      surpriseBtn.textContent = '🎲 Surprise Me';
+      surpriseBtn.style.transform = 'rotate(-8deg) scale(0.95)';
+      setTimeout(() => {
+        surpriseBtn.style.transform = '';
+        surpriseBtn.textContent = '🎲 Surprise Me';
+        openTool(random.id);
+      }, 180);
+    });
+
+    /* 5. Recently Used — stored in localStorage, max 8 */
+    const RECENT_KEY = 'alltools-recent';
+    function getRecent() {
+      try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch { return []; }
+    }
+    function addRecent(id) {
+      let list = getRecent().filter(i => i !== id);
+      list.unshift(id);
+      list = list.slice(0, 8);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+      renderRecent();
+    }
+    function renderRecent() {
+      const section = document.getElementById('recent-section');
+      const container = document.getElementById('recent-pills');
+      if (!section || !container) return;
+      const list = getRecent();
+      if (!list.length) { section.style.display = 'none'; return; }
+      section.style.display = 'block';
+      container.innerHTML = list.map(id => {
+        const tool = window.TOOLS.find(t => t.id === id);
+        if (!tool) return '';
+        return `<button class="recent-pill" data-id="${tool.id}">${tool.icon} ${tool.name}</button>`;
+      }).join('');
+      container.querySelectorAll('.recent-pill').forEach(btn => {
+        btn.addEventListener('click', () => openTool(btn.dataset.id));
+      });
+    }
+    document.getElementById('recent-clear')?.addEventListener('click', () => {
+      localStorage.removeItem(RECENT_KEY);
+      renderRecent();
+    });
+    // Hook into openTool to track recently used
+    const _origOpen = window.openTool;
+    window.openTool = function(id) {
+      addRecent(id);
+      _origOpen(id);
+    };
+    renderRecent(); // show on load if any exist
 
     /* 3. Keyboard shortcuts + modal close */
     setupKeyboard();
@@ -67,6 +120,48 @@
 
     /* 5. Render category pills */
     renderCategories();
+
+    /* 5b. Make categories draggable on desktop */
+    const catContainer = document.getElementById('categories');
+    if (catContainer) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let didMove = false;
+
+      catContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        didMove = false;
+        catContainer.style.cursor = 'grabbing';
+        startX = e.pageX - catContainer.offsetLeft;
+        scrollLeft = catContainer.scrollLeft;
+      });
+      catContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        catContainer.style.cursor = '';
+      });
+      catContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        catContainer.style.cursor = '';
+      });
+      catContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - catContainer.offsetLeft;
+        const walk = (x - startX);
+        if (Math.abs(walk) > 5) didMove = true; // threshold to distinguish click from drag
+        if (didMove) {
+          e.preventDefault();
+          catContainer.scrollLeft = scrollLeft - walk * 1.5;
+        }
+      });
+      // Prevent button click if the user was dragging
+      catContainer.addEventListener('click', (e) => {
+        if (didMove) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    }
 
     /* 6. Render all tool cards initially */
     filterAndRender();
