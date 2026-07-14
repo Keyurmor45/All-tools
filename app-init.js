@@ -89,7 +89,7 @@
       const container = document.getElementById('recent-pills');
       if (!section || !container) return;
       const list = getRecent();
-      if (!list.length) { section.style.display = 'none'; return; }
+      if (list.length === 0) { section.style.display = 'none'; return; }
       section.style.display = 'block';
       container.innerHTML = list.map(id => {
         const tool = window.TOOLS.find(t => t.id === id);
@@ -100,17 +100,35 @@
         btn.addEventListener('click', () => openTool(btn.dataset.id));
       });
     }
+
     document.getElementById('recent-clear')?.addEventListener('click', () => {
       localStorage.removeItem(RECENT_KEY);
       renderRecent();
     });
+
+    // 5.5 New Tools
+    function renderNewTools() {
+      const container = document.getElementById('new-pills');
+      if (!container) return;
+      // Get the last 15 tools added to the window.TOOLS array
+      const newTools = window.TOOLS.slice(-15).reverse();
+      container.innerHTML = newTools.map(tool => {
+        return `<button class="recent-pill" style="border-color:var(--cyan); background:rgba(0,255,255,0.05);" data-id="${tool.id}">${tool.icon} ${tool.name}</button>`;
+      }).join('');
+      container.querySelectorAll('.recent-pill').forEach(btn => {
+        btn.addEventListener('click', () => openTool(btn.dataset.id));
+      });
+    }
+
     // Hook into openTool to track recently used
-    const _origOpen = window.openTool;
-    window.openTool = function(id) {
+    const origOpen2 = window.openTool;
+    window.openTool = function (id) {
       addRecent(id);
-      _origOpen(id);
+      if (origOpen2) origOpen2(id);
     };
+
     renderRecent(); // show on load if any exist
+    renderNewTools(); // show newest tools
 
     /* 3. Keyboard shortcuts + modal close */
     setupKeyboard();
