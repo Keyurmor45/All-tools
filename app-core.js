@@ -22,6 +22,7 @@ const CATEGORIES = [
   { id: 'datetime',  label: 'Time & Date',       icon: '⏱️' },
   { id: 'converter', label: 'Converters',        icon: '🔄' },
   { id: 'web',       label: 'Web & Network',     icon: '🌐' },
+  { id: 'fun',       label: 'Fun & Games',       icon: '🎲' },
 ];
 
 /* ================================================================

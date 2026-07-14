@@ -113,7 +113,7 @@
       // Get the last 15 tools added to the window.TOOLS array
       const newTools = window.TOOLS.slice(-15).reverse();
       container.innerHTML = newTools.map(tool => {
-        return `<button class="recent-pill" style="border-color:var(--cyan); background:rgba(0,255,255,0.05);" data-id="${tool.id}">${tool.icon} ${tool.name}</button>`;
+        return `<button class="recent-pill" style="border-color:var(--accent-warm); background:rgba(200,184,154,0.05);" data-id="${tool.id}">${tool.icon} ${tool.name}</button>`;
       }).join('');
       container.querySelectorAll('.recent-pill').forEach(btn => {
         btn.addEventListener('click', () => openTool(btn.dataset.id));
