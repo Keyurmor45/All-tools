@@ -75,8 +75,10 @@
       </a>
       
       <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
       
       <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
         <a href="index.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Tools</a>
         <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
         <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
@@ -89,7 +91,6 @@
       <div class="nav-right">
         <!-- Mobile: search + hamburger -->
         <button class="mobile-search-btn" id="mobile-search-btn" aria-label="Search tools">↗</button>
-        <div id="google_translate_element" style="margin-right: 15px;"></div>
         
         <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
         <span class="tool-count-badge" aria-label="510 plus tools available">510+ Tools</span>

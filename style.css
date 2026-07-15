@@ -45,13 +45,13 @@
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+html { scroll-behavior: smooth; overflow-x: clip; max-width: 100vw; }
 body {
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--text-primary);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
   line-height: 1.6;
   font-size: 16px;
@@ -398,33 +398,6 @@ img { display: block; max-width: 100%; }
 .btn:hover:not(.btn-primary) { background: var(--white); color: var(--bg); border-color: var(--white); }
 
 /* ============================================================
-   GOOGLE TRANSLATE BRUTALIST OVERRIDES
-   ============================================================ */
-#google_translate_element select {
-  background: var(--bg-input) !important;
-  color: var(--accent) !important;
-  border: 2px solid var(--border) !important;
-  font-family: var(--font-mono) !important;
-  font-size: 0.9rem !important;
-  padding: 8px 12px !important;
-  outline: none !important;
-  text-transform: uppercase !important;
-  cursor: pointer;
-  -webkit-appearance: none; appearance: none;
-  border-radius: 0 !important;
-}
-#google_translate_element select:hover { border-color: var(--accent) !important; }
-
-/* Hide Google Branding */
-.goog-te-gadget { font-size: 0 !important; color: transparent !important; }
-.goog-te-gadget .goog-logo-link, .goog-te-gadget img { display: none !important; }
-.goog-te-gadget > span > a { display: none !important; }
-
-/* Hide top banner and prevent body shift */
-.goog-te-banner-frame.skiptranslate { display: none !important; }
-body { top: 0px !important; }
-
-/* ============================================================
    MOBILE & RESPONSIVE
    ============================================================ */
 .mobile-menu {
@@ -442,6 +415,8 @@ body { top: 0px !important; }
 .mobile-menu-link:hover { color: var(--accent); }
 
 .mobile-menu-toggle { display: none; }
+.sidebar-close { display: none; }
+.sidebar-overlay { display: none; }
 
 @media (max-width: 900px) {
   .nav-search { display: none; }
@@ -460,20 +435,49 @@ body { top: 0px !important; }
   
   .hamburger { display: block; font-size: 2rem; cursor: pointer; color: var(--accent); }
   
+  /* Sidebar Overlay (Click to close) */
+  .sidebar-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7); z-index: 1000; cursor: pointer;
+  }
+  .mobile-menu-toggle:checked ~ .sidebar-overlay { display: block; }
+  
   .nav-links {
     position: fixed;
     top: 0; left: -100%;
     width: 280px; height: 100vh;
     background: var(--bg);
     border-right: 2px solid var(--accent);
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    gap: 30px !important;
-    padding: 40px !important;
+    z-index: 1001; /* above overlay */
+    display: flex; flex-direction: column !important;
+    padding: 80px 30px 30px !important;
+    transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  
+  /* Close Button inside Sidebar */
+  .sidebar-close {
+    position: absolute; top: 20px; right: 25px;
+    font-size: 2rem; color: var(--accent); cursor: pointer;
+    display: block !important;
+  }
+  .mobile-menu-toggle:checked ~ .nav-links {
+    left: 0;
     transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 2000;
   }
+
+  /* Make Recent, New, and Categories scrollable on mobile */
+  .recent-pills, .categories {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+  }
+  .recent-pills::-webkit-scrollbar, .categories::-webkit-scrollbar { display: none; }
+  .recent-pill, .category-pill { flex-shrink: 0; }
   .nav-links a {
     font-size: 1.2rem !important;
     white-space: nowrap;
