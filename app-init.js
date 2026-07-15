@@ -2,13 +2,7 @@
    app-init.js — Bootstrap: runs after all tool files are loaded
    ================================================================ */
 
-/* ---- Theme — runs instantly to prevent flash of wrong theme ---- */
-(function () {
-  const saved = localStorage.getItem('alltools-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
-  if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
-})();
+
 
 
 (function () {
@@ -40,24 +34,7 @@
     /* 2. Navbar scroll effect */
     setupNavbar();
 
-    /* 3. Theme toggle */
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const html = document.documentElement;
-        const isLight = html.getAttribute('data-theme') === 'light';
-        if (isLight) {
-          html.removeAttribute('data-theme');
-          localStorage.setItem('alltools-theme', 'dark');
-        } else {
-          html.setAttribute('data-theme', 'light');
-          localStorage.setItem('alltools-theme', 'light');
-        }
-        themeToggle.style.transform = 'rotate(20deg) scale(0.85)';
-        setTimeout(() => { themeToggle.style.transform = ''; }, 220);
-      });
-    }
-
+    
     /* 4. Surprise Me — open a random tool */
     const surpriseBtn = document.getElementById('surprise-btn');
     surpriseBtn?.addEventListener('click', () => {

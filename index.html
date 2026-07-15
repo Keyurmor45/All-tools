@@ -41,39 +41,57 @@
     gtag('config', 'G-5P62NT93P2');
   </script>
 
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <!-- PDF-lib for PDF Studio -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1732327010632127" crossorigin="anonymous"></script>
 </head>
 <body>
 
+  <div class="marquee">
+    <span>512+ FREE TOOLS * NO SIGNUPS * LOCAL AI * PDF STUDIO * BROWSER-BASED * SECURE * 512+ FREE TOOLS * NO SIGNUPS * LOCAL AI * PDF STUDIO * BROWSER-BASED * SECURE *</span>
+  </div>
+
   <!-- Navbar -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="#" class="logo" id="logo-link" aria-label="AllTools Home">
-        <div class="logo-icon" aria-hidden="true">⚡</div>
-        <span>All<span class="logo-accent">Tools</span></span>
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
       </a>
-      <div class="nav-search" role="search">
-        <span class="search-icon" aria-hidden="true">↗</span>
-        <input type="text" id="nav-search" placeholder="Search tools…" autocomplete="off" aria-label="Search tools">
-        <kbd class="search-kbd" aria-label="Keyboard shortcut">⌘K</kbd>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <a href="index.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Tools</a>
+        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
       </div>
+
       <div class="nav-right">
         <!-- Mobile: search + hamburger -->
         <button class="mobile-search-btn" id="mobile-search-btn" aria-label="Search tools">↗</button>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
-          <span class="theme-icon-dark">☽</span>
-          <span class="theme-icon-light">○</span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div id="google_translate_element" style="margin-right: 15px;"></div>
+        
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
         <span class="tool-count-badge" aria-label="510 plus tools available">510+ Tools</span>
       </div>
     </div>
@@ -82,6 +100,8 @@
   <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
     <button class="mobile-menu-link" id="mm-all">🛠️ All Tools</button>
+    <button class="mobile-menu-link" id="mm-fav">⭐ Favorites</button>
+    <button class="mobile-menu-link" id="mm-ai">🤖 AI Tools</button>
     <button class="mobile-menu-link" id="mm-text">📝 Text Tools</button>
     <button class="mobile-menu-link" id="mm-dev">💻 Developer</button>
     <button class="mobile-menu-link" id="mm-math">🔢 Math &amp; Calc</button>
@@ -105,14 +125,14 @@
   </div>
 
   <!-- Hero Section -->
-  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <section class="hero" id="home" aria-labelledby="hero-heading">
     <div class="hero-content">
-      <div class="hero-badge" role="note">Free · No Login · No Ads · No Tracking · Runs in Browser</div>
+      <div class="sticker">100%<br>FREE</div>
       <h1 class="hero-title" id="hero-heading">
-        <span class="title-line">Stop Googling.</span>
-        <span class="title-gradient">Just Open This.</span>
+        Stop <span>Googling.</span><br>
+        Just <span class="highlight chrome">Open This.</span>
       </h1>
-      <p class="hero-subtitle">512 hand-picked tools for developers, writers, designers &amp; curious people. No account, no cookies, no nonsense — everything runs locally on your device.</p>
+      <p class="hero-subtitle">512 hand-picked tools for modern developers, creators, and doers. No account, no ads, completely local. Everything runs perfectly in your browser.</p>
       <div class="hero-actions">
         <div class="hero-search-wrapper">
           <div class="hero-search" role="search">
@@ -122,17 +142,17 @@
           </div>
         </div>
         <button class="btn-surprise" id="surprise-btn" aria-label="Open a random tool">
-          🎲 Surprise Me
+          🎲 SURPRISE ME
         </button>
       </div>
       <div class="hero-stats" role="list" aria-label="Website statistics">
         <div class="stat" role="listitem">
-          <span class="stat-num" aria-label="136 plus tools">136+</span>
+          <span class="stat-num" aria-label="512 plus tools">512+</span>
           <span class="stat-label">Tools</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat" role="listitem">
-          <span class="stat-num">10</span>
+          <span class="stat-num">11</span>
           <span class="stat-label">Categories</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
@@ -209,8 +229,8 @@
     <div class="footer-content">
       <div class="footer-top">
         <div class="footer-logo" aria-label="AllTools">
-          <div class="logo-icon" aria-hidden="true">⚡</div>
-          <span>All<span class="logo-accent">Tools</span></span>
+          <div class="logo-icon" aria-hidden="true">✷</div>
+          <span class="logo-text">[ ALL*TOOLS ]</span>
         </div>
         <div class="footer-social">
           <a href="https://www.reddit.com/user/keyurmor45" target="_blank" rel="noopener" class="footer-social-link" aria-label="Reddit profile">
@@ -274,6 +294,8 @@
   <script src="tools-13.js"></script>
   <script src="tools-19.js"></script>
   <script src="tools-20.js"></script>
+  <script src="tools-21.js"></script>
+  <script src="tools-22.js"></script>
   <script src="app-init.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ const state = { category: 'all', query: '' };
 /* -------- Categories -------- */
 const CATEGORIES = [
   { id: 'all',       label: 'All Tools',       icon: '🛠️' },
+  { id: 'favorites', label: 'Favorites',       icon: '⭐' },
   { id: 'text',      label: 'Text Tools',       icon: '📝' },
   { id: 'developer', label: 'Developer',         icon: '💻' },
   { id: 'math',      label: 'Math & Calc',       icon: '🔢' },
@@ -22,8 +23,65 @@ const CATEGORIES = [
   { id: 'datetime',  label: 'Time & Date',       icon: '⏱️' },
   { id: 'converter', label: 'Converters',        icon: '🔄' },
   { id: 'web',       label: 'Web & Network',     icon: '🌐' },
+  { id: 'ai',        label: 'AI Tools',          icon: '🤖' },
   { id: 'fun',       label: 'Fun & Games',       icon: '🎲' },
 ];
+
+
+/* ================================================================
+   FAVORITES & RECENTS
+   ================================================================ */
+window.getFavorites = function() {
+  try { return JSON.parse(localStorage.getItem('alltools_favs')) || []; } catch { return []; }
+}
+window.toggleFavorite = function(id, e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  let favs = getFavorites();
+  if (favs.includes(id)) favs = favs.filter(x => x !== id);
+  else favs.push(id);
+  localStorage.setItem('alltools_favs', JSON.stringify(favs));
+  
+  // Re-render button if possible
+  if(e && e.target) {
+     e.target.textContent = favs.includes(id) ? '⭐' : '☆';
+     e.target.style.transform = 'scale(1.2)';
+     setTimeout(()=> e.target.style.transform = 'scale(1)', 200);
+  }
+  
+  if(state.category === 'favorites') filterAndRender();
+  renderCategories();
+}
+window.getRecents = function() {
+  try { return JSON.parse(localStorage.getItem('alltools_recents')) || []; } catch { return []; }
+}
+window.addRecent = function(id) {
+  let recents = getRecents();
+  recents = recents.filter(x => x !== id);
+  recents.unshift(id);
+  if (recents.length > 5) recents.pop();
+  localStorage.setItem('alltools_recents', JSON.stringify(recents));
+  renderRecents();
+}
+window.clearRecents = function() {
+  localStorage.removeItem('alltools_recents');
+  renderRecents();
+}
+window.renderRecents = function() {
+  const rs = document.getElementById('recent-section');
+  const rp = document.getElementById('recent-pills');
+  if(!rs || !rp) return;
+  const r = getRecents();
+  if (r.length === 0) {
+    rs.style.display = 'none';
+  } else {
+    rs.style.display = 'block';
+    rp.innerHTML = r.map(id => {
+       const t = TOOLS.find(x => x.id === id);
+       if(!t) return '';
+       return `<button class="category-pill" style="padding:6px 12px; font-size:0.9rem;" onclick="openTool('${t.id}')">${t.icon} ${t.name}</button>`;
+    }).join('');
+  }
+}
 
 /* ================================================================
    UTILITY FUNCTIONS
@@ -190,7 +248,7 @@ function renderCategories() {
   const wrap = document.getElementById('categories');
   if (!wrap) return;
   wrap.innerHTML = CATEGORIES.map(cat => {
-    const count = cat.id === 'all' ? TOOLS.length : TOOLS.filter(t => t.category === cat.id).length;
+    let count = 0; if(cat.id === 'all') count = TOOLS.length; else if(cat.id === 'favorites') count = getFavorites().length; else count = TOOLS.filter(t => t.category === cat.id).length;
     return `<button class="category-pill ${cat.id === state.category ? 'active' : ''}"
       data-cat="${cat.id}" role="tab" aria-selected="${cat.id === state.category}"
       aria-label="Filter by ${cat.label}">
@@ -216,7 +274,7 @@ function updateCategoryUI() {
 
 function filterAndRender() {
   let tools = TOOLS;
-  if (state.category !== 'all') tools = tools.filter(t => t.category === state.category);
+  if (state.category === 'favorites') { const favs = getFavorites(); tools = tools.filter(t => favs.includes(t.id)); } else if (state.category !== 'all') tools = tools.filter(t => t.category === state.category);
   if (state.query) {
     const q = state.query.toLowerCase();
     tools = tools.filter(t =>
@@ -251,16 +309,19 @@ function renderToolCards(tools) {
          style="animation-delay:${Math.min(i * 0.03, 0.5)}s"
          data-tool-id="${tool.id}" tabindex="0"
          aria-label="Open ${tool.name} tool">
+      <div class="card-bg"></div>
       <div class="tool-card-inner">
-        <div class="tool-card-icon" aria-hidden="true">${tool.icon}</div>
         <div class="tool-card-meta">
           <span class="tool-card-category">${getCategoryLabel(tool.category)}</span>
+          <button class="fav-btn" onclick="toggleFavorite('${tool.id}', event)" aria-label="Toggle Favorite" style="background:none;border:none;cursor:pointer;font-size:1.2rem;transition:transform 0.2s;">
+            ${getFavorites().includes(tool.id) ? '⭐' : '☆'}
+          </button>
         </div>
-        <div class="tool-card-name">${tool.name}</div>
+        <div class="tool-card-icon" aria-hidden="true">${tool.icon}</div>
+        <div class="tool-card-name">
+          <span>${tool.name}</span>
+        </div>
         <div class="tool-card-desc">${tool.description}</div>
-        <div class="tool-card-footer">
-          <span class="tool-card-open">Open Tool <span class="tool-card-arrow">→</span></span>
-        </div>
       </div>
     </div>`).join('');
   grid.querySelectorAll('.tool-card').forEach(card => {
@@ -283,6 +344,8 @@ function openTool(id) {
   const tool = TOOLS.find(t => t.id === id);
   if (!tool) return;
   currentTool = tool;
+  addRecent(id);
+  window.history.pushState(null, null, '#' + id);
   document.getElementById('modal-icon').textContent = tool.icon;
   document.getElementById('modal-title-el').textContent = tool.name;
   document.getElementById('modal-description-el').textContent = tool.description;
@@ -304,6 +367,7 @@ function closeTool() {
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  if(window.location.hash) window.history.pushState(null, null, window.location.pathname);
   currentTool = null;
 }
 
@@ -374,6 +438,7 @@ function setupKeyboard() {
     if (e.key === 'Escape') closeTool();
   });
   document.getElementById('modal-close')?.addEventListener('click', closeTool);
+  document.getElementById('modal-share')?.addEventListener('click', () => copyText(window.location.href, document.getElementById('modal-share')));
   document.getElementById('modal-overlay')?.addEventListener('click', e => {
     if (e.target === e.currentTarget) closeTool();
   });

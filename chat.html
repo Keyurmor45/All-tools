@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terminal BBS - Global Chat Room">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>BBS Global Chat — AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .bbs-container {
+      background: var(--bg-card); border: 2px solid var(--border);
+      display: flex; flex-direction: column; height: 650px;
+      position: relative; margin-top: 40px; box-shadow: 0 0 15px rgba(255,255,255,0.05);
+    }
+    .bbs-header {
+      background: var(--border); color: var(--text-secondary); padding: 15px 20px;
+      font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; text-transform: uppercase;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid var(--accent);
+    }
+    .bbs-status {
+      display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
+    }
+    .status-dot {
+      width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    
+    .bbs-chat-box {
+      flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+      font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.5;
+    }
+    .bbs-msg { padding: 5px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); }
+    .bbs-msg-time { color: var(--text-secondary); margin-right: 10px; font-size: 0.8rem; }
+    .bbs-msg-user { color: var(--accent); font-weight: bold; margin-right: 10px; }
+    .bbs-msg-user.self { color: var(--white); }
+    .bbs-msg-content { color: var(--text-primary); }
+    .bbs-sys-msg { color: var(--accent-red); font-style: italic; }
+    
+    .bbs-input-area {
+      display: flex; border-top: 2px solid var(--border); background: var(--bg);
+      align-items: center; padding-left: 20px;
+    }
+    .bbs-prompt { color: var(--accent); font-family: var(--font-mono); font-weight: bold; margin-right: 10px; }
+    .bbs-input-area input {
+      flex: 1; background: transparent; border: none; padding: 20px 0;
+      color: var(--white); font-family: var(--font-mono); font-size: 1rem; outline: none;
+    }
+    .bbs-input-area button {
+      background: var(--border); color: var(--text-primary); border: none; padding: 20px 30px;
+      font-family: var(--font-display); font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.2s;
+    }
+    .bbs-input-area button:hover { background: var(--accent); color: var(--bg); }
+    
+    .scanline {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+      background-size: 100% 4px; pointer-events: none; opacity: 0.5; z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee">
+    <span>SYSTEM BREACH * WELCOME TO THE UNDERGROUND BBS * HACK THE PLANET * NO LOGS KEPT * SYSTEM BREACH * WELCOME TO THE UNDERGROUND BBS *</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
+        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">BBS Chat</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+        <span class="tool-count-badge" aria-label="BBS Users"><span id="active-users">42</span> ONLINE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content" id="main" style="max-width: 1200px; margin-top: 60px;">
+    
+    <div style="margin-bottom: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end;">
+      <h1 style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; text-transform: uppercase; margin: 0; color: var(--accent); letter-spacing: -2px;">
+        Global_BBS
+      </h1>
+      <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem;">ENCRYPTED CHANNEL : SECURE</span>
+    </div>
+    
+    <p style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem;">
+      > You are connected to the Global BBS Terminal. Messages are volatile and broadcasted to all active nodes.
+    </p>
+
+    <div class="bbs-container">
+      <div class="scanline"></div>
+      
+      <div class="bbs-header">
+        <span>CHANNEL: #GLOBAL_OP</span>
+        <div class="bbs-status">
+          <div class="status-dot"></div>
+          LIVE CONNECTION
+        </div>
+      </div>
+      
+      <div class="bbs-chat-box" id="bbs-chat-box">
+        <div class="bbs-msg bbs-sys-msg">
+          <span class="bbs-msg-time">[SYS]</span>
+          <span class="bbs-msg-content">Connection established. Handshake verified. Welcome to the underground.</span>
+        </div>
+        <!-- Messages get injected here -->
+      </div>
+      
+      <div class="bbs-input-area">
+        <span class="bbs-prompt">root@bbs:~#</span>
+        <input type="text" id="bbs-input" placeholder="Broadcast a message..." autocomplete="off">
+        <button id="bbs-send">TRANSMIT</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>
