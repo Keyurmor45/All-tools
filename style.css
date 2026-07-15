@@ -398,6 +398,33 @@ img { display: block; max-width: 100%; }
 .btn:hover:not(.btn-primary) { background: var(--white); color: var(--bg); border-color: var(--white); }
 
 /* ============================================================
+   GOOGLE TRANSLATE BRUTALIST OVERRIDES
+   ============================================================ */
+#google_translate_element select {
+  background: var(--bg-input) !important;
+  color: var(--accent) !important;
+  border: 2px solid var(--border) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.9rem !important;
+  padding: 8px 12px !important;
+  outline: none !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  border-radius: 0 !important;
+}
+#google_translate_element select:hover { border-color: var(--accent) !important; }
+
+/* Hide Google Branding */
+.goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+.goog-te-gadget .goog-logo-link, .goog-te-gadget img { display: none !important; }
+.goog-te-gadget > span > a { display: none !important; }
+
+/* Hide top banner and prevent body shift */
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0px !important; }
+
+/* ============================================================
    MOBILE & RESPONSIVE
    ============================================================ */
 .mobile-menu {
