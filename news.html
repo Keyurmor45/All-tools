@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Live Tech & AI News — AllTools">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Live Tech News — AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="marquee">
+    <span>LIVE TECH NEWS * HACKER NEWS TERMINAL * AI UPDATES * SOFTWARE RELEASES * LIVE TECH NEWS * HACKER NEWS TERMINAL * AI UPDATES * SOFTWARE RELEASES *</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
+        <a href="news.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+        <span class="tool-count-badge" aria-label="Live Feed">LIVE FEED</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content" id="main" style="max-width: 900px; margin-top: 60px;">
+    
+    <div style="margin-bottom: 40px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end;">
+      <h1 style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; text-transform: uppercase; margin: 0; color: var(--accent); letter-spacing: -2px;">
+        Terminal_News
+      </h1>
+      <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem;" id="news-status">Establishing connection...</span>
+    </div>
+
+    <div class="news-feed" id="news-feed">
+      <!-- News items injected here -->
+      <div class="pulse" style="font-family: var(--font-mono); color: var(--accent); text-align: center; padding: 40px; font-size: 1.2rem;">
+        > FETCHING LATEST PACKETS...
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-logo" aria-label="AllTools">
+          <div class="logo-icon" aria-hidden="true">✷</div>
+          <span class="logo-text">[ ALL*TOOLS ]</span>
+        </div>
+      </div>
+      <p class="footer-tagline">The ultimate brutalist tech hub. No data collected. Everything runs locally.</p>
+      <div class="footer-links">
+        <a href="index.html">Tools</a><span class="dot">·</span>
+        <a href="news.html">News</a>
+      </div>
+      <p class="footer-credits">© 2026 AllTools · Made with ❤️ · Live Feed powered by Hacker News</p>
+    </div>
+  </footer>
+
+  <script src="news.js"></script>
+</body>
+</html>

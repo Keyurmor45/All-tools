@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cybercore Portfolio Generator">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Cybercore Portfolio Generator — AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+    @media (max-width: 900px) { .portfolio-grid { grid-template-columns: 1fr; } }
+    
+    .editor-pane {
+      background: var(--bg-card); border: 2px solid var(--border);
+      padding: 30px; display: flex; flex-direction: column; gap: 20px;
+    }
+    .editor-pane h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); margin: 0 0 10px 0; text-transform: uppercase; }
+    
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; }
+    .form-group input, .form-group textarea {
+      background: var(--bg-input); border: 2px solid var(--border);
+      color: var(--white); font-family: var(--font-mono); padding: 12px;
+      outline: none; transition: border-color 0.2s; resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    
+    .btn-generate {
+      background: var(--accent); color: var(--bg); border: 2px solid var(--accent);
+      padding: 15px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s; margin-top: 10px;
+    }
+    .btn-generate:hover { background: var(--bg); color: var(--accent); }
+    
+    .preview-pane {
+      border: 2px solid var(--border); background: #000; position: relative;
+      height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .preview-iframe {
+      width: 100%; height: 100%; border: none; background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee">
+    <span>CYBERCORE PORTFOLIO GENERATOR * NO CODE REQUIRED * BUILD YOUR LINK IN BIO * INSTANT DOWNLOAD * CYBERCORE PORTFOLIO GENERATOR *</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
+        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+        <span class="tool-count-badge" aria-label="Free">100% FREE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content" id="main" style="max-width: 1400px; margin-top: 60px;">
+    
+    <div style="margin-bottom: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end;">
+      <h1 style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; text-transform: uppercase; margin: 0; color: var(--accent); letter-spacing: -2px;">
+        Link_In_Bio
+      </h1>
+      <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem;">Standalone HTML Exporter</span>
+    </div>
+
+    <div class="portfolio-grid">
+      
+      <!-- EDITOR -->
+      <div class="editor-pane">
+        <h2>Identity</h2>
+        <div class="form-group">
+          <label>Display Name</label>
+          <input type="text" id="p-name" placeholder="e.g. ZERO_COOL" value="HACKER_99">
+        </div>
+        <div class="form-group">
+          <label>Tagline</label>
+          <input type="text" id="p-tagline" placeholder="e.g. FULL STACK DEVELOPER" value="SYSADMIN // DESIGNER">
+        </div>
+        <div class="form-group">
+          <label>Bio (Short)</label>
+          <textarea id="p-bio" rows="3" placeholder="A brief description...">Building the open web. Avoiding sunlight. Coffee addict.</textarea>
+        </div>
+        
+        <h2 style="margin-top:20px;">Links</h2>
+        <div class="form-group">
+          <label>GitHub URL</label>
+          <input type="text" id="p-github" placeholder="https://github.com/..." value="https://github.com">
+        </div>
+        <div class="form-group">
+          <label>Twitter / X URL</label>
+          <input type="text" id="p-twitter" placeholder="https://twitter.com/..." value="https://twitter.com">
+        </div>
+        <div class="form-group">
+          <label>Personal Website</label>
+          <input type="text" id="p-website" placeholder="https://..." value="https://keyurmor.live">
+        </div>
+        
+        <h2 style="margin-top:20px;">Theme</h2>
+        <div class="form-group">
+          <label>Primary Accent Color</label>
+          <input type="color" id="p-color" value="#ccff00" style="height: 50px; cursor: pointer;">
+        </div>
+
+        <button class="btn-generate" id="btn-download">Download HTML File</button>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="preview-pane">
+        <iframe class="preview-iframe" id="preview-iframe"></iframe>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>
