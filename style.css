@@ -42,6 +42,29 @@
 }
 
 /* ============================================================
+   CUSTOM CURSOR (DESKTOP ONLY)
+   ============================================================ */
+@media (pointer: fine) {
+  body, a, button, input, label, [role="button"], .tool-card { cursor: none !important; }
+  .custom-cursor-dot, .custom-cursor-ring {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    border-radius: 50%; transform: translate(-50%, -50%);
+  }
+  .custom-cursor-dot {
+    width: 6px; height: 6px; background: var(--accent); margin: -3px 0 0 -3px;
+  }
+  .custom-cursor-ring {
+    width: 34px; height: 34px; border: 2px solid var(--accent); margin: -17px 0 0 -17px;
+    transition: width 0.2s, height 0.2s, margin 0.2s, background 0.2s;
+  }
+  .custom-cursor-ring.hovered {
+    width: 50px; height: 50px; margin: -25px 0 0 -25px;
+    background: rgba(204, 255, 0, 0.1); border-color: transparent;
+  }
+  .custom-cursor-dot.hovered { display: none; }
+}
+
+/* ============================================================
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
