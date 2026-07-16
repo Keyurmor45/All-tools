@@ -10,7 +10,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Red</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -43,7 +43,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Green</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -76,7 +76,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Blue</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -109,7 +109,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Yellow</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -142,7 +142,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Purple</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -175,7 +175,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Orange</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -208,7 +208,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Pink</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -241,7 +241,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Brown</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -274,7 +274,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Gray</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -307,7 +307,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Cyan</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -340,7 +340,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Magenta</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -373,7 +373,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Teal</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -406,7 +406,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Lime</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -439,7 +439,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Indigo</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -472,7 +472,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Violet</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -505,7 +505,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Gold</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -538,7 +538,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Silver</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -571,7 +571,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Bronze</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -604,7 +604,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Coral</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>
@@ -637,7 +637,7 @@ window.TOOLS.push(
       <div class="tool-io">
         <div class="io-box">
            <p>Click below to generate random <strong>Navy</strong> palettes.</p>
-           <button class="btn btn-primary" id="gen-btn">Generate Palette</button>
+           <button class="cyber-btn" id="gen-btn">Generate Palette</button>
         </div>
         <div class="io-box io-output">
            <div style="display:flex; height:100px; border-radius:8px; overflow:hidden;" id="pal-box"></div>

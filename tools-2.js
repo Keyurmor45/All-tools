@@ -168,7 +168,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Generate primes up to</label>
         <div class="flex-gap">
           <input class="tool-input" id="pc-upto" type="number" value="100" min="2" max="10000">
-          <button class="btn btn-secondary w-auto" id="pc-gen-btn">Generate</button>
+          <button class="cyber-btn" id="pc-gen-btn">Generate</button>
         </div>
       </div>
       ${outputBlock('pc-primes','Prime Numbers')}`;
@@ -242,7 +242,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Principal Amount (₹/$)</label><input class="tool-input" id="lc-p" type="number" value="500000"></div>
         <div class="tool-section"><label class="tool-label">Annual Interest Rate (%)</label><input class="tool-input" id="lc-r" type="number" value="8.5" step="0.1"></div>
         <div class="tool-section"><label class="tool-label">Loan Tenure (Months)</label><input class="tool-input" id="lc-n" type="number" value="240"></div>
-        <div class="tool-section" style="align-self:flex-end"><button class="btn btn-primary" id="lc-calc">Calculate EMI</button></div>
+        <div class="tool-section" style="align-self:flex-end"><button class="cyber-btn" id="lc-calc">Calculate EMI</button></div>
       </div>
       <div id="lc-result" class="mt-2"></div>`;
     q2(el,'#lc-calc').addEventListener('click',()=>{
@@ -323,7 +323,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Numbers (comma or space separated)</label>
         <textarea class="tool-textarea" id="sc-nums" placeholder="5, 10, 15, 20, 25, 10, 5" style="min-height:80px">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="sc-calc">Calculate</button>
+      <button class="cyber-btn" id="sc-calc">Calculate</button>
       <div id="sc-result"></div>`;
     q2(el,'#sc-calc').addEventListener('click',()=>{
       const nums=q2(el,'#sc-nums').value.split(/[\s,]+/).map(Number).filter(n=>!isNaN(n)&&n!==undefined);
@@ -371,7 +371,7 @@ TOOLS.push(
           </select>
         </div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="ci-calc">Calculate</button>
+      <button class="cyber-btn" id="ci-calc">Calculate</button>
       <div id="ci-result"></div>`;
     q2(el,'#ci-calc').addEventListener('click',()=>{
       const P=+q2(el,'#ci-p').value, r=+q2(el,'#ci-r').value/100, t=+q2(el,'#ci-t').value, n=+q2(el,'#ci-n').value;
@@ -400,7 +400,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Numbers (comma-separated)</label>
         <input class="tool-input" id="gl-nums" value="12, 18, 24" placeholder="e.g. 12, 18, 24">
       </div>
-      <button class="btn btn-primary mb-2" id="gl-calc">Calculate</button>
+      <button class="cyber-btn" id="gl-calc">Calculate</button>
       <div id="gl-result"></div>`;
     q2(el,'#gl-calc').addEventListener('click',()=>{
       const nums=q2(el,'#gl-nums').value.split(/[\s,]+/).map(Number).filter(n=>n>0&&!isNaN(n));
@@ -432,7 +432,7 @@ TOOLS.push(
       <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);margin-bottom:12px">
         <input type="checkbox" id="rng-unique"> Unique numbers only
       </label>
-      <button class="btn btn-primary mb-2" id="rng-gen">🎲 Generate</button>
+      <button class="cyber-btn" id="rng-gen">🎲 Generate</button>
       ${outputBlock('rng-out','Random Numbers')}`;
     q2(el,'#rng-gen').addEventListener('click',()=>{
       const min=+q2(el,'#rng-min').value, max=+q2(el,'#rng-max').value;
@@ -457,7 +457,7 @@ TOOLS.push(
     el.innerHTML = `
       <div class="grid-2">
         <div class="tool-section"><label class="tool-label">Number of Terms</label><input class="tool-input" id="fib-n" type="number" value="20" min="1" max="80"></div>
-        <div class="tool-section" style="align-self:flex-end"><button class="btn btn-primary" id="fib-gen">Generate</button></div>
+        <div class="tool-section" style="align-self:flex-end"><button class="cyber-btn" id="fib-gen">Generate</button></div>
       </div>
       ${outputBlock('fib-out','Fibonacci Sequence')}
       <div id="fib-info" class="alert alert-info mt-2"></div>`;
@@ -482,7 +482,7 @@ TOOLS.push(
   setup(el) {
     el.innerHTML = `
       <div class="tool-section"><label class="tool-label">n</label><input class="tool-input" id="fc-n" type="number" value="10" min="0" max="1000"></div>
-      <button class="btn btn-primary mb-2" id="fc-calc">Calculate n!</button>
+      <button class="cyber-btn" id="fc-calc">Calculate n!</button>
       ${outputBlock('fc-out','n!')}`;
     q2(el,'#fc-calc').addEventListener('click',()=>{
       const n=parseInt(q2(el,'#fc-n').value);
@@ -506,7 +506,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">b</label><input class="tool-input" id="qs-b" type="number" value="-5"></div>
         <div class="tool-section"><label class="tool-label">c</label><input class="tool-input" id="qs-c" type="number" value="6"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="qs-solve">Solve</button>
+      <button class="cyber-btn" id="qs-solve">Solve</button>
       <div id="qs-result"></div>`;
     q2(el,'#qs-solve').addEventListener('click',()=>{
       const a=+q2(el,'#qs-a').value, b=+q2(el,'#qs-b').value, c=+q2(el,'#qs-c').value;
@@ -531,7 +531,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Date of Birth</label><input class="tool-input" id="ac-dob" type="date"></div>
         <div class="tool-section"><label class="tool-label">As of Date</label><input class="tool-input" id="ac-ref" type="date"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="ac-calc">Calculate Age</button>
+      <button class="cyber-btn" id="ac-calc">Calculate Age</button>
       <div id="ac-result"></div>`;
     const now=new Date();
     q2(el,'#ac-dob').value='1990-01-01';
@@ -594,7 +594,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Start Date</label><input class="tool-input" id="dd-start" type="date"></div>
         <div class="tool-section"><label class="tool-label">End Date</label><input class="tool-input" id="dd-end" type="date"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="dd-calc">Calculate Difference</button>
+      <button class="cyber-btn" id="dd-calc">Calculate Difference</button>
       <div id="dd-result"></div>`;
     const now=new Date().toISOString().split('T')[0];
     q2(el,'#dd-start').value='2024-01-01'; q2(el,'#dd-end').value=now;
@@ -703,7 +703,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Base64 String (data:image/... or raw)</label>
         <textarea class="tool-textarea" id="b2i-in" style="min-height:100px" placeholder="data:image/png;base64,iVBOR..."></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="b2i-run">Preview Image</button>
+      <button class="cyber-btn" id="b2i-run">Preview Image</button>
       <div id="b2i-preview" style="text-align:center"></div>`;
     q2(el,'#b2i-run').addEventListener('click',()=>{
       let src=q2(el,'#b2i-in').value.trim();
@@ -772,7 +772,7 @@ TOOLS.push(
           <div class="tool-section"><label class="tool-label">Height (px)</label><input class="tool-input" id="ir-h" type="number" min="1"></div>
         </div>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);margin-bottom:10px"><input type="checkbox" id="ir-ratio" checked> Maintain aspect ratio</label>
-        <button class="btn btn-primary" id="ir-resize">Resize & Download</button>
+        <button class="cyber-btn" id="ir-resize">Resize & Download</button>
       </div>
       <canvas id="ir-canvas" style="display:none"></canvas>`;
     let origImg=null, origW=0, origH=0;
@@ -817,8 +817,8 @@ TOOLS.push(
           </div>`).join('')}
         </div>
         <div class="btn-group mt-2">
-          <button class="btn btn-secondary" id="if-reset">Reset</button>
-          <button class="btn btn-primary" id="if-download">Download</button>
+          <button class="cyber-btn" id="if-reset">Reset</button>
+          <button class="cyber-btn" id="if-download">Download</button>
         </div>
         <canvas id="if-canvas" class="tool-canvas mt-2" style="max-width:100%;max-height:300px;display:block;margin:0 auto"></canvas>
       </div>`;
@@ -861,12 +861,12 @@ TOOLS.push(
       <div class="drag-area" id="rf-drop"><div class="drag-icon">🔄</div><p>Drop image here</p><input type="file" id="rf-file" accept="image/*" style="display:none"></div>
       <div id="rf-controls" style="display:none">
         <div class="btn-group mt-2">
-          <button class="btn btn-secondary" data-op="r90">↻ 90°</button>
-          <button class="btn btn-secondary" data-op="r180">↻ 180°</button>
-          <button class="btn btn-secondary" data-op="r270">↺ 270°</button>
-          <button class="btn btn-secondary" data-op="fh">⇔ Flip H</button>
-          <button class="btn btn-secondary" data-op="fv">⇕ Flip V</button>
-          <button class="btn btn-primary" id="rf-dl">⬇ Download</button>
+          <button class="cyber-btn" data-op="r90">↻ 90°</button>
+          <button class="cyber-btn" data-op="r180">↻ 180°</button>
+          <button class="cyber-btn" data-op="r270">↺ 270°</button>
+          <button class="cyber-btn" data-op="fh">⇔ Flip H</button>
+          <button class="cyber-btn" data-op="fv">⇕ Flip V</button>
+          <button class="cyber-btn" id="rf-dl">⬇ Download</button>
         </div>
         <canvas id="rf-canvas" class="tool-canvas mt-2" style="max-width:100%;display:block;margin:0 auto;max-height:320px"></canvas>
       </div>`;
@@ -918,7 +918,7 @@ TOOLS.push(
           <div class="tool-section"><label class="tool-label">Width</label><input class="tool-input" id="ic-cw" type="number" min="1"></div>
           <div class="tool-section"><label class="tool-label">Height</label><input class="tool-input" id="ic-ch" type="number" min="1"></div>
         </div>
-        <button class="btn btn-primary mt-2" id="ic-run">Crop & Download</button>
+        <button class="cyber-btn" id="ic-run">Crop & Download</button>
       </div>`;
     let img=null;
     const drop=q2(el,'#ic-drop'),fi=q2(el,'#ic-file');
@@ -952,7 +952,7 @@ TOOLS.push(
           <div class="tool-section"><label class="tool-label">Border Color</label><input type="color" id="ib-color" value="#7c3aed" style="width:100%;height:40px"></div>
           <div class="tool-section"><label class="tool-label">Corner Radius (px)</label><input type="range" class="tool-range" id="ib-r" min="0" max="80" value="0"><span id="ib-r-val">0</span>px</div>
         </div>
-        <button class="btn btn-primary mt-2" id="ib-dl">Download</button>
+        <button class="cyber-btn" id="ib-dl">Download</button>
         <canvas id="ib-canvas" class="tool-canvas mt-2" style="max-width:100%;max-height:300px;display:block;margin:0 auto"></canvas>
       </div>`;
     let img=null;
@@ -992,7 +992,7 @@ TOOLS.push(
         <div style="display:flex;align-items:center;gap:14px">
           <div id="cp-swatch" style="width:60px;height:60px;border-radius:var(--r-md);border:2px solid var(--border)"></div>
           <div><div id="cp-hex" style="font-family:var(--font-mono);font-size:1.2rem;font-weight:700"></div><div id="cp-rgb" style="color:var(--text-secondary);font-size:.88rem;margin-top:4px"></div><div id="cp-hsl" style="color:var(--text-muted);font-size:.88rem;margin-top:2px"></div></div>
-          <button class="btn btn-secondary btn-sm" id="cp-copy-hex">Copy HEX</button>
+          <button class="cyber-btn" id="cp-copy-hex">Copy HEX</button>
         </div>
       </div>`;
     const drop=q2(el,'#cp-drop'),fi=q2(el,'#cp-file'),canvas=q2(el,'#cp-canvas');
@@ -1229,7 +1229,7 @@ TOOLS.push(
     };
     el.innerHTML = `
       <div class="tool-section"><input class="tool-input" id="ep-search" placeholder="Search emojis…"></div>
-      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">${Object.keys(emojis).map(cat=>`<button class="btn btn-secondary btn-xs ep-cat-btn" data-cat="${cat}">${cat}</button>`).join('')}</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">${Object.keys(emojis).map(cat=>`<button class="cyber-btn" data-cat="${cat}">${cat}</button>`).join('')}</div>
       <div id="ep-grid" style="display:flex;flex-wrap:wrap;gap:4px;max-height:320px;overflow-y:auto"></div>
       <div id="ep-picked" class="alert alert-info mt-2" style="display:none"></div>`;
     function showCat(cat){
@@ -1360,7 +1360,7 @@ TOOLS.push(
     };
     el.innerHTML = `
       <div class="tool-section"><input class="tool-input" id="ir2-search" placeholder="Search symbols…"></div>
-      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">${Object.keys(groups).map(g=>`<button class="btn btn-secondary btn-xs" data-grp="${g}">${g}</button>`).join('')}</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">${Object.keys(groups).map(g=>`<button class="cyber-btn" data-grp="${g}">${g}</button>`).join('')}</div>
       <div id="ir2-grid" style="display:flex;flex-wrap:wrap;gap:6px;max-height:300px;overflow-y:auto"></div>`;
     function show(cat){
       const list=groups[cat]||Object.values(groups).flat();
@@ -1383,7 +1383,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Size (px)</label><input type="range" class="tool-range" id="qr-size" min="100" max="400" value="200"><span id="qr-size-val">200</span>px</div>
         <div class="tool-section"><label class="tool-label">Color</label><input type="color" id="qr-color" value="#000000" style="width:100%;height:40px"></div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="qr-gen">Generate QR Code</button>
+      <button class="cyber-btn" id="qr-gen">Generate QR Code</button>
       <div id="qr-out" style="display:flex;flex-direction:column;align-items:center;gap:10px"></div>`;
     q2(el,'#qr-size').addEventListener('input',e=>q2(el,'#qr-size-val').textContent=e.target.value);
     q2(el,'#qr-gen').addEventListener('click',()=>{

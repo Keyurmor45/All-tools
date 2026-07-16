@@ -15,7 +15,7 @@ window.TOOLS.push(
           
           <div id="pdf-file-list" style="margin-bottom:15px; display:flex; flex-direction:column; gap:5px;"></div>
           
-          <button class="btn btn-primary" id="pdf-merge-btn" style="display:none; width:100%;">Merge PDFs</button>
+          <button class="cyber-btn" id="pdf-merge-btn" style="display:none; width:100%;">Merge PDFs</button>
           
           <div id="pdf-merge-loading" style="display:none; margin-top:15px; text-align:center; color:var(--accent-warm);">
              Processing... Please wait.
@@ -143,7 +143,7 @@ window.TOOLS.push(
             <input type="text" id="pdf-split-pages" class="io-input" placeholder="1-3, 5" style="margin-bottom:10px;">
             <p id="pdf-page-count" style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:15px;"></p>
             
-            <button class="btn btn-primary" id="pdf-split-btn" style="width:100%;">Extract Pages</button>
+            <button class="cyber-btn" id="pdf-split-btn" style="width:100%;">Extract Pages</button>
           </div>
           
           <div id="pdf-split-loading" style="display:none; margin-top:15px; text-align:center; color:var(--accent-warm);">

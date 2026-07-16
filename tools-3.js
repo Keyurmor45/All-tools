@@ -22,7 +22,7 @@ TOOLS.push(
         ${[['pg-upper','Uppercase (A-Z)',true],['pg-lower','Lowercase (a-z)',true],['pg-num','Numbers (0-9)',true],['pg-sym','Symbols (!@#...)',true]].map(([id,label,ch])=>`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--text-secondary)"><input type="checkbox" id="${id}" ${ch?'checked':''}> ${label}</label>`).join('')}
       </div>
       <div class="tool-section"><label class="tool-label">Count</label><input class="tool-input" id="pg-count" type="number" value="1" min="1" max="50"></div>
-      <button class="btn btn-primary mb-2" id="pg-gen">Generate Password</button>
+      <button class="cyber-btn" id="pg-gen">Generate Password</button>
       ${outputBlock('pg-out','Generated Password(s)')}
       <div id="pg-strength" class="mt-2" style="display:none">
         <div class="strength-bar"><div class="strength-fill" id="pg-str-fill"></div></div>
@@ -76,7 +76,7 @@ TOOLS.push(
     el.innerHTML = `
       <div class="tool-section"><label class="tool-label">Enter Password</label>
         <input class="tool-input" id="ps-in" type="password" placeholder="Type your password…">
-        <button class="btn btn-secondary btn-sm mt-1" id="ps-toggle">👁 Show</button>
+        <button class="cyber-btn" id="ps-toggle">👁 Show</button>
       </div>
       <div id="ps-result" style="margin-top:12px">
         <div class="strength-bar"><div class="strength-fill" id="ps-fill" style="width:0"></div></div>
@@ -114,7 +114,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Input Text</label>
         <textarea class="tool-textarea" id="md5-in" placeholder="Enter text to hash…"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="md5-run">Generate MD5</button>
+      <button class="cyber-btn" id="md5-run">Generate MD5</button>
       ${outputBlock('md5-out','MD5 Hash')}`;
     q3(el,'#md5-run').addEventListener('click',()=>q3(el,'#md5-out').textContent=md5(q3(el,'#md5-in').value));
     q3(el,'#md5-in').addEventListener('input',()=>q3(el,'#md5-out').textContent=md5(q3(el,'#md5-in').value));
@@ -130,7 +130,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Input Text</label>
         <textarea class="tool-textarea" id="s256-in" placeholder="Enter text to hash…"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="s256-run">Generate SHA-256</button>
+      <button class="cyber-btn" id="s256-run">Generate SHA-256</button>
       ${outputBlock('s256-out','SHA-256 Hash')}`;
     async function gen(){const txt=q3(el,'#s256-in').value;q3(el,'#s256-out').textContent=await hashSHA('SHA-256',txt);}
     q3(el,'#s256-run').addEventListener('click',gen);
@@ -147,7 +147,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Input Text</label>
         <textarea class="tool-textarea" id="s1-in" placeholder="Enter text to hash…"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="s1-run">Generate SHA-1</button>
+      <button class="cyber-btn" id="s1-run">Generate SHA-1</button>
       <div class="alert alert-warning">⚠️ SHA-1 is deprecated for security use. Use SHA-256 or SHA-3 instead.</div>
       ${outputBlock('s1-out','SHA-1 Hash')}`;
     async function gen(){const txt=q3(el,'#s1-in').value;q3(el,'#s1-out').textContent=await hashSHA('SHA-1',txt);}
@@ -169,7 +169,7 @@ TOOLS.push(
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary)"><input type="checkbox" id="uuid-upper"> Uppercase</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary)"><input type="checkbox" id="uuid-no-dash"> No hyphens</label>
       </div>
-      <button class="btn btn-primary mb-2" id="uuid-gen-btn">Generate UUIDs</button>
+      <button class="cyber-btn" id="uuid-gen-btn">Generate UUIDs</button>
       ${outputBlock('uuid-out','UUID(s)')}`;
     function gen(){
       const count=Math.min(100,+q3(el,'#uuid-count').value||1);
@@ -196,7 +196,7 @@ TOOLS.push(
         </div>
         <div class="tool-section"><label class="tool-label">Count</label><input class="tool-input" id="tg-count" type="number" value="3" min="1" max="20"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="tg-gen">Generate Tokens</button>
+      <button class="cyber-btn" id="tg-gen">Generate Tokens</button>
       ${outputBlock('tg-out','Tokens')}`;
     q3(el,'#tg-gen').addEventListener('click',()=>{
       const bytes=Math.min(256,+q3(el,'#tg-len').value||32), fmt=q3(el,'#tg-fmt').value, count=Math.min(20,+q3(el,'#tg-count').value||1);
@@ -243,8 +243,8 @@ TOOLS.push(
         <input type="range" class="tool-range" id="cc2-shift" min="1" max="25" value="3">
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="cc2-enc">Encrypt →</button>
-        <button class="btn btn-secondary" id="cc2-dec">← Decrypt</button>
+        <button class="cyber-btn" id="cc2-enc">Encrypt →</button>
+        <button class="cyber-btn" id="cc2-dec">← Decrypt</button>
       </div>
       ${outputBlock('cc2-out','Result')}`;
     q3(el,'#cc2-shift').addEventListener('input',e=>q3(el,'#cc2-shift-val').textContent=e.target.value);
@@ -264,7 +264,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Input Text</label>
         <textarea class="tool-textarea" id="ck-in" placeholder="Enter text to checksum…"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="ck-run">Calculate</button>
+      <button class="cyber-btn" id="ck-run">Calculate</button>
       <div id="ck-result"></div>`;
     q3(el,'#ck-run').addEventListener('click',()=>{
       const t=q3(el,'#ck-in').value;
@@ -296,7 +296,7 @@ TOOLS.push(
         </div>
         <div class="tool-section"><label class="tool-label">Count</label><input class="tool-input" id="ak-count" type="number" value="3" min="1" max="20"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="ak-gen">Generate API Keys</button>
+      <button class="cyber-btn" id="ak-gen">Generate API Keys</button>
       ${outputBlock('ak-out','API Keys')}`;
     function randHex(n){const a=new Uint8Array(n);crypto.getRandomValues(a);return [...a].map(b=>b.toString(16).padStart(2,'0')).join('');}
     q3(el,'#ak-gen').addEventListener('click',()=>{
@@ -324,7 +324,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Contact Email</label><input class="tool-input" id="pp-email" value="contact@alltools.app"></div>
         <div class="tool-section"><label class="tool-label">Country/Jurisdiction</label><input class="tool-input" id="pp-country" value="India"></div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="pp-gen">Generate Policy</button>
+      <button class="cyber-btn" id="pp-gen">Generate Policy</button>
       ${outputBlock('pp-out','Privacy Policy')}`;
     q3(el,'#pp-out').style.maxHeight='320px';
     q3(el,'#pp-gen').addEventListener('click',()=>{
@@ -410,9 +410,9 @@ TOOLS.push(
     el.innerHTML = `
       <div class="timer-display" id="sw-display">00:00.000</div>
       <div class="timer-controls">
-        <button class="btn btn-primary" id="sw-start">▶ Start</button>
-        <button class="btn btn-secondary" id="sw-lap">◎ Lap</button>
-        <button class="btn btn-danger" id="sw-reset">↺ Reset</button>
+        <button class="cyber-btn" id="sw-start">▶ Start</button>
+        <button class="cyber-btn" id="sw-lap">◎ Lap</button>
+        <button class="cyber-btn" id="sw-reset">↺ Reset</button>
       </div>
       <div id="sw-laps" style="max-height:200px;overflow-y:auto;margin-top:14px"></div>`;
     let start=0, elapsed=0, running=false, raf=null, laps=[], lapN=0;
@@ -443,7 +443,7 @@ TOOLS.push(
         <input class="tool-input" id="cd-target" type="datetime-local">
       </div>
       <div class="tool-section"><label class="tool-label">Event Name</label><input class="tool-input" id="cd-name" value="New Year 2026" placeholder="Event name…"></div>
-      <button class="btn btn-primary mb-2" id="cd-start">Start Countdown</button>
+      <button class="cyber-btn" id="cd-start">Start Countdown</button>
       <div id="cd-display" style="display:none">
         <div id="cd-label" style="text-align:center;color:var(--text-secondary);font-size:.9rem;margin-bottom:10px"></div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" id="cd-grid"></div>
@@ -482,9 +482,9 @@ TOOLS.push(
         <div class="timer-display" id="pt-display">25:00</div>
         <div style="margin-top:4px;font-size:.8rem;color:var(--text-muted)" id="pt-count">Pomodoro #1</div>
         <div class="timer-controls">
-          <button class="btn btn-primary" id="pt-start">▶ Start</button>
-          <button class="btn btn-secondary" id="pt-skip">⏭ Skip</button>
-          <button class="btn btn-danger" id="pt-reset">↺ Reset</button>
+          <button class="cyber-btn" id="pt-start">▶ Start</button>
+          <button class="cyber-btn" id="pt-skip">⏭ Skip</button>
+          <button class="cyber-btn" id="pt-reset">↺ Reset</button>
         </div>
         <div class="grid-3 mt-2">
           <div class="tool-section"><label class="tool-label">Work (min)</label><input class="tool-input" id="pt-work" type="number" value="25" min="1"></div>
@@ -524,12 +524,12 @@ TOOLS.push(
       <div class="grid-2 mt-2">
         <div>
           <div class="tool-section"><label class="tool-label">Seconds since epoch</label><input class="tool-input" id="ut-sec" type="number" placeholder="1720000000"></div>
-          <button class="btn btn-primary mt-1 mb-1" id="ut-from-sec">→ Human Date</button>
+          <button class="cyber-btn" id="ut-from-sec">→ Human Date</button>
           <div class="tool-output" id="ut-sec-out" style="min-height:40px"></div>
         </div>
         <div>
           <div class="tool-section"><label class="tool-label">Date & Time</label><input class="tool-input" id="ut-dt" type="datetime-local"></div>
-          <button class="btn btn-secondary mt-1 mb-1" id="ut-from-dt">→ Unix</button>
+          <button class="cyber-btn" id="ut-from-dt">→ Unix</button>
           <div class="tool-output" id="ut-dt-out" style="min-height:40px"></div>
         </div>
       </div>`;
@@ -587,7 +587,7 @@ TOOLS.push(
           <select class="tool-select" id="tzc-from">${zones.map(z=>`<option value="${z}">${z}</option>`).join('')}</select>
         </div>
       </div>
-      <button class="btn btn-primary mb-2" id="tzc-run">Convert to All Zones</button>
+      <button class="cyber-btn" id="tzc-run">Convert to All Zones</button>
       <div id="tzc-out" class="ref-list"></div>`;
     q3(el,'#tzc-dt').value=new Date().toISOString().slice(0,16);
     q3(el,'#tzc-run').addEventListener('click',()=>{
@@ -608,7 +608,7 @@ TOOLS.push(
   setup(el) {
     el.innerHTML = `
       <div class="tool-section"><label class="tool-label">Date & Time</label><input class="tool-input" id="df-date" type="datetime-local"></div>
-      <button class="btn btn-primary mb-2" id="df-run">Format</button>
+      <button class="cyber-btn" id="df-run">Format</button>
       <div id="df-out" class="ref-list"></div>`;
     q3(el,'#df-date').value=new Date().toISOString().slice(0,16);
     q3(el,'#df-run').addEventListener('click',()=>{
@@ -665,7 +665,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">End Date</label><input class="tool-input" id="wd-end" type="date"></div>
       </div>
       <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);margin-bottom:12px"><input type="checkbox" id="wd-sat"> Include Saturdays</label>
-      <button class="btn btn-primary mb-2" id="wd-calc">Calculate</button>
+      <button class="cyber-btn" id="wd-calc">Calculate</button>
       <div id="wd-result"></div>`;
     const now=new Date().toISOString().split('T')[0];
     const future=new Date();future.setDate(future.getDate()+30);
@@ -694,7 +694,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Start Time</label><input class="tool-input" id="td-start" type="time" value="09:00"></div>
         <div class="tool-section"><label class="tool-label">End Time</label><input class="tool-input" id="td-end" type="time" value="17:30"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="td-calc">Calculate Duration</button>
+      <button class="cyber-btn" id="td-calc">Calculate Duration</button>
       <div id="td-result"></div>`;
     q3(el,'#td-calc').addEventListener('click',()=>{
       const [sh,sm]=q3(el,'#td-start').value.split(':').map(Number);
@@ -722,8 +722,8 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Alarm Time</label><input class="tool-input" id="al-time" type="time"></div>
       <div class="tool-section"><label class="tool-label">Alarm Label</label><input class="tool-input" id="al-label" value="Time's up! ⏰" placeholder="Alarm message…"></div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="al-set">🔔 Set Alarm</button>
-        <button class="btn btn-danger" id="al-cancel">Cancel</button>
+        <button class="cyber-btn" id="al-set">🔔 Set Alarm</button>
+        <button class="cyber-btn" id="al-cancel">Cancel</button>
       </div>
       <div id="al-status" class="alert alert-info" style="display:none"></div>`;
     let alarmInt=null;
@@ -960,7 +960,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">URL</label>
         <input class="tool-input" id="up-url" value="https://example.com:8080/path/to/page?name=John&age=30#section">
       </div>
-      <button class="btn btn-primary mb-2" id="up-parse">Parse URL</button>
+      <button class="cyber-btn" id="up-parse">Parse URL</button>
       <div id="up-out" class="ref-list"></div>`;
     q3(el,'#up-parse').addEventListener('click',()=>{
       try{
@@ -987,7 +987,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">User Agent String</label>
         <textarea class="tool-textarea" id="ua-str" style="min-height:70px">${navigator.userAgent}</textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="ua-parse">Parse</button>
+      <button class="cyber-btn" id="ua-parse">Parse</button>
       <div id="ua-out" class="ref-list"></div>`;
     q3(el,'#ua-parse').addEventListener('click',()=>{
       const ua=q3(el,'#ua-str').value;
@@ -1071,7 +1071,7 @@ TOOLS.push(
           <select class="tool-select" id="sg2-pri"><option>1.0</option><option>0.9</option><option selected>0.8</option><option>0.7</option><option>0.5</option><option>0.3</option></select>
         </div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="sg2-gen">Generate Sitemap</button>
+      <button class="cyber-btn" id="sg2-gen">Generate Sitemap</button>
       ${outputBlock('sg2-out','sitemap.xml')}`;
     q3(el,'#sg2-out').style.maxHeight='260px';
     q3(el,'#sg2-gen').addEventListener('click',()=>{
@@ -1100,7 +1100,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">XML Input</label>
         <textarea class="tool-textarea" id="x2j-in" style="min-height:130px" placeholder="<root><item>Hello</item></root>"><root><person><name>Alice</name><age>30</age></person></root></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="x2j-run">Convert to JSON</button>
+      <button class="cyber-btn" id="x2j-run">Convert to JSON</button>
       <div id="x2j-msg"></div>
       ${outputBlock('x2j-out','JSON')}`;
     q3(el,'#x2j-run').addEventListener('click',()=>{
@@ -1135,7 +1135,7 @@ TOOLS.push(
         </div>
         <div class="tool-section"><label class="tool-label">BG Color</label><input type="color" id="pi-bg" value="#7c3aed" style="width:100%;height:40px"></div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="pi-gen">Generate</button>
+      <button class="cyber-btn" id="pi-gen">Generate</button>
       <div id="pi-out"></div>
       ${outputBlock('pi-url-out','URL')}`;
     q3(el,'#pi-gen').addEventListener('click',()=>{
@@ -1160,7 +1160,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">HTML to Check</label>
         <textarea class="tool-textarea" id="hv-in" style="min-height:140px" placeholder="<html><body><p>Hello</p></body></html>"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="hv-run">Check HTML</button>
+      <button class="cyber-btn" id="hv-run">Check HTML</button>
       <div id="hv-out"></div>`;
     q3(el,'#hv-run').addEventListener('click',()=>{
       const html=q3(el,'#hv-in').value;
@@ -1234,7 +1234,7 @@ TOOLS.push(
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary)"><input type="checkbox" id="t2h-links" checked> Auto-link URLs</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary)"><input type="checkbox" id="t2h-paras" checked> Wrap in paragraphs</label>
       </div>
-      <button class="btn btn-primary mb-2" id="t2h-run">Convert</button>
+      <button class="cyber-btn" id="t2h-run">Convert</button>
       ${outputBlock('t2h-out','HTML')}`;
     q3(el,'#t2h-run').addEventListener('click',()=>{
       let t=q3(el,'#t2h-in').value;
@@ -1256,7 +1256,7 @@ TOOLS.push(
       <div class="tool-section"><textarea class="tool-textarea" id="wf-in" style="min-height:120px" placeholder="Paste text here…">To be or not to be that is the question whether tis nobler in the mind to suffer the slings and arrows of outrageous fortune or to take arms against a sea of troubles</textarea></div>
       <div class="flex-gap mb-2">
         <div class="tool-section w-auto"><label class="tool-label">Top N words</label><input class="tool-input" id="wf-top" type="number" value="20" min="1" max="100" style="width:80px"></div>
-        <div class="tool-section" style="align-self:flex-end"><button class="btn btn-primary" id="wf-run">Count</button></div>
+        <div class="tool-section" style="align-self:flex-end"><button class="cyber-btn" id="wf-run">Count</button></div>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);align-self:flex-end"><input type="checkbox" id="wf-stop" checked> Skip common words</label>
       </div>
       <div id="wf-out"></div>`;
@@ -1291,7 +1291,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Text A</label><textarea class="tool-textarea" id="tca-a" style="min-height:140px" placeholder="First text…"></textarea></div>
         <div class="tool-section"><label class="tool-label">Text B</label><textarea class="tool-textarea" id="tca-b" style="min-height:140px" placeholder="Second text…"></textarea></div>
       </div>
-      <button class="btn btn-primary mb-2" id="tca-run">Compare Texts</button>
+      <button class="cyber-btn" id="tca-run">Compare Texts</button>
       <div id="tca-out"></div>`;
     q3(el,'#tca-run').addEventListener('click',()=>{
       const a=new Set(q3(el,'#tca-a').value.split('\n').filter(Boolean));

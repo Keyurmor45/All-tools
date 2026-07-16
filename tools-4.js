@@ -29,7 +29,7 @@ window.TOOLS.push(
             <label class="io-label">Generated URL</label>
             <textarea id="utm-out" class="io-textarea" style="height:100px" readonly placeholder="Your trackable link will appear here..."></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="utm-copy">Copy URL</button>
+              <button class="cyber-btn" id="utm-copy">Copy URL</button>
             </div>
           </div>
         </div>
@@ -84,8 +84,8 @@ window.TOOLS.push(
             <label class="io-label">Generated Link</label>
             <input type="text" id="wa-out" class="io-input" readonly placeholder="https://wa.me/...">
             <div class="action-row mt-2">
-              <button class="btn btn-primary" id="wa-copy">Copy Link</button>
-              <a id="wa-test" href="#" target="_blank" class="btn btn-secondary">Test Link ↗</a>
+              <button class="cyber-btn" id="wa-copy">Copy Link</button>
+              <a id="wa-test" href="#" target="_blank" class="cyber-btn">Test Link ↗</a>
             </div>
           </div>
         </div>
@@ -128,8 +128,8 @@ window.TOOLS.push(
             <label class="io-label">Generated Link</label>
             <textarea id="tw-out" class="io-textarea" style="height:60px" readonly placeholder="https://twitter.com/intent/tweet?..."></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="tw-copy">Copy Link</button>
-              <a id="tw-test" href="#" target="_blank" class="btn btn-secondary">Test Link ↗</a>
+              <button class="cyber-btn" id="tw-copy">Copy Link</button>
+              <a id="tw-test" href="#" target="_blank" class="cyber-btn">Test Link ↗</a>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ window.TOOLS.push(
             <label class="io-label">Formatted Caption</label>
             <textarea id="ig-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="ig-copy">Copy Caption</button>
+              <button class="cyber-btn" id="ig-copy">Copy Caption</button>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ window.TOOLS.push(
             <textarea id="ht-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
               <span class="char-count" id="ht-count">0 tags</span>
-              <button class="btn btn-primary" id="ht-copy">Copy Tags</button>
+              <button class="cyber-btn" id="ht-copy">Copy Tags</button>
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@ window.TOOLS.push(
             <label class="io-label">Zalgo Text</label>
             <textarea id="zg-out" class="io-textarea" readonly style="font-size: 1.2rem; line-height: 1.8;"></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="zg-copy">Copy</button>
+              <button class="cyber-btn" id="zg-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -328,7 +328,7 @@ window.TOOLS.push(
             <label class="io-label">Vaporwave Text</label>
             <textarea id="vw-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="vw-copy">Copy</button>
+              <button class="cyber-btn" id="vw-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -362,7 +362,7 @@ window.TOOLS.push(
             <label class="io-label">Output</label>
             <textarea id="mc-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="mc-copy">Copy</button>
+              <button class="cyber-btn" id="mc-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -413,7 +413,7 @@ window.TOOLS.push(
             <label class="io-label">JSON Output</label>
             <textarea id="cj-out" class="io-textarea font-mono" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="cj-copy">Copy JSON</button>
+              <button class="cyber-btn" id="cj-copy">Copy JSON</button>
             </div>
           </div>
         </div>
@@ -459,7 +459,7 @@ window.TOOLS.push(
             <label class="io-label">CSV Output</label>
             <textarea id="jc-out" class="io-textarea font-mono" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="jc-copy">Copy CSV</button>
+              <button class="cyber-btn" id="jc-copy">Copy CSV</button>
             </div>
           </div>
         </div>
@@ -501,7 +501,7 @@ window.TOOLS.push(
             <label class="io-label">Base32 Output</label>
             <textarea id="b32e-out" class="io-textarea font-mono" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="b32e-copy">Copy</button>
+              <button class="cyber-btn" id="b32e-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -547,7 +547,7 @@ window.TOOLS.push(
             <label class="io-label">Text Output</label>
             <textarea id="b32d-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="b32d-copy">Copy</button>
+              <button class="cyber-btn" id="b32d-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -594,7 +594,7 @@ window.TOOLS.push(
             <label class="io-label">ROT13 Output</label>
             <textarea id="rot-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="rot-copy">Copy</button>
+              <button class="cyber-btn" id="rot-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -625,7 +625,7 @@ window.TOOLS.push(
             <label class="io-label">Binary Output</label>
             <textarea id="t2b-out" class="io-textarea font-mono" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="t2b-copy">Copy</button>
+              <button class="cyber-btn" id="t2b-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -653,7 +653,7 @@ window.TOOLS.push(
             <label class="io-label">Text Output</label>
             <textarea id="b2t-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="b2t-copy">Copy</button>
+              <button class="cyber-btn" id="b2t-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -692,7 +692,7 @@ window.TOOLS.push(
             <label class="io-label">Hex Output</label>
             <textarea id="t2h-out" class="io-textarea font-mono" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="t2h-copy">Copy</button>
+              <button class="cyber-btn" id="t2h-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -720,7 +720,7 @@ window.TOOLS.push(
             <label class="io-label">Text Output</label>
             <textarea id="h2t-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="h2t-copy">Copy</button>
+              <button class="cyber-btn" id="h2t-copy">Copy</button>
             </div>
           </div>
         </div>
@@ -770,7 +770,7 @@ window.TOOLS.push(
           <label class="io-label">CSS Code</label>
           <textarea id="gl-css" class="io-textarea font-mono" style="height:100px" readonly></textarea>
           <div class="action-row">
-            <button class="btn btn-primary" id="gl-copy">Copy CSS</button>
+            <button class="cyber-btn" id="gl-copy">Copy CSS</button>
           </div>
         </div>
       `;
@@ -834,7 +834,7 @@ window.TOOLS.push(
           <label class="io-label">CSS Code</label>
           <textarea id="bs-css" class="io-textarea font-mono" style="height:60px" readonly></textarea>
           <div class="action-row">
-            <button class="btn btn-primary" id="bs-copy">Copy CSS</button>
+            <button class="cyber-btn" id="bs-copy">Copy CSS</button>
           </div>
         </div>
       `;
@@ -889,7 +889,7 @@ window.TOOLS.push(
             <label class="io-label">HTML Head Tags</label>
             <textarea id="mt-out" class="io-textarea font-mono" style="height:200px" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="mt-copy">Copy HTML</button>
+              <button class="cyber-btn" id="mt-copy">Copy HTML</button>
             </div>
           </div>
         </div>
@@ -943,7 +943,7 @@ window.TOOLS.push(
             <label class="io-label">HTML Head Tags</label>
             <textarea id="og-out" class="io-textarea font-mono" style="height:200px" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="og-copy">Copy HTML</button>
+              <button class="cyber-btn" id="og-copy">Copy HTML</button>
             </div>
           </div>
         </div>
@@ -997,7 +997,7 @@ window.TOOLS.push(
             <label class="io-label">HTML Head Tags</label>
             <textarea id="tc-out" class="io-textarea font-mono" style="height:200px" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="tc-copy">Copy HTML</button>
+              <button class="cyber-btn" id="tc-copy">Copy HTML</button>
             </div>
           </div>
         </div>
@@ -1086,7 +1086,7 @@ window.TOOLS.push(
             <label class="io-label">Emojified Output</label>
             <textarea id="te-out" class="io-textarea" readonly></textarea>
             <div class="action-row">
-              <button class="btn btn-primary" id="te-copy">Copy Emojis</button>
+              <button class="cyber-btn" id="te-copy">Copy Emojis</button>
             </div>
           </div>
         </div>

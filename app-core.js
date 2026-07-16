@@ -21,7 +21,8 @@ const CATEGORIES = [
   { id: 'color',     label: 'Color & Design',    icon: '🎨' },
   { id: 'security',  label: 'Security',          icon: '🔐' },
   { id: 'datetime',  label: 'Time & Date',       icon: '⏱️' },
-  { id: 'converter', label: 'Converters',        icon: '🔄' },
+  { id: 'pdf',       label: 'PDF Studio',        icon: '📄' },
+    { id: 'converter', label: 'Converters',        icon: '🔄' },
   { id: 'web',       label: 'Web & Network',     icon: '🌐' },
   { id: 'ai',        label: 'AI Tools',          icon: '🤖' },
   { id: 'fun',       label: 'Fun & Games',       icon: '🎲' },
@@ -66,6 +67,37 @@ window.clearRecents = function() {
   localStorage.removeItem('alltools_recents');
   renderRecents();
 }
+document.addEventListener("DOMContentLoaded", () => {
+  // ==========================================
+  // LIVE CRYPTO TICKER (Binance API)
+  // ==========================================
+  async function updateCryptoMarquee() {
+    const marquee = document.getElementById('crypto-marquee');
+    if (!marquee) return;
+    
+    try {
+      const symbols = '["BTCUSDT","ETHUSDT","SOLUSDT","DOGEUSDT","XRPUSDT"]';
+      const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbols=${symbols}`);
+      const data = await response.json();
+      
+      let tickerStr = '';
+      data.forEach(coin => {
+        const name = coin.symbol.replace('USDT', '');
+        const price = parseFloat(coin.price).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 4 });
+        tickerStr += `[ ${name}: ${price} ] • `;
+      });
+      
+      marquee.innerText = tickerStr.repeat(4); // Repeat to fill marquee
+    } catch (e) {
+      console.warn("Crypto API limit reached or offline, fallback to static text.");
+      marquee.innerText = "512+ FREE TOOLS * NO SIGNUPS * LOCAL AI * BROWSER-BASED * SECURE * ".repeat(4);
+    }
+  }
+  
+  updateCryptoMarquee();
+  setInterval(updateCryptoMarquee, 30000); // update every 30s
+});
+
 window.renderRecents = function() {
   const rs = document.getElementById('recent-section');
   const rp = document.getElementById('recent-pills');
@@ -249,10 +281,11 @@ function renderCategories() {
   if (!wrap) return;
   wrap.innerHTML = CATEGORIES.map(cat => {
     let count = 0; if(cat.id === 'all') count = TOOLS.length; else if(cat.id === 'favorites') count = getFavorites().length; else count = TOOLS.filter(t => t.category === cat.id).length;
+    let featuredTag = (cat.id === 'trading' || cat.id === 'pdf') ? '<span class="hot-badge" style="color:var(--accent); font-weight:bold; font-size:10px; margin-left:5px; animation:blink 1.5s infinite;">[ HOT ]</span>' : '';
     return `<button class="category-pill ${cat.id === state.category ? 'active' : ''}"
       data-cat="${cat.id}" role="tab" aria-selected="${cat.id === state.category}"
       aria-label="Filter by ${cat.label}">
-      ${cat.icon} ${cat.label} <span class="cat-count">${count}</span>
+      ${cat.icon} ${cat.label} ${featuredTag} <span class="cat-count">${count}</span>
     </button>`;
   }).join('');
   wrap.querySelectorAll('.category-pill').forEach(btn => {
@@ -273,7 +306,7 @@ function updateCategoryUI() {
 }
 
 function filterAndRender() {
-  let tools = TOOLS;
+  let tools = TOOLS.filter(t => t.category !== 'trading');
   if (state.category === 'favorites') { const favs = getFavorites(); tools = tools.filter(t => favs.includes(t.id)); } else if (state.category !== 'all') tools = tools.filter(t => t.category === state.category);
   if (state.query) {
     const q = state.query.toLowerCase();
@@ -304,9 +337,11 @@ function filterAndRender() {
 function renderToolCards(tools) {
   const grid = document.getElementById('tools-grid');
   if (!grid) return;
-  grid.innerHTML = tools.map((tool, i) => `
-    <div class="tool-card cat-${tool.category}" role="listitem"
-         style="animation-delay:${Math.min(i * 0.03, 0.5)}s"
+  grid.innerHTML = tools.map((tool, i) => {
+    const isFeatured = (tool.category === 'trading' || tool.category === 'pdf');
+    return `
+    <div class="tool-card cat-${tool.category} ${isFeatured ? 'featured-tool-card' : ''}" role="listitem"
+         style="animation-delay:${Math.min(i * 0.03, 0.5)}s; ${isFeatured ? 'border-color: var(--accent); box-shadow: 0 0 10px rgba(204, 255, 0, 0.2);' : ''}"
          data-tool-id="${tool.id}" tabindex="0"
          aria-label="Open ${tool.name} tool">
       <div class="card-bg"></div>
@@ -323,7 +358,8 @@ function renderToolCards(tools) {
         </div>
         <div class="tool-card-desc">${tool.description}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   grid.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', () => openTool(card.dataset.toolId));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openTool(card.dataset.toolId); });
@@ -343,6 +379,7 @@ let currentTool = null;
 function openTool(id) {
   const tool = TOOLS.find(t => t.id === id);
   if (!tool) return;
+  if(window.playFunnySound) window.playFunnySound();
   currentTool = tool;
   addRecent(id);
   window.history.pushState(null, null, '#' + id);
@@ -482,3 +519,60 @@ window.setupSearch = setupSearch;
 window.setupKeyboard = setupKeyboard;
 window.setupNavbar = setupNavbar;
 window.initParticles = initParticles;
+
+/* ================================================================
+   TRADING CAROUSEL LOGIC
+   ================================================================ */
+function seededRandom(seed) {
+  var x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
+
+function shuffleTradingTools(tools) {
+  const today = new Date();
+  let seed = today.getFullYear() * 1000 + Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  let shuffled = [...tools];
+  for(let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom(seed++) * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+window.renderTradingCarousel = function() {
+  const grid = document.getElementById('trading-carousel');
+  if (!grid) return;
+  
+  let tradingTools = TOOLS.filter(t => t.category === 'trading');
+  tradingTools = shuffleTradingTools(tradingTools);
+  
+  grid.innerHTML = tradingTools.map((tool, i) => {
+    return `
+    <div class="tool-card cat-trading featured-tool-card flame-card" role="listitem"
+         style="animation-delay:${Math.min(i * 0.03, 0.5)}s; border-color: var(--accent); box-shadow: 0 0 10px rgba(204, 255, 0, 0.2);"
+         data-tool-id="${tool.id}" tabindex="0"
+         aria-label="Open ${tool.name} tool">
+      <div class="card-bg"></div>
+      <div class="tool-card-inner">
+        <div class="tool-card-meta">
+          <span class="tool-card-category">Trading Tools</span>
+        </div>
+        <div class="tool-card-icon" aria-hidden="true">${tool.icon}</div>
+        <div class="tool-card-name">
+          <span>${tool.name}</span>
+        </div>
+        <div class="tool-card-desc">${tool.description}</div>
+      </div>
+    </div>`;
+  }).join('');
+  
+  grid.querySelectorAll('.tool-card').forEach(card => {
+    card.addEventListener('click', () => openTool(card.dataset.toolId));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openTool(card.dataset.toolId); });
+  });
+}
+
+window.scrollTrading = function(dir) {
+  const c = document.getElementById('trading-carousel');
+  if(c) c.scrollBy({ left: dir * 320, behavior: 'smooth' });
+}
