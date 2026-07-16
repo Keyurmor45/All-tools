@@ -17,7 +17,7 @@ window.TOOLS.push(
             <canvas id="cr-canvas" style="display:block; width:100%; height:100%;"></canvas>
             <div id="cr-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;">
               <h2 style="margin-bottom:20px; font-size:2rem;">Retro Racer</h2>
-              <button class="btn btn-primary" id="cr-start">Start Engine</button>
+              <button class="cyber-btn" id="cr-start">Start Engine</button>
             </div>
           </div>
           <p style="margin-top:10px; font-size:0.9rem; color:var(--text-secondary);">Controls: Arrow Keys or Tap Left/Right side of screen</p>
@@ -139,7 +139,7 @@ window.TOOLS.push(
             state = 'gameover';
             sndCrash();
             overlay.style.display = 'flex';
-            overlay.innerHTML = `<h2 style="margin-bottom:10px;color:var(--accent-red);">CRASHED!</h2><p style="margin-bottom:20px;">Score: ${Math.floor(score)}</p><button class="btn btn-primary" id="cr-start2">Try Again</button>`;
+            overlay.innerHTML = `<h2 style="margin-bottom:10px;color:var(--accent-red);">CRASHED!</h2><p style="margin-bottom:20px;">Score: ${Math.floor(score)}</p><button class="cyber-btn" id="cr-start2">Try Again</button>`;
             overlay.querySelector('#cr-start2').addEventListener('click', initGame);
             if(Math.floor(score) > hiScore) hiScore = Math.floor(score);
             hiEl.textContent = hiScore;
@@ -207,7 +207,7 @@ window.TOOLS.push(
             <div id="fb-score" style="position:absolute; top:20px; width:100%; text-align:center; font-size:3rem; font-weight:bold; color:white; text-shadow:2px 2px 0 #000; pointer-events:none;">0</div>
             <div id="fb-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;">
               <h2 style="margin-bottom:20px; font-size:2rem;">Flappy Clone</h2>
-              <button class="btn btn-primary" id="fb-start">Play</button>
+              <button class="cyber-btn" id="fb-start">Play</button>
             </div>
           </div>
         </div>
@@ -326,7 +326,7 @@ window.TOOLS.push(
             state = 'gameover';
             sndHit();
             overlay.style.display = 'flex';
-            overlay.innerHTML = `<h2 style="margin-bottom:10px;">Game Over</h2><p style="margin-bottom:20px;">Score: ${score}</p><button class="btn btn-primary" id="fb-start2">Try Again</button>`;
+            overlay.innerHTML = `<h2 style="margin-bottom:10px;">Game Over</h2><p style="margin-bottom:20px;">Score: ${score}</p><button class="cyber-btn" id="fb-start2">Try Again</button>`;
             overlay.querySelector('#fb-start2').addEventListener('click', init);
             return;
           }
@@ -374,7 +374,7 @@ window.TOOLS.push(
             <canvas id="ast-canvas" style="display:block; width:100%; height:100%;"></canvas>
             <div id="ast-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;">
               <h2 style="margin-bottom:20px; font-size:2rem; color:var(--accent-warm);">ASTEROIDS</h2>
-              <button class="btn btn-primary" id="ast-start">Launch Ship</button>
+              <button class="cyber-btn" id="ast-start">Launch Ship</button>
               <p style="margin-top:20px; font-size:0.9rem; color:#aaa;">Mobile: Tap left/right screen to rotate, top to thrust, center to shoot.</p>
             </div>
           </div>
@@ -536,7 +536,7 @@ window.TOOLS.push(
              state = 'gameover';
              sndBoom();
              overlay.style.display = 'flex';
-             overlay.innerHTML = `<h2 style="margin-bottom:10px; color:var(--accent-red);">SHIP DESTROYED</h2><p style="margin-bottom:20px;">Score: ${score}</p><button class="btn btn-primary" id="ast-start2">Try Again</button>`;
+             overlay.innerHTML = `<h2 style="margin-bottom:10px; color:var(--accent-red);">SHIP DESTROYED</h2><p style="margin-bottom:20px;">Score: ${score}</p><button class="cyber-btn" id="ast-start2">Try Again</button>`;
              overlay.querySelector('#ast-start2').addEventListener('click', init);
              return;
           }

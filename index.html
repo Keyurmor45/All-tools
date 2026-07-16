@@ -56,6 +56,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
   <!-- PDF-lib for PDF Studio -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+  <!-- PDF.js for Thumbnail Previews -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1732327010632127" crossorigin="anonymous"></script>
@@ -63,13 +65,13 @@
 <body>
 
   <div class="marquee">
-    <span>512+ FREE TOOLS * NO SIGNUPS * LOCAL AI * PDF STUDIO * BROWSER-BASED * SECURE * 512+ FREE TOOLS * NO SIGNUPS * LOCAL AI * PDF STUDIO * BROWSER-BASED * SECURE *</span>
+    <span id="crypto-marquee">CONNECTING TO MARKETS... FETCHING LIVE DATA... * CONNECTING TO MARKETS... FETCHING LIVE DATA... *</span>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="/" class="logo" id="logo-link" aria-label="AllTools Home">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
         <div class="logo-icon" aria-hidden="true">✷</div>
         <span class="logo-text">[ ALL*TOOLS ]</span>
       </a>
@@ -79,7 +81,7 @@
       
       <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
         <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
-        <a href="/" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Tools</a>
+        <a href="index.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Tools</a>
         <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
         <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
         <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
@@ -170,7 +172,23 @@
     </div>
   </section>
 
-  <!-- Main Content -->
+  <!-- ==========================================
+       FEATURED TRADING CAROUSEL
+       ========================================== -->
+  <section id="featured-trading">
+    <h2 class="fire-title">TRADING TOOLS</h2>
+    <div class="trading-carousel-wrapper">
+      <button class="carousel-btn left" onclick="scrollTrading(-1)" aria-label="Scroll left">◄</button>
+      <div class="trading-carousel" id="trading-carousel">
+        <!-- Rendered by JS -->
+      </div>
+      <button class="carousel-btn right" onclick="scrollTrading(1)" aria-label="Scroll right">►</button>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAIN APP UI
+       ========================================== -->
   <main class="main-content" id="main">
 
     <!-- Recently Used (shown only if user has used tools) -->
@@ -279,11 +297,16 @@
   <!-- Toast Notification -->
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="sfx.js"></script>
   <script src="app-core.js"></script>
+  <script src="cyber-core.js"></script>
   <script src="cursor.js"></script>
   <script src="tools-1.js"></script>
   <script src="tools-2.js"></script>
   <script src="tools-3.js"></script>
+  <script src="tools-trading.js"></script>
+  <script src="tools-pdf.js"></script>
   <script src="tools-4.js"></script>
   <script src="tools-5.js"></script>
   <script src="tools-6.js"></script>

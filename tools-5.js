@@ -15,7 +15,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -48,7 +48,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -81,7 +81,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -114,7 +114,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -147,7 +147,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -180,7 +180,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -213,7 +213,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -246,7 +246,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -279,7 +279,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -312,7 +312,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -345,7 +345,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -378,7 +378,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -411,7 +411,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -444,7 +444,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -477,7 +477,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -510,7 +510,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -543,7 +543,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -576,7 +576,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -609,7 +609,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -642,7 +642,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -675,7 +675,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -708,7 +708,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -741,7 +741,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -774,7 +774,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -807,7 +807,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -840,7 +840,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -873,7 +873,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -906,7 +906,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -939,7 +939,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -972,7 +972,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -1005,7 +1005,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;
@@ -1038,7 +1038,7 @@ window.TOOLS.push(
         <div class="io-box io-output">
           <label class="io-label">Result</label>
           <textarea class="io-textarea" id="out-val" readonly></textarea>
-          <div class="action-row"><button class="btn btn-primary" id="copy-btn">Copy</button></div>
+          <div class="action-row"><button class="cyber-btn" id="copy-btn">Copy</button></div>
         </div>
       </div>
     `;

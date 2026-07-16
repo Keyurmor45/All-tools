@@ -13,7 +13,7 @@ window.TOOLS.push(
           <div style="display:grid; grid-template-columns:repeat(3, 80px); gap:5px; background:var(--bg-card); padding:5px; border-radius:10px;">
             ${[0,1,2,3,4,5,6,7,8].map(i => `<button class="ttt-cell" data-idx="${i}" style="width:80px; height:80px; font-size:2rem; font-weight:bold; border:none; border-radius:5px; background:var(--bg); cursor:pointer; display:flex; align-items:center; justify-content:center;"></button>`).join('')}
           </div>
-          <button class="btn btn-primary" id="ttt-reset" style="margin-top:20px;">Restart Game</button>
+          <button class="cyber-btn" id="ttt-reset" style="margin-top:20px;">Restart Game</button>
         </div>
       `;
       let board = Array(9).fill(null);
@@ -69,7 +69,7 @@ window.TOOLS.push(
         <div class="tool-io" style="align-items:center; text-align:center;">
           <h3 id="mem-status" style="margin-bottom:15px; font-weight:bold; font-size:1.2rem;">Moves: 0</h3>
           <div id="mem-grid" style="display:grid; grid-template-columns:repeat(4, 60px); gap:10px; margin-bottom:20px;"></div>
-          <button class="btn btn-primary" id="mem-reset">Restart Game</button>
+          <button class="cyber-btn" id="mem-reset">Restart Game</button>
         </div>
       `;
       const emojis = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼'];
@@ -203,9 +203,9 @@ window.TOOLS.push(
           </div>
           <h3 id="rps-status" style="margin-bottom:20px;">Make your move</h3>
           <div style="display:flex; justify-content:center; gap:10px;">
-            <button class="btn btn-secondary rps-btn" data-move="✊" style="font-size:2rem; padding:10px 20px;">✊</button>
-            <button class="btn btn-secondary rps-btn" data-move="✋" style="font-size:2rem; padding:10px 20px;">✋</button>
-            <button class="btn btn-secondary rps-btn" data-move="✌️" style="font-size:2rem; padding:10px 20px;">✌️</button>
+            <button class="cyber-btn" data-move="✊" style="font-size:2rem; padding:10px 20px;">✊</button>
+            <button class="cyber-btn" data-move="✋" style="font-size:2rem; padding:10px 20px;">✋</button>
+            <button class="cyber-btn" data-move="✌️" style="font-size:2rem; padding:10px 20px;">✌️</button>
           </div>
           <div style="margin-top:20px; color:var(--text-secondary);">Score: <span id="rps-score">0 - 0</span></div>
         </div>
@@ -253,7 +253,7 @@ window.TOOLS.push(
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
              <div style="font-size:1.2rem; font-weight:bold;">WPM: <span id="type-wpm" style="color:var(--accent-warm);">0</span></div>
-             <button class="btn btn-secondary" id="type-reset">Reset</button>
+             <button class="cyber-btn" id="type-reset">Reset</button>
           </div>
         </div>
       `;
@@ -327,9 +327,9 @@ window.TOOLS.push(
           <p id="gn-status" style="margin-bottom:20px; font-weight:bold; font-size:1.2rem;">0 Guesses</p>
           <div style="display:flex; gap:10px; justify-content:center; max-width:300px; width:100%;">
             <input type="number" id="gn-in" class="io-input" placeholder="Your guess" min="1" max="100">
-            <button class="btn btn-primary" id="gn-btn">Guess</button>
+            <button class="cyber-btn" id="gn-btn">Guess</button>
           </div>
-          <button class="btn btn-secondary" id="gn-reset" style="margin-top:20px;">Play Again</button>
+          <button class="cyber-btn" id="gn-reset" style="margin-top:20px;">Play Again</button>
         </div>
       `;
       let num = 0;
@@ -390,7 +390,7 @@ window.TOOLS.push(
           <div style="display:grid; grid-template-columns:repeat(3, 80px); gap:10px; margin-bottom:20px;">
              ${[...Array(9)].map((_,i) => `<div class="wam-hole" style="width:80px; height:80px; background:var(--bg-card); border-radius:50%; position:relative; overflow:hidden;"><div class="wam-mole" data-idx="${i}" style="position:absolute; bottom:-80px; left:0; width:100%; height:100%; background:var(--accent-warm); border-radius:50%; transition:bottom 0.1s; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:2.5rem;">🐹</div></div>`).join('')}
           </div>
-          <button class="btn btn-primary" id="wam-start">Start Game</button>
+          <button class="cyber-btn" id="wam-start">Start Game</button>
         </div>
       `;
       const moles = el.querySelectorAll('.wam-mole');
@@ -463,7 +463,7 @@ window.TOOLS.push(
              <div class="sim-btn" data-color="2" style="width:100px; height:100px; background:#5555ff; border-radius:10px; cursor:pointer; opacity:0.5; transition:opacity 0.1s;"></div>
              <div class="sim-btn" data-color="3" style="width:100px; height:100px; background:#ffff55; border-radius:10px; cursor:pointer; opacity:0.5; transition:opacity 0.1s;"></div>
           </div>
-          <button class="btn btn-primary" id="sim-start">Start Game</button>
+          <button class="cyber-btn" id="sim-start">Start Game</button>
         </div>
       `;
       let seq = [];
@@ -537,7 +537,7 @@ window.TOOLS.push(
           <div style="display:flex; gap:10px; max-width:200px;">
              <input type="number" id="ms-ans" class="io-input" style="text-align:center;" disabled>
           </div>
-          <button class="btn btn-primary" id="ms-start" style="margin-top:20px;">Start Sprint</button>
+          <button class="cyber-btn" id="ms-start" style="margin-top:20px;">Start Sprint</button>
         </div>
       `;
       const qBox = el.querySelector('#ms-q');
@@ -606,10 +606,10 @@ window.TOOLS.push(
           <div id="ws-word" style="font-size:2.5rem; font-weight:bold; letter-spacing:5px; margin-bottom:20px; color:var(--accent-warm);">W O R D</div>
           <div style="display:flex; gap:10px; justify-content:center; max-width:300px; width:100%;">
             <input type="text" id="ws-in" class="io-input" placeholder="Your answer" style="text-transform:uppercase;">
-            <button class="btn btn-primary" id="ws-btn">Check</button>
+            <button class="cyber-btn" id="ws-btn">Check</button>
           </div>
           <p id="ws-status" style="margin-top:15px; font-weight:bold;"></p>
-          <button class="btn btn-secondary" id="ws-next" style="margin-top:15px; display:none;">Next Word</button>
+          <button class="cyber-btn" id="ws-next" style="margin-top:15px; display:none;">Next Word</button>
         </div>
       `;
       const words = ["DEVELOPER", "JAVASCRIPT", "BROWSER", "INTERNET", "PROGRAMMING", "DATABASE", "KEYBOARD", "MONITOR", "APPLICATION", "WEBSITE"];
@@ -676,7 +676,7 @@ window.TOOLS.push(
                 <option value="elf">Elf / Ranger</option>
               </optgroup>
             </select>
-            <button class="btn btn-primary" id="rn-btn">Generate</button>
+            <button class="cyber-btn" id="rn-btn">Generate</button>
           </div>
           <div class="io-box io-output">
             <div class="output-block" id="rn-out" style="font-size:2rem; font-weight:bold; color:var(--accent-warm);">Click Generate</div>

@@ -56,7 +56,7 @@ function buildAIToolUI(el, labelText, placeholderText, btnText, processFunc) {
       
       <div id="ai-controls" style="margin-top:10px; margin-bottom:15px;"></div>
       
-      <button class="btn btn-primary" id="ai-btn" style="width:100%;">${btnText}</button>
+      <button class="cyber-btn" id="ai-btn" style="width:100%;">${btnText}</button>
       
       <div id="ai-error" style="display:none; color:var(--accent-red); margin-top:15px; padding:10px; background:rgba(255,0,0,0.1); border-radius:4px;"></div>
       

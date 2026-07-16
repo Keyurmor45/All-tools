@@ -30,6 +30,74 @@
 
     /* 1. Particles (no-op in editorial theme) */
     initParticles();
+    
+    /* 1b. Render Trading Carousel */
+    if(window.renderTradingCarousel) window.renderTradingCarousel();
+
+    /* 1c. Floating Meme Stickers */
+    window.spawnStickers = function() {
+      if(window.innerWidth < 1400) return; // Only spawn on large screens
+      
+      const existing = document.getElementById('sticker-container');
+      if(existing) existing.remove(); // Clean up if re-running
+
+      const STICKERS = ['🗿', '🐸', '🐕', '💀', '🤡', '👽', '🚀', '💎', '🔥', '🧠'];
+      const container = document.createElement('div');
+      container.id = 'sticker-container';
+      container.style.position = 'absolute';
+      container.style.top = '0';
+      container.style.left = '0';
+      container.style.width = '100%';
+      // Use maximum possible height after full render
+      const totalHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      container.style.height = totalHeight + 'px';
+      container.style.pointerEvents = 'none';
+      container.style.overflow = 'hidden';
+      container.style.zIndex = '0';
+      document.body.prepend(container);
+      
+      // Increase count to 40 so they cover the whole long page
+      for(let i=0; i<40; i++) { 
+        const s = document.createElement('div');
+        s.textContent = STICKERS[Math.floor(Math.random() * STICKERS.length)];
+        s.className = 'meme-sticker';
+        
+        const isLeft = i % 2 === 0;
+        const x = isLeft ? (Math.random() * 8 + 2) : (Math.random() * 8 + 85); 
+        const y = Math.random() * (totalHeight - 200) + 100;
+        
+        s.style.left = x + 'vw';
+        s.style.top = y + 'px';
+        s.style.animationDelay = (Math.random() * 5) + 's';
+        
+        let rot = Math.random() * 60 - 30;
+        s.style.transform = `rotate(${rot}deg)`;
+        s.style.pointerEvents = 'auto'; 
+        
+        s.onclick = () => {
+          if(window.playFunnySound) window.playFunnySound();
+          rot += 360;
+          s.style.transform = `rotate(${rot}deg) scale(1.5)`;
+          setTimeout(() => s.style.transform = `rotate(${rot}deg) scale(1)`, 300);
+        };
+        container.appendChild(s);
+      }
+    };
+
+    // Wait until everything is fully rendered before calculating height
+    window.addEventListener('load', () => {
+      setTimeout(window.spawnStickers, 500);
+    });
+
+    window.addEventListener('resize', () => {
+      if(window.innerWidth >= 1400) {
+         clearTimeout(window._resizeStickerTimer);
+         window._resizeStickerTimer = setTimeout(window.spawnStickers, 300);
+      } else {
+         const existing = document.getElementById('sticker-container');
+         if(existing) existing.remove();
+      }
+    });
 
     /* 2. Navbar scroll effect */
     setupNavbar();

@@ -126,7 +126,7 @@ TOOLS.push(
       </div>
       <div class="btn-group mb-2">
         ${['UPPER','lower','Title','Sentence','camelCase','PascalCase','snake_case','kebab-case','aLtErNaTiNg','Reverse'].map(c=>
-          `<button class="btn btn-secondary btn-sm" data-case="${c}">${c}</button>`).join('')}
+          `<button class="cyber-btn" data-case="${c}">${c}</button>`).join('')}
       </div>
       ${outputBlock('cc-out','Result')}`;
     const inp = q(el,'#cc-in'), out = q(el,'#cc-out');
@@ -175,7 +175,7 @@ TOOLS.push(
           <input class="tool-input" id="li-count" type="number" value="3" min="1" max="100">
         </div>
         <div class="tool-section" style="align-self:flex-end">
-          <button class="btn btn-primary" id="li-gen">Generate</button>
+          <button class="cyber-btn" id="li-gen">Generate</button>
         </div>
       </div>
       ${outputBlock('li-out','Generated Text')}`;
@@ -204,9 +204,9 @@ TOOLS.push(
         <textarea class="tool-textarea" id="tr-in" placeholder="Enter text to reverse…"></textarea>
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" data-mode="chars">Reverse Characters</button>
-        <button class="btn btn-secondary" data-mode="words">Reverse Words</button>
-        <button class="btn btn-secondary" data-mode="lines">Reverse Lines</button>
+        <button class="cyber-btn" data-mode="chars">Reverse Characters</button>
+        <button class="cyber-btn" data-mode="words">Reverse Words</button>
+        <button class="cyber-btn" data-mode="lines">Reverse Lines</button>
       </div>
       ${outputBlock('tr-out','Result')}`;
     q(el,'.btn-group').addEventListener('click', e => {
@@ -237,7 +237,7 @@ TOOLS.push(
           <textarea class="tool-textarea" id="diff-b" placeholder="Modified text…" style="min-height:140px"></textarea>
         </div>
       </div>
-      <div class="btn-group mb-2"><button class="btn btn-primary" id="diff-run">Compare →</button></div>
+      <div class="btn-group mb-2"><button class="cyber-btn" id="diff-run">Compare →</button></div>
       <div class="tool-section"><label class="tool-label">Differences</label>
         <div id="diff-out" style="background:var(--bg-output);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;font-family:var(--font-mono);font-size:.84rem;line-height:1.8;max-height:320px;overflow-y:auto;min-height:60px"></div>
       </div>`;
@@ -278,7 +278,7 @@ TOOLS.push(
           <input type="checkbox" id="dr-empty"> Remove empty lines
         </label>
       </div>
-      <button class="btn btn-primary mb-2" id="dr-run">Remove Duplicates</button>
+      <button class="cyber-btn" id="dr-run">Remove Duplicates</button>
       ${outputBlock('dr-out','Result')}`;
     q(el,'#dr-run').addEventListener('click', () => {
       let lines = q(el,'#dr-in').value.split('\n');
@@ -302,7 +302,7 @@ TOOLS.push(
       </div>
       <div class="btn-group mb-2">
         ${['A→Z','Z→A','Shortest','Longest','Numeric ↑','Numeric ↓','Random'].map(m=>
-          `<button class="btn btn-secondary btn-sm" data-mode="${m}">${m}</button>`).join('')}
+          `<button class="cyber-btn" data-mode="${m}">${m}</button>`).join('')}
       </div>
       ${outputBlock('ls-out','Sorted Lines')}`;
     q(el,'.btn-group').addEventListener('click', e=>{
@@ -337,7 +337,7 @@ TOOLS.push(
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);font-size:.9rem"><input type="checkbox" id="fr-case"> Case sensitive</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-secondary);font-size:.9rem"><input type="checkbox" id="fr-regex"> Regex</label>
       </div>
-      <button class="btn btn-primary mb-2" id="fr-run">Replace All</button>
+      <button class="cyber-btn" id="fr-run">Replace All</button>
       <div id="fr-info" class="alert alert-info" style="display:none"></div>
       ${outputBlock('fr-out','Result')}`;
     q(el,'#fr-run').addEventListener('click', ()=>{
@@ -368,7 +368,7 @@ TOOLS.push(
       </div>
       <div class="btn-group mb-2">
         ${['Trim Lines','Remove Extra Spaces','Remove All Spaces','Remove Blank Lines','Normalize All'].map(m=>
-          `<button class="btn btn-secondary btn-sm" data-mode="${m}">${m}</button>`).join('')}
+          `<button class="cyber-btn" data-mode="${m}">${m}</button>`).join('')}
       </div>
       ${outputBlock('ws-out','Cleaned Text')}`;
     q(el,'.btn-group').addEventListener('click',e=>{
@@ -393,7 +393,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">Enter word or phrase</label>
         <input class="tool-input" id="pal-in" placeholder="racecar, A man a plan a canal Panama…">
       </div>
-      <button class="btn btn-primary mb-2" id="pal-check">Check</button>
+      <button class="cyber-btn" id="pal-check">Check</button>
       <div id="pal-result"></div>`;
     q(el,'#pal-check').addEventListener('click',()=>{
       const t=q(el,'#pal-in').value;
@@ -490,14 +490,14 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Text</label>
           <textarea class="tool-textarea" id="mc-text" placeholder="Hello World"></textarea>
         </div>
-        <button class="btn btn-primary mb-2" id="mc-enc-btn">Encode to Morse</button>
+        <button class="cyber-btn" id="mc-enc-btn">Encode to Morse</button>
         ${outputBlock('mc-enc-out','Morse Code')}
       </div>
       <div class="tab-pane" id="mc-decode">
         <div class="tool-section"><label class="tool-label">Morse Code (separate letters with space, words with /)</label>
           <textarea class="tool-textarea" id="mc-morse" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea>
         </div>
-        <button class="btn btn-primary mb-2" id="mc-dec-btn">Decode to Text</button>
+        <button class="cyber-btn" id="mc-dec-btn">Decode to Text</button>
         ${outputBlock('mc-dec-out','Decoded Text')}
       </div>`;
     qa(el,'.tool-tab').forEach(t=>t.addEventListener('click',()=>{
@@ -531,12 +531,12 @@ TOOLS.push(
       </div>
       <div class="tab-pane active" id="bt-enc">
         <div class="tool-section"><textarea class="tool-textarea" id="bt-text" placeholder="Hello"></textarea></div>
-        <button class="btn btn-primary mb-2" id="bt-enc-btn">Convert</button>
+        <button class="cyber-btn" id="bt-enc-btn">Convert</button>
         ${outputBlock('bt-enc-out','Binary')}
       </div>
       <div class="tab-pane" id="bt-dec">
         <div class="tool-section"><textarea class="tool-textarea" id="bt-bin" placeholder="01001000 01100101 01101100 01101100 01101111"></textarea></div>
-        <button class="btn btn-primary mb-2" id="bt-dec-btn">Convert</button>
+        <button class="cyber-btn" id="bt-dec-btn">Convert</button>
         ${outputBlock('bt-dec-out','Text')}
       </div>`;
     qa(el,'.tool-tab').forEach(t=>t.addEventListener('click',()=>{
@@ -562,7 +562,7 @@ TOOLS.push(
   setup(el) {
     el.innerHTML = `
       <div class="tool-section"><textarea class="tool-textarea" id="ts-in" placeholder="Paste your text for analysis…" style="min-height:140px"></textarea></div>
-      <button class="btn btn-primary mb-2" id="ts-run">Analyze</button>
+      <button class="cyber-btn" id="ts-run">Analyze</button>
       <div id="ts-out"></div>`;
     q(el,'#ts-run').addEventListener('click',()=>{
       const t=q(el,'#ts-in').value;
@@ -633,7 +633,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Word / Phrase 1</label><input class="tool-input" id="ag-a" placeholder="listen"></div>
         <div class="tool-section"><label class="tool-label">Word / Phrase 2</label><input class="tool-input" id="ag-b" placeholder="silent"></div>
       </div>
-      <button class="btn btn-primary mb-2" id="ag-check">Check Anagram</button>
+      <button class="cyber-btn" id="ag-check">Check Anagram</button>
       <div id="ag-result"></div>`;
     q(el,'#ag-check').addEventListener('click',()=>{
       const a=q(el,'#ag-a').value.toLowerCase().replace(/[^a-z]/g,'').split('').sort().join('');
@@ -661,7 +661,7 @@ TOOLS.push(
         </div>
       </div>
       <div class="tool-section"><label class="tool-label">Suffix</label><input class="tool-input" id="tt-suffix" value="…"></div>
-      <button class="btn btn-primary mb-2" id="tt-run">Truncate</button>
+      <button class="cyber-btn" id="tt-run">Truncate</button>
       ${outputBlock('tt-out','Truncated Text')}`;
     q(el,'#tt-run').addEventListener('click',()=>{
       const t=q(el,'#tt-in').value, lim=parseInt(q(el,'#tt-lim').value)||100, unit=q(el,'#tt-unit').value, sfx=q(el,'#tt-suffix').value;
@@ -694,9 +694,9 @@ TOOLS.push(
         </div>
       </div>
       <div class="btn-group">
-        <button class="btn btn-primary" id="tts-play">▶ Speak</button>
-        <button class="btn btn-secondary" id="tts-stop">■ Stop</button>
-        <button class="btn btn-secondary" id="tts-pause">⏸ Pause</button>
+        <button class="cyber-btn" id="tts-play">▶ Speak</button>
+        <button class="cyber-btn" id="tts-stop">■ Stop</button>
+        <button class="cyber-btn" id="tts-pause">⏸ Pause</button>
       </div>`;
     if(!window.speechSynthesis){el.innerHTML='<div class="alert alert-error">Speech Synthesis is not supported in your browser.</div>';return;}
     const syn=window.speechSynthesis;
@@ -728,9 +728,9 @@ TOOLS.push(
         <textarea class="tool-textarea" id="ued-in" placeholder="https://example.com/search?q=hello world&lang=en"></textarea>
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="ued-enc">Encode</button>
-        <button class="btn btn-secondary" id="ued-dec">Decode</button>
-        <button class="btn btn-secondary" id="ued-full">Full Encode (encodeURI)</button>
+        <button class="cyber-btn" id="ued-enc">Encode</button>
+        <button class="cyber-btn" id="ued-dec">Decode</button>
+        <button class="cyber-btn" id="ued-full">Full Encode (encodeURI)</button>
       </div>
       ${outputBlock('ued-out','Result')}`;
     q(el,'#ued-enc').addEventListener('click',()=>{ try{q(el,'#ued-out').textContent=encodeURIComponent(q(el,'#ued-in').value);}catch(e){q(el,'#ued-out').textContent='Error: '+e.message;} });
@@ -748,7 +748,7 @@ TOOLS.push(
     el.innerHTML = `
       <div class="flex-gap mb-2">
         <div class="tool-section"><label class="tool-label">Count</label><input class="tool-input" type="number" id="rw-count" value="10" min="1" max="100"></div>
-        <div class="tool-section" style="align-self:flex-end"><button class="btn btn-primary" id="rw-gen">Generate Words</button></div>
+        <div class="tool-section" style="align-self:flex-end"><button class="cyber-btn" id="rw-gen">Generate Words</button></div>
       </div>
       ${outputBlock('rw-out','Random Words')}`;
     q(el,'#rw-gen').addEventListener('click',()=>{
@@ -769,7 +769,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">HTML Input</label>
         <textarea class="tool-textarea" id="hs-in" placeholder="<p>Hello <strong>World</strong>!</p>" style="min-height:120px"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="hs-run">Strip HTML Tags</button>
+      <button class="cyber-btn" id="hs-run">Strip HTML Tags</button>
       ${outputBlock('hs-out','Plain Text')}`;
     q(el,'#hs-run').addEventListener('click',()=>{ q(el,'#hs-out').textContent=stripHTML(q(el,'#hs-in').value); });
   }
@@ -793,9 +793,9 @@ TOOLS.push(
         <textarea class="tool-textarea" id="jf-in" style="min-height:150px" placeholder='{"name":"AllTools","tools":135}'></textarea>
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="jf-fmt">Format</button>
-        <button class="btn btn-secondary" id="jf-min">Minify</button>
-        <button class="btn btn-secondary" id="jf-val">Validate</button>
+        <button class="cyber-btn" id="jf-fmt">Format</button>
+        <button class="cyber-btn" id="jf-min">Minify</button>
+        <button class="cyber-btn" id="jf-val">Validate</button>
         <select class="tool-select w-auto" id="jf-ind" style="width:120px">
           <option value="2">2 spaces</option><option value="4">4 spaces</option><option value="1">1 space</option>
         </select>
@@ -834,8 +834,8 @@ TOOLS.push(
         <textarea class="tool-textarea" id="b64-in" placeholder="Enter text or Base64 string…"></textarea>
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="b64-enc">Encode to Base64</button>
-        <button class="btn btn-secondary" id="b64-dec">Decode from Base64</button>
+        <button class="cyber-btn" id="b64-enc">Encode to Base64</button>
+        <button class="cyber-btn" id="b64-dec">Decode from Base64</button>
       </div>
       <div id="b64-msg"></div>
       ${outputBlock('b64-out','Result')}`;
@@ -860,8 +860,8 @@ TOOLS.push(
         <textarea class="tool-textarea" id="he-in" placeholder="<p>Hello & Goodbye!</p> or &lt;p&gt;Hello&lt;/p&gt;"></textarea>
       </div>
       <div class="btn-group mb-2">
-        <button class="btn btn-primary" id="he-enc">Encode → &amp;entities;</button>
-        <button class="btn btn-secondary" id="he-dec">Decode ← &amp;entities;</button>
+        <button class="cyber-btn" id="he-enc">Encode → &amp;entities;</button>
+        <button class="cyber-btn" id="he-dec">Decode ← &amp;entities;</button>
       </div>
       ${outputBlock('he-out','Result')}`;
     q(el,'#he-enc').addEventListener('click',()=>q(el,'#he-out').textContent=escapeHTML(q(el,'#he-in').value));
@@ -917,7 +917,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">JSON Array</label>
         <textarea class="tool-textarea" id="j2c-in" style="min-height:140px" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]'></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="j2c-run">Convert to CSV</button>
+      <button class="cyber-btn" id="j2c-run">Convert to CSV</button>
       <div id="j2c-msg"></div>
       ${outputBlock('j2c-out','CSV Output')}`;
     q(el,'#j2c-run').addEventListener('click',()=>{
@@ -942,7 +942,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">CSS Input</label>
         <textarea class="tool-textarea" id="cm-in" style="min-height:150px" placeholder="/* Comment */\nbody {\n  margin: 0;\n  padding: 0;\n}"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="cm-run">Minify CSS</button>
+      <button class="cyber-btn" id="cm-run">Minify CSS</button>
       <div id="cm-info"></div>
       ${outputBlock('cm-out','Minified CSS')}`;
     q(el,'#cm-run').addEventListener('click',()=>{
@@ -964,7 +964,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">HTML Input</label>
         <textarea class="tool-textarea" id="hm-in" style="min-height:150px" placeholder="<!-- comment -->\n<div class='box'>\n  <p>  Hello  </p>\n</div>"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="hm-run">Minify HTML</button>
+      <button class="cyber-btn" id="hm-run">Minify HTML</button>
       <div id="hm-info"></div>
       ${outputBlock('hm-out','Minified HTML')}`;
     q(el,'#hm-run').addEventListener('click',()=>{
@@ -986,7 +986,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">JWT Token</label>
         <textarea class="tool-textarea" id="jwt-in" style="min-height:80px" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="jwt-dec">Decode JWT</button>
+      <button class="cyber-btn" id="jwt-dec">Decode JWT</button>
       <div id="jwt-out"></div>`;
     q(el,'#jwt-dec').addEventListener('click',()=>{
       const token=q(el,'#jwt-in').value.trim();
@@ -1015,12 +1015,12 @@ TOOLS.push(
       <div class="grid-2">
         <div>
           <div class="tool-section"><label class="tool-label">Unix Timestamp (seconds)</label><input class="tool-input" id="ts-unix" placeholder="e.g. 1720000000"></div>
-          <button class="btn btn-primary mt-2" id="ts-from-unix">→ Convert to Date</button>
+          <button class="cyber-btn" id="ts-from-unix">→ Convert to Date</button>
           <div class="tool-output mt-2" id="ts-from-unix-out" style="min-height:40px"></div>
         </div>
         <div>
           <div class="tool-section"><label class="tool-label">Date &amp; Time</label><input class="tool-input" id="ts-date" type="datetime-local"></div>
-          <button class="btn btn-secondary mt-2" id="ts-from-date">→ Convert to Unix</button>
+          <button class="cyber-btn" id="ts-from-date">→ Convert to Unix</button>
           <div class="tool-output mt-2" id="ts-from-date-out" style="min-height:40px"></div>
         </div>
       </div>
@@ -1149,7 +1149,7 @@ TOOLS.push(
           <div class="tool-section"><label class="tool-label">${lbl} <span id="${id}-val">${val}</span>px</label>
             <input type="range" class="tool-range" id="${id}" min="0" max="100" value="${val}">
           </div>`).join('')}
-          <button class="btn btn-secondary btn-sm mt-2" id="br-all">Set All Equal</button>
+          <button class="cyber-btn" id="br-all">Set All Equal</button>
         </div>
         <div>
           <div style="height:180px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border-radius:var(--r-lg);margin-bottom:10px">
@@ -1192,7 +1192,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">OG Image URL</label><input class="tool-input" id="mt-img" placeholder="https://example.com/og.jpg"></div>
         <div class="tool-section"><label class="tool-label">Theme Color</label><input type="color" id="mt-color" value="#7c3aed" style="width:100%;height:40px"></div>
       </div>
-      <button class="btn btn-primary mt-2 mb-2" id="mt-gen">Generate Meta Tags</button>
+      <button class="cyber-btn" id="mt-gen">Generate Meta Tags</button>
       ${outputBlock('mt-out','Generated HTML')}`;
     q(el,'#mt-out').style.maxHeight='280px';
     q(el,'#mt-gen').addEventListener('click',()=>{
@@ -1234,7 +1234,7 @@ TOOLS.push(
       </div>
       <div id="cr-desc" class="alert alert-info" style="margin-top:8px">Every minute</div>
       <div class="tool-section mt-2"><label class="tool-label">Presets</label>
-        <div class="btn-group">${presets.map(([n,e])=>`<button class="btn btn-secondary btn-sm" data-expr="${e}">${n}</button>`).join('')}</div>
+        <div class="btn-group">${presets.map(([n,e])=>`<button class="cyber-btn" data-expr="${e}">${n}</button>`).join('')}</div>
       </div>
       <div class="tool-section mt-2"><label class="tool-label">Field Reference</label>
         <div class="tool-output" style="font-size:.8rem;line-height:2">┌── Minute (0-59)\n│ ┌── Hour (0-23)\n│ │ ┌── Day of Month (1-31)\n│ │ │ ┌── Month (1-12)\n│ │ │ │ ┌── Day of Week (0-6, Sun=0)\n│ │ │ │ │\n* * * * *\n\n* = any, */n = every n, n-m = range, n,m = list</div>
@@ -1316,7 +1316,7 @@ TOOLS.push(
         <div class="tool-section"><label class="tool-label">Original</label><textarea class="tool-textarea" id="dc-a" style="min-height:140px" placeholder="Original content…"></textarea></div>
         <div class="tool-section"><label class="tool-label">Modified</label><textarea class="tool-textarea" id="dc-b" style="min-height:140px" placeholder="Modified content…"></textarea></div>
       </div>
-      <button class="btn btn-primary mb-2" id="dc-run">Show Diff</button>
+      <button class="cyber-btn" id="dc-run">Show Diff</button>
       <div class="tool-section"><label class="tool-label">Diff Output</label>
         <div id="dc-out" style="background:var(--bg-output);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;font-family:var(--font-mono);font-size:.83rem;line-height:1.8;max-height:360px;overflow-y:auto;min-height:60px"></div>
       </div>`;
@@ -1345,7 +1345,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">CSV Input (first row = headers)</label>
         <textarea class="tool-textarea" id="c2j-in" style="min-height:130px" placeholder="name,age,city\nAlice,30,NYC\nBob,25,LA"></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="c2j-run">Convert to JSON</button>
+      <button class="cyber-btn" id="c2j-run">Convert to JSON</button>
       <div id="c2j-msg"></div>
       ${outputBlock('c2j-out','JSON Output')}`;
     q(el,'#c2j-run').addEventListener('click',()=>{
@@ -1384,7 +1384,7 @@ TOOLS.push(
       </div>
       <div class="flex-gap mb-2">
         <div class="tool-section"><label class="tool-label">Root Element</label><input class="tool-input" id="j2x-root" value="root"></div>
-        <div class="tool-section" style="align-self:flex-end"><button class="btn btn-primary" id="j2x-run">Convert to XML</button></div>
+        <div class="tool-section" style="align-self:flex-end"><button class="cyber-btn" id="j2x-run">Convert to XML</button></div>
       </div>
       <div id="j2x-msg"></div>
       ${outputBlock('j2x-out','XML Output')}`;
@@ -1408,7 +1408,7 @@ TOOLS.push(
       <div class="tool-section"><label class="tool-label">JSON Array</label>
         <textarea class="tool-textarea" id="jt-in" style="min-height:110px" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]'></textarea>
       </div>
-      <button class="btn btn-primary mb-2" id="jt-run">Render Table</button>
+      <button class="cyber-btn" id="jt-run">Render Table</button>
       <div id="jt-msg"></div>
       <div id="jt-out" style="overflow-x:auto"></div>`;
     q(el,'#jt-run').addEventListener('click',()=>{
@@ -1481,7 +1481,7 @@ TOOLS.push(
           <textarea class="tool-textarea" id="rg-allow" placeholder="/public/\n/api/v1/"></textarea>
         </div>
       </div>
-      <button class="btn btn-primary mb-2" id="rg-gen">Generate</button>
+      <button class="cyber-btn" id="rg-gen">Generate</button>
       ${outputBlock('rg-out','robots.txt')}`;
     q(el,'#rg-gen').addEventListener('click',()=>{
       const ua=q(el,'#rg-ua').value||'*';
@@ -1532,7 +1532,7 @@ TOOLS.push(
           <div class="tool-output" id="h2m-out" style="flex:1;max-height:none;overflow-y:auto"></div>
         </div>
       </div>
-      <button class="btn btn-primary mt-2" id="h2m-run">Convert</button>`;
+      <button class="cyber-btn" id="h2m-run">Convert</button>`;
     q(el,'#h2m-run').addEventListener('click',()=>q(el,'#h2m-out').textContent=htmlToMd(q(el,'#h2m-in').value));
     q(el,'#h2m-in').addEventListener('input',()=>q(el,'#h2m-out').textContent=htmlToMd(q(el,'#h2m-in').value));
   }

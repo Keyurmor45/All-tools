@@ -641,6 +641,73 @@ img { display: block; max-width: 100%; }
 .mobile-search-result-cat { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
 
 /* ============================================================
+   CRT MODE & SETTINGS UI
+   ============================================================ */
+.crt-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none; z-index: 9998; display: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+}
+.crt-overlay.active { display: block; }
+body.crt-active { animation: textShadow 1.6s infinite; }
+
+@keyframes textShadow {
+  0% { text-shadow: 0.438px 0 1px rgba(0,30,255,0.5), -0.438px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  5% { text-shadow: 2.792px 0 1px rgba(0,30,255,0.5), -2.792px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  10% { text-shadow: 0.029px 0 1px rgba(0,30,255,0.5), -0.029px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  15% { text-shadow: 0.402px 0 1px rgba(0,30,255,0.5), -0.402px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  20% { text-shadow: 3.479px 0 1px rgba(0,30,255,0.5), -3.479px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  25% { text-shadow: 1.612px 0 1px rgba(0,30,255,0.5), -1.612px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  30% { text-shadow: 0.701px 0 1px rgba(0,30,255,0.5), -0.701px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  35% { text-shadow: 3.896px 0 1px rgba(0,30,255,0.5), -3.896px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  40% { text-shadow: 3.87px 0 1px rgba(0,30,255,0.5), -3.87px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  45% { text-shadow: 2.231px 0 1px rgba(0,30,255,0.5), -2.231px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  50% { text-shadow: 0.08px 0 1px rgba(0,30,255,0.5), -0.08px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  55% { text-shadow: 2.375px 0 1px rgba(0,30,255,0.5), -2.375px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  60% { text-shadow: 2.202px 0 1px rgba(0,30,255,0.5), -2.202px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  65% { text-shadow: 2.863px 0 1px rgba(0,30,255,0.5), -2.863px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  70% { text-shadow: 0.488px 0 1px rgba(0,30,255,0.5), -0.488px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  75% { text-shadow: 1.894px 0 1px rgba(0,30,255,0.5), -1.894px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  80% { text-shadow: 0.083px 0 1px rgba(0,30,255,0.5), -0.083px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  85% { text-shadow: 0.097px 0 1px rgba(0,30,255,0.5), -0.097px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  90% { text-shadow: 3.443px 0 1px rgba(0,30,255,0.5), -3.443px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  95% { text-shadow: 2.284px 0 1px rgba(0,30,255,0.5), -2.284px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+  100% { text-shadow: 0.267px 0 1px rgba(0,30,255,0.5), -0.267px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+}
+
+.cyber-settings-btn {
+  position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px;
+  background: var(--bg-card); color: var(--accent); border: 2px solid var(--accent);
+  border-radius: var(--r-sm); font-size: 1.5rem; cursor: pointer; z-index: 9900;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 4px 4px 0 var(--accent); transition: transform 0.2s, box-shadow 0.2s;
+}
+.cyber-settings-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--accent); }
+.cyber-settings-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0 var(--accent); }
+
+.cyber-settings-panel {
+  position: fixed; bottom: 80px; left: 20px; width: 300px;
+  background: var(--bg-card); border: 2px solid var(--accent);
+  padding: 20px; z-index: 9901; box-shadow: 8px 8px 0 var(--accent);
+  transform: translateY(20px); opacity: 0; pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+}
+.cyber-settings-panel.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+.panel-header h3 { font-family: var(--font-display); font-size: 1rem; color: var(--accent); text-transform: uppercase; }
+.panel-header button { background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+.panel-body label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 10px; }
+.theme-colors { display: flex; gap: 10px; margin-bottom: 25px; }
+.color-swatch { width: 30px; height: 30px; border: 2px solid var(--white); cursor: pointer; border-radius: var(--r-sm); transition: transform 0.2s; }
+.color-swatch:hover { transform: scale(1.1); border-color: var(--accent); }
+
+.toggle-row { display: flex; justify-content: space-between; align-items: center; }
+.toggle-row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; }
+
+/* ============================================================
    NEWS FEED (news.html)
    ============================================================ */
 .news-feed {
@@ -694,3 +761,167 @@ img { display: block; max-width: 100%; }
   transition: all 0.2s;
 }
 .news-item:hover .news-arrow { color: var(--bg); transform: translate(5px, -5px); }
+
+/* ==========================================================================
+   FEATURED TRADING CAROUSEL (FIRE ANIMATION)
+   ========================================================================== */
+
+#featured-trading {
+  margin: 40px auto;
+  width: 95%;
+  max-width: 1400px;
+  padding: 30px;
+  background: var(--bg-card);
+  position: relative;
+  border-bottom: 2px solid #ff4500;
+}
+
+/* Real Fire Flames on Bottom */
+.flame-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #ff4500;
+  box-shadow: 
+    0 -15px 15px #ff4500,
+    0 -30px 25px #ff0000,
+    0 -45px 35px #ff8c00;
+  filter: blur(8px);
+  animation: blaze 0.4s infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes blaze {
+  0% { transform: scaleY(1) translateY(0); opacity: 0.8; }
+  50% { transform: scaleY(1.5) translateY(2px); opacity: 1; }
+  100% { transform: scaleY(1.2) translateY(-2px); opacity: 0.9; }
+}
+
+.fire-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #ff4500;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff8c00;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  position: relative;
+  z-index: 2;
+}
+
+.trading-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.trading-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px;
+  flex: 1;
+}
+
+.trading-carousel::-webkit-scrollbar { display: none; } /* Hide scrollbar */
+.trading-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+.trading-carousel .tool-card {
+  min-width: 300px;
+  flex-shrink: 0;
+  border-bottom: 2px solid #ff4500 !important;
+  border-left: none; border-right: none; border-top: none;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+.flame-card::after {
+  box-shadow: 0 -10px 10px #ff4500, 0 -20px 15px #ff0000, 0 -30px 20px #ff8c00;
+  filter: blur(6px);
+}
+.flame-card .card-bg, .flame-card .tool-card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.trading-carousel .tool-card:hover {
+  background: #ff4500;
+  color: #000;
+}
+.trading-carousel .tool-card-desc {
+  white-space: normal;
+}
+
+.carousel-btn {
+  background: transparent;
+  color: #ff4500;
+  border: 2px solid #ff4500;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-family: var(--font-mono);
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0 #ff0000;
+}
+.carousel-btn:hover {
+  background: #ff4500;
+  color: var(--bg);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #ff0000;
+}
+.carousel-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .fire-title { font-size: 1.8rem; }
+  .carousel-btn { display: none; } /* On mobile, let them swipe */
+}
+
+/* ==========================================================================
+   MEME STICKERS (FLOATING MARGINS)
+   ========================================================================== */
+
+.meme-sticker {
+  position: absolute;
+  font-size: 4rem; /* Giant emoji */
+  /* Creating a white die-cut sticker border with a drop shadow */
+  filter: 
+    drop-shadow(2px 0 0 white) 
+    drop-shadow(0 2px 0 white) 
+    drop-shadow(-2px 0 0 white) 
+    drop-shadow(0 -2px 0 white)
+    drop-shadow(4px 4px 5px rgba(0,0,0,0.5));
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: float-sticker 6s ease-in-out infinite;
+  user-select: none;
+}
+.meme-sticker:hover {
+  filter: 
+    drop-shadow(2px 0 0 #ff4500) 
+    drop-shadow(0 2px 0 #ff4500) 
+    drop-shadow(-2px 0 0 #ff4500) 
+    drop-shadow(0 -2px 0 #ff4500)
+    drop-shadow(0 0 15px #ff4500);
+}
+
+@keyframes float-sticker {
+  0% { margin-top: 0px; }
+  50% { margin-top: -20px; }
+  100% { margin-top: 0px; }
+}
+
+/* Hide on mobile screens because there is no blank margin space */
+@media (max-width: 1400px) {
+  #sticker-container { display: none !important; }
+}
