@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About AllTools - The ultimate free online toolbox.">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>About Us | AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
+        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
+        <a href="about.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">About</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Content -->
+  <main id="main" style="padding: 120px 20px 50px; max-width: 900px; margin: 0 auto; color: var(--text);">
+    
+    <div style="background: var(--bg-card); padding: 50px; border: 4px solid var(--border); box-shadow: 15px 15px 0 var(--border);">
+      <h1 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+        WHO ARE WE?
+      </h1>
+      
+      <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
+        Welcome to <strong>ALL*TOOLS</strong>, the internet's most comprehensive, brutalist, and entirely free utility platform.
+      </p>
+
+      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; color: var(--text-secondary);">
+        We got tired of tool websites that were loaded with intrusive ads, forced you to create accounts, and ran slow server-side scripts to do basic tasks like format JSON or pick a color. 
+        <br><br>
+        So we built this. A hyper-fast, client-side, privacy-respecting platform that gives developers, creators, and traders instant access to <strong>512+ tools</strong> running directly inside their browser.
+      </p>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+        <div style="flex: 1; min-width: 200px; border: 2px solid var(--accent); padding: 20px; background: rgba(204,255,0,0.05);">
+          <h3 style="color: var(--accent); margin-bottom: 10px;">🔒 100% Private</h3>
+          <p style="font-size: 0.9rem;">No databases. No servers reading your text. Everything executes in your browser.</p>
+        </div>
+        <div style="flex: 1; min-width: 200px; border: 2px solid #ff4500; padding: 20px; background: rgba(255,69,0,0.05);">
+          <h3 style="color: #ff4500; margin-bottom: 10px;">⚡ Lightning Fast</h3>
+          <p style="font-size: 0.9rem;">Zero latency. Every single calculation happens instantly without API calls.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="cyber-core.js"></script>
+</body>
+</html>

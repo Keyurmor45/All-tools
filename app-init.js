@@ -165,12 +165,7 @@
       });
     }
 
-    // Hook into openTool to track recently used
-    const origOpen2 = window.openTool;
-    window.openTool = function (id) {
-      addRecent(id);
-      if (origOpen2) origOpen2(id);
-    };
+    // Hook into openTool - (merged with deep-link wrapper below)
 
     renderRecent(); // show on load if any exist
     renderNewTools(); // show newest tools
@@ -244,16 +239,17 @@
       setTimeout(() => openTool(hash), 400);
     }
 
-    /* 9. Update tool hash on open */
-    const origOpen = window.openTool;
+    /* 9. Single unified openTool wrapper: recent tracking + hash update */
+    const _baseOpen = window.openTool;
     window.openTool = function (id) {
+      addRecent(id);
       history.replaceState(null, '', '#' + id);
-      origOpen(id);
+      if (_baseOpen) _baseOpen(id);
     };
     const origClose = window.closeTool;
     window.closeTool = function () {
       history.replaceState(null, '', location.pathname);
-      origClose();
+      if (origClose) origClose();
     };
 
     /* 10. Lazy-scroll fade-in for tool cards */
