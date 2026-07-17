@@ -892,8 +892,8 @@ body.crt-active { animation: textShadow 1.6s infinite; }
    ========================================================================== */
 
 .meme-sticker {
-  position: absolute;
-  font-size: 4rem; /* Giant emoji */
+  position: fixed; /* fixed to viewport, never affects scroll height */
+  font-size: 4rem;
   /* Creating a white die-cut sticker border with a drop shadow */
   filter: 
     drop-shadow(2px 0 0 white) 
