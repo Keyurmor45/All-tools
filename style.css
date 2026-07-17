@@ -925,3 +925,78 @@ body.crt-active { animation: textShadow 1.6s infinite; }
 @media (max-width: 1400px) {
   #sticker-container { display: none !important; }
 }
+
+/* ==========================================================================
+   UNIQUE FEATURES CSS
+   ========================================================================== */
+
+/* --- CRT Terminal Mode --- */
+@keyframes crt-flicker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.97; }
+  100% { opacity: 1; }
+}
+
+body.crt-mode {
+  background: #000 !important;
+  color: #00ff50 !important;
+  --accent: #00ff50 !important;
+  --text-primary: #00ff50 !important;
+  --text-secondary: #00cc40 !important;
+  --bg-card: #000 !important;
+  --bg-modal: #000 !important;
+  --border: rgba(0,255,80,0.4) !important;
+  animation: crt-flicker 0.12s infinite;
+}
+body.crt-mode * {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #00ff50 !important;
+  border-color: rgba(0,255,80,0.4) !important;
+}
+body.crt-mode .tool-card {
+  background: #000 !important;
+  box-shadow: 0 0 8px rgba(0,255,80,0.3) !important;
+}
+body.crt-mode .tool-card:hover {
+  background: rgba(0,255,80,0.1) !important;
+  box-shadow: 0 0 20px rgba(0,255,80,0.6) !important;
+}
+body.crt-mode .navbar {
+  background: #000 !important;
+  border-bottom: 1px solid rgba(0,255,80,0.4) !important;
+}
+body.crt-mode .hero-title { text-shadow: 0 0 10px #00ff50 !important; }
+body.crt-mode .cyber-btn, body.crt-mode button {
+  background: #000 !important;
+  color: #00ff50 !important;
+  border-color: #00ff50 !important;
+}
+
+/* CRT Boot screen text */
+#crt-boot p { animation: crt-type 0.01s; }
+
+/* --- RAGE MODE --- */
+@keyframes rage-shake {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  20%  { transform: translate(-3px,3px) rotate(-0.5deg); }
+  40%  { transform: translate(3px,-2px) rotate(0.5deg); }
+  60%  { transform: translate(-2px,3px) rotate(-0.3deg); }
+  80%  { transform: translate(3px,-1px) rotate(0.3deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+@keyframes rage-spin {
+  from { transform: rotate(0deg) scale(1.5); }
+  to   { transform: rotate(360deg) scale(1.5); }
+}
+@keyframes rage-toast-anim {
+  0%   { transform: translate(-50%,-50%) scale(0) rotate(-10deg); opacity:0; }
+  50%  { transform: translate(-50%,-50%) scale(1.2) rotate(5deg); opacity:1; }
+  100% { transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity:1; }
+}
+
+body.rage-mode {
+  animation: rage-shake 0.1s infinite !important;
+  filter: hue-rotate(180deg) saturate(3) !important;
+}
+body.rage-mode .hero { border-color: #ff0000 !important; }
+body.rage-mode .navbar { background: #1a0000 !important; }
