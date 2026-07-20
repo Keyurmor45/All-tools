@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Arcade — Y2K Retro Games">
+  <meta name="description" content="The Arcade — Play free browser games: Snake, Flappy Bird, Minesweeper, Pong, Tic Tac Toe and a Typing Speed Test. Y2K Cybercore design.">
   <meta name="theme-color" content="#0a0a0a">
   <title>The Arcade — AllTools</title>
   
@@ -12,44 +12,142 @@
   <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Arcade specific styles */
-    .arcade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+    .arcade-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
     @media (max-width: 900px) { .arcade-grid { grid-template-columns: 1fr; } }
-    
+
     .arcade-machine {
-      background: var(--bg-card); border: 2px solid var(--border);
-      display: flex; flex-direction: column;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .arcade-machine:hover {
+      border-color: var(--accent);
+      box-shadow: 6px 6px 0 var(--accent);
     }
     .arcade-header {
-      background: var(--border); padding: 15px 20px;
-      font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; text-transform: uppercase;
-      display: flex; justify-content: space-between; align-items: center;
+      background: var(--border);
+      padding: 12px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .arcade-body { padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    
-    /* Snake Game */
-    canvas#snake-board { background: var(--bg); border: 2px solid var(--accent); max-width: 100%; display: block; }
-    .score-board { font-family: var(--font-mono); font-size: 1.2rem; color: var(--accent); }
-    
-    /* Typing Test */
-    .typing-text { font-family: var(--font-mono); font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6; user-select: none; }
-    .typing-text span.correct { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
-    .typing-text span.incorrect { color: var(--accent-red); text-decoration: underline; }
-    .typing-text span.current { background: var(--accent); color: var(--bg); }
-    .type-input { position: absolute; opacity: 0; pointer-events: none; }
-    
+    .arcade-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    canvas.game-canvas {
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      max-width: 100%;
+      display: block;
+      image-rendering: pixelated;
+    }
+    .score-board {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
     .arcade-btn {
-      background: transparent; border: 2px solid var(--accent); color: var(--accent);
-      padding: 10px 20px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
-      cursor: pointer; transition: all 0.2s;
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 2px;
     }
     .arcade-btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* Typing Test */
+    .typing-text {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      user-select: none;
+      width: 100%;
+    }
+    .typing-text span.correct { color: var(--accent); }
+    .typing-text span.incorrect { color: #ff0055; text-decoration: underline; }
+    .typing-text span.current { background: var(--accent); color: var(--bg); }
+    .type-input { position: absolute; opacity: 0; pointer-events: none; }
+
+    /* Minesweeper */
+    .mine-grid {
+      display: grid;
+      gap: 2px;
+    }
+    .mine-cell {
+      width: 32px; height: 32px;
+      background: #333;
+      border: 2px solid #555;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s;
+    }
+    .mine-cell:hover { background: #444; }
+    .mine-cell.revealed { background: #111; border-color: #222; cursor: default; }
+    .mine-cell.flagged { background: #2a1a00; border-color: #ff8800; }
+    .mine-cell.boom { background: #ff0000; border-color: #ff4500; }
+    .mine-cell[data-n="1"] { color: #3399ff; }
+    .mine-cell[data-n="2"] { color: #00cc66; }
+    .mine-cell[data-n="3"] { color: #ff4444; }
+    .mine-cell[data-n="4"] { color: #8844ff; }
+    .mine-cell[data-n="5"] { color: #ff8800; }
+
+    /* Tic Tac Toe */
+    .ttt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 90px);
+      grid-template-rows: repeat(3, 90px);
+      gap: 4px;
+    }
+    .ttt-cell {
+      background: #111;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .ttt-cell:hover { background: #1a1a1a; border-color: var(--accent); }
+    .ttt-cell.winner { background: rgba(204,255,0,0.15); border-color: var(--accent); }
+    .ttt-status {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
   <div class="marquee">
-    <span>INSERT COIN * THE ARCADE IS OPEN * Y2K SNAKE * HACKER TYPING TEST * INSERT COIN * THE ARCADE IS OPEN * Y2K SNAKE * HACKER TYPING TEST *</span>
+    <span>INSERT COIN * THE ARCADE IS OPEN * Y2K SNAKE * FLAPPY CYBER * MINESWEEPER * PONG * TIC TAC TOE * TYPING TEST * INSERT COIN * THE ARCADE IS OPEN *</span>
   </div>
 
   <!-- Navbar -->
@@ -59,73 +157,126 @@
         <div class="logo-icon" aria-hidden="true">✷</div>
         <span class="logo-text">[ ALL*TOOLS ]</span>
       </a>
-      
       <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
       <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
-
-      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+      <div class="nav-links" style="display:flex;gap:20px;font-family:var(--font-display);font-weight:700;font-size:1.1rem;text-transform:uppercase;">
         <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
-        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
-        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
-        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
-        <a href="games.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Arcade</a>
-        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
-        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
-        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
-        <a href="about.html" style="color: var(--text-secondary); transition: color 0.2s;">About</a>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="games.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Arcade</a>
+        <a href="portfolio.html" style="color:var(--text-secondary);transition:color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
       </div>
-
       <div class="nav-right">
         <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
-        <span class="tool-count-badge" aria-label="Tokens">99 TOKENS</span>
+        <span class="tool-count-badge">6 GAMES</span>
       </div>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <main class="main-content" id="main" style="max-width: 1200px; margin-top: 60px;">
+  <main class="main-content" id="main" style="max-width:1200px;margin-top:60px;">
     
-    <div style="margin-bottom: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end;">
-      <h1 style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; text-transform: uppercase; margin: 0; color: var(--accent); letter-spacing: -2px;">
+    <div style="margin-bottom:20px;border-bottom:2px solid var(--accent);padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;">
+      <h1 style="font-family:var(--font-display);font-size:3rem;font-weight:700;text-transform:uppercase;margin:0;color:var(--accent);letter-spacing:-2px;">
         The_Arcade
       </h1>
-      <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem;">2 MACHINES ONLINE</span>
+      <span style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.9rem;">6 MACHINES ONLINE</span>
     </div>
 
     <div class="arcade-grid">
-      
+
       <!-- GAME 1: Y2K SNAKE -->
       <div class="arcade-machine">
         <div class="arcade-header">
           <span>01 // Y2K_SNAKE</span>
-          <span style="color: var(--accent);">[ PLAY ]</span>
+          <span style="color:var(--accent);">[ CLASSIC ]</span>
         </div>
         <div class="arcade-body">
           <div class="score-board">SCORE: <span id="snake-score">0</span> | HIGH: <span id="snake-high">0</span></div>
-          <canvas id="snake-board" width="400" height="400"></canvas>
+          <canvas id="snake-board" class="game-canvas" width="380" height="380"></canvas>
           <button class="arcade-btn" id="start-snake">Start Game</button>
-          <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); text-align: center; margin:0;">Use WASD or Arrow Keys</p>
+          <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);text-align:center;margin:0;">WASD or Arrow Keys</p>
         </div>
       </div>
 
-      <!-- GAME 2: HACKER TYPING -->
+      <!-- GAME 2: FLAPPY CYBER -->
       <div class="arcade-machine">
         <div class="arcade-header">
-          <span>02 // TYPE_INJECTOR</span>
-          <span style="color: var(--accent);">[ PLAY ]</span>
+          <span>02 // FLAPPY_CYBER</span>
+          <span style="color:var(--accent);">[ TAP ]</span>
         </div>
-        <div class="arcade-body" style="align-items: flex-start;">
-          <div class="score-board">WPM: <span id="type-wpm">0</span> | TIME: <span id="type-time">30</span>s</div>
-          <div class="typing-text" id="typing-text" style="margin: 20px 0;">
-            <!-- Text injected here -->
+        <div class="arcade-body">
+          <div class="score-board">SCORE: <span id="flappy-score">0</span> | BEST: <span id="flappy-best">0</span></div>
+          <canvas id="flappy-board" class="game-canvas" width="380" height="380"></canvas>
+          <button class="arcade-btn" id="start-flappy">Start Game</button>
+          <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);text-align:center;margin:0;">Space / Click / Tap to flap</p>
+        </div>
+      </div>
+
+      <!-- GAME 3: MINESWEEPER -->
+      <div class="arcade-machine">
+        <div class="arcade-header">
+          <span>03 // MINESWEEPER</span>
+          <span style="color:var(--accent);">[ STRATEGY ]</span>
+        </div>
+        <div class="arcade-body">
+          <div class="score-board">MINES: <span id="mine-count">10</span> | TIME: <span id="mine-time">0</span>s</div>
+          <div class="mine-grid" id="mine-grid" style="grid-template-columns:repeat(9,32px);"></div>
+          <button class="arcade-btn" id="start-mine">New Game</button>
+          <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);text-align:center;margin:0;">Left-click reveal · Right-click flag</p>
+        </div>
+      </div>
+
+      <!-- GAME 4: PONG -->
+      <div class="arcade-machine">
+        <div class="arcade-header">
+          <span>04 // CYBER_PONG</span>
+          <span style="color:var(--accent);">[ 1P VS CPU ]</span>
+        </div>
+        <div class="arcade-body">
+          <div class="score-board">YOU: <span id="pong-p">0</span> | CPU: <span id="pong-cpu">0</span></div>
+          <canvas id="pong-board" class="game-canvas" width="380" height="300"></canvas>
+          <button class="arcade-btn" id="start-pong">Start Game</button>
+          <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);text-align:center;margin:0;">Mouse / Touch to move paddle</p>
+        </div>
+      </div>
+
+      <!-- GAME 5: TIC TAC TOE -->
+      <div class="arcade-machine">
+        <div class="arcade-header">
+          <span>05 // TIC_TAC_TOE</span>
+          <span style="color:var(--accent);">[ VS CPU ]</span>
+        </div>
+        <div class="arcade-body">
+          <div class="ttt-status" id="ttt-status">YOUR TURN — YOU ARE ✕</div>
+          <div class="ttt-grid" id="ttt-grid">
+            <div class="ttt-cell" data-i="0"></div><div class="ttt-cell" data-i="1"></div><div class="ttt-cell" data-i="2"></div>
+            <div class="ttt-cell" data-i="3"></div><div class="ttt-cell" data-i="4"></div><div class="ttt-cell" data-i="5"></div>
+            <div class="ttt-cell" data-i="6"></div><div class="ttt-cell" data-i="7"></div><div class="ttt-cell" data-i="8"></div>
           </div>
+          <button class="arcade-btn" id="reset-ttt">Reset</button>
+        </div>
+      </div>
+
+      <!-- GAME 6: HACKER TYPING TEST -->
+      <div class="arcade-machine">
+        <div class="arcade-header">
+          <span>06 // TYPE_INJECTOR</span>
+          <span style="color:var(--accent);">[ SPEED ]</span>
+        </div>
+        <div class="arcade-body" style="align-items:flex-start;">
+          <div class="score-board">WPM: <span id="type-wpm">0</span> | ACC: <span id="type-acc">100</span>% | Time: <span id="type-time">30</span>s</div>
+          <div class="typing-text" id="typing-text" style="margin:10px 0;"></div>
           <input type="text" class="type-input" id="type-input" autocomplete="off" spellcheck="false">
-          <button class="arcade-btn" id="start-type" style="align-self: center;">Start Hacking</button>
+          <button class="arcade-btn" id="start-type" style="align-self:center;">Start Hacking</button>
         </div>
       </div>
 
     </div>
-
   </main>
 
   <!-- Footer -->
@@ -151,5 +302,6 @@
   <script src="arcade.js"></script>
   <script src="cyber-core.js"></script>
   <script src="cursor.js"></script>
+  <script src="unique-features.js"></script>
 </body>
 </html>

@@ -786,19 +786,18 @@ body.crt-active { animation: textShadow 1.6s infinite; }
   height: 5px;
   background: #ff4500;
   box-shadow: 
-    0 -15px 15px #ff4500,
-    0 -30px 25px #ff0000,
-    0 -45px 35px #ff8c00;
-  filter: blur(8px);
-  animation: blaze 0.4s infinite alternate;
+    0 -12px 12px #ff4500,
+    0 -24px 20px #ff0000;
+  filter: blur(6px);
+  animation: blaze 0.8s infinite alternate;
   pointer-events: none;
   z-index: 0;
+  will-change: transform, opacity;
 }
 
 @keyframes blaze {
-  0% { transform: scaleY(1) translateY(0); opacity: 0.8; }
-  50% { transform: scaleY(1.5) translateY(2px); opacity: 1; }
-  100% { transform: scaleY(1.2) translateY(-2px); opacity: 0.9; }
+  0%   { transform: translate3d(0,0,0) scaleY(1); opacity: 0.8; }
+  100% { transform: translate3d(0,-2px,0) scaleY(1.4); opacity: 1; }
 }
 
 .fire-title {
@@ -892,8 +891,8 @@ body.crt-active { animation: textShadow 1.6s infinite; }
    ========================================================================== */
 
 .meme-sticker {
-  position: absolute;
-  font-size: 4rem; /* Giant emoji */
+  position: fixed; /* fixed to viewport, never affects scroll height */
+  font-size: 4rem;
   /* Creating a white die-cut sticker border with a drop shadow */
   filter: 
     drop-shadow(2px 0 0 white) 
@@ -916,12 +915,88 @@ body.crt-active { animation: textShadow 1.6s infinite; }
 }
 
 @keyframes float-sticker {
-  0% { margin-top: 0px; }
-  50% { margin-top: -20px; }
-  100% { margin-top: 0px; }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
 }
 
 /* Hide on mobile screens because there is no blank margin space */
 @media (max-width: 1400px) {
   #sticker-container { display: none !important; }
 }
+
+/* ==========================================================================
+   UNIQUE FEATURES CSS
+   ========================================================================== */
+
+/* --- CRT Terminal Mode --- */
+@keyframes crt-flicker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.97; }
+  100% { opacity: 1; }
+}
+
+body.crt-mode {
+  background: #000 !important;
+  color: #00ff50 !important;
+  --accent: #00ff50 !important;
+  --text-primary: #00ff50 !important;
+  --text-secondary: #00cc40 !important;
+  --bg-card: #000 !important;
+  --bg-modal: #000 !important;
+  --border: rgba(0,255,80,0.4) !important;
+  animation: crt-flicker 0.12s infinite;
+}
+body.crt-mode * {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #00ff50 !important;
+  border-color: rgba(0,255,80,0.4) !important;
+}
+body.crt-mode .tool-card {
+  background: #000 !important;
+  box-shadow: 0 0 8px rgba(0,255,80,0.3) !important;
+}
+body.crt-mode .tool-card:hover {
+  background: rgba(0,255,80,0.1) !important;
+  box-shadow: 0 0 20px rgba(0,255,80,0.6) !important;
+}
+body.crt-mode .navbar {
+  background: #000 !important;
+  border-bottom: 1px solid rgba(0,255,80,0.4) !important;
+}
+body.crt-mode .hero-title { text-shadow: 0 0 10px #00ff50 !important; }
+body.crt-mode .cyber-btn, body.crt-mode button {
+  background: #000 !important;
+  color: #00ff50 !important;
+  border-color: #00ff50 !important;
+}
+
+/* CRT Boot screen text */
+#crt-boot p { animation: crt-type 0.01s; }
+
+/* --- RAGE MODE --- */
+@keyframes rage-shake {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  20%  { transform: translate(-3px,3px) rotate(-0.5deg); }
+  40%  { transform: translate(3px,-2px) rotate(0.5deg); }
+  60%  { transform: translate(-2px,3px) rotate(-0.3deg); }
+  80%  { transform: translate(3px,-1px) rotate(0.3deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+@keyframes rage-spin {
+  from { transform: rotate(0deg) scale(1.5); }
+  to   { transform: rotate(360deg) scale(1.5); }
+}
+@keyframes rage-toast-anim {
+  0%   { transform: translate(-50%,-50%) scale(0) rotate(-10deg); opacity:0; }
+  50%  { transform: translate(-50%,-50%) scale(1.2) rotate(5deg); opacity:1; }
+  100% { transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity:1; }
+}
+
+body.rage-mode {
+  animation: rage-shake 0.12s infinite !important;
+  filter: hue-rotate(180deg) saturate(3) !important;
+  will-change: transform;
+}
+body.rage-mode .hero { border-color: #ff0000 !important; }
+body.rage-mode .navbar { background: #1a0000 !important; }

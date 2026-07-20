@@ -787,7 +787,7 @@ window.TOOLS.push(
         el.querySelector('#gl-t-val').textContent = t;
         
         const rgb = hexToRgb(c);
-        const css = \`background: rgba(\${rgb}, \${t});\\nbackdrop-filter: blur(\${b}px);\\n-webkit-backdrop-filter: blur(\${b}px);\\nborder: 1px solid rgba(255, 255, 255, 0.3);\`;
+        const css = `background: rgba(${rgb}, ${t});\\nbackdrop-filter: blur(${b}px);\\n-webkit-backdrop-filter: blur(${b}px);\\nborder: 1px solid rgba(255, 255, 255, 0.3);`;
         
         el.querySelector('#gl-preview').style = css + '; width: 70%; height: 60%; border-radius: 10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-family:sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,0.2);';
         el.querySelector('#gl-css').value = css;
@@ -856,9 +856,9 @@ window.TOOLS.push(
         el.querySelector('#bs-s-val').textContent = s;
         
         const rgb = hexToRgb(c);
-        const css = \`box-shadow: \${h}px \${v}px \${b}px \${s}px rgba(\${rgb}, \${o});\`;
+        const css = `box-shadow: ${h}px ${v}px ${b}px ${s}px rgba(${rgb}, ${o});`;
         
-        el.querySelector('#bs-preview').style.boxShadow = \`\${h}px \${v}px \${b}px \${s}px rgba(\${rgb}, \${o})\`;
+        el.querySelector('#bs-preview').style.boxShadow = `${h}px ${v}px ${b}px ${s}px rgba(${rgb}, ${o})`;
         el.querySelector('#bs-css').value = css + '\\n-webkit-' + css + '\\n-moz-' + css;
       }
       el.querySelectorAll('input').forEach(i => i.addEventListener('input', updateShadow));
@@ -901,11 +901,11 @@ window.TOOLS.push(
         const a = el.querySelector('#mt-a').value.trim();
         
         let html = '';
-        if(t) html += \`<title>\${t}</title>\\n\`;
-        if(t) html += \`<meta name="title" content="\${t}">\\n\`;
-        if(d) html += \`<meta name="description" content="\${d}">\\n\`;
-        if(k) html += \`<meta name="keywords" content="\${k}">\\n\`;
-        if(a) html += \`<meta name="author" content="\${a}">\\n\`;
+        if(t) html += `<title>${t}</title>\\n`;
+        if(t) html += `<meta name="title" content="${t}">\\n`;
+        if(d) html += `<meta name="description" content="${d}">\\n`;
+        if(k) html += `<meta name="keywords" content="${k}">\\n`;
+        if(a) html += `<meta name="author" content="${a}">\\n`;
         html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
         
         el.querySelector('#mt-out').value = html;
@@ -955,11 +955,11 @@ window.TOOLS.push(
         const u = el.querySelector('#og-u').value.trim();
         const ty = el.querySelector('#og-ty').value;
         
-        let html = \`<!-- Open Graph / Facebook -->\\n<meta property="og:type" content="\${ty}">\\n\`;
-        if(u) html += \`<meta property="og:url" content="\${u}">\\n\`;
-        if(t) html += \`<meta property="og:title" content="\${t}">\\n\`;
-        if(d) html += \`<meta property="og:description" content="\${d}">\\n\`;
-        if(i) html += \`<meta property="og:image" content="\${i}">\\n\`;
+        let html = `<!-- Open Graph / Facebook -->\\n<meta property="og:type" content="${ty}">\\n`;
+        if(u) html += `<meta property="og:url" content="${u}">\\n`;
+        if(t) html += `<meta property="og:title" content="${t}">\\n`;
+        if(d) html += `<meta property="og:description" content="${d}">\\n`;
+        if(i) html += `<meta property="og:image" content="${i}">\\n`;
         
         el.querySelector('#og-out').value = html;
       }
@@ -1009,11 +1009,11 @@ window.TOOLS.push(
         const u = el.querySelector('#tc-u').value.trim();
         const ty = el.querySelector('#tc-ty').value;
         
-        let html = \`<!-- Twitter -->\\n<meta property="twitter:card" content="\${ty}">\\n\`;
-        if(u) html += \`<meta property="twitter:site" content="\${u}">\\n\`;
-        if(t) html += \`<meta property="twitter:title" content="\${t}">\\n\`;
-        if(d) html += \`<meta property="twitter:description" content="\${d}">\\n\`;
-        if(i) html += \`<meta property="twitter:image" content="\${i}">\\n\`;
+        let html = `<!-- Twitter -->\\n<meta property="twitter:card" content="${ty}">\\n`;
+        if(u) html += `<meta property="twitter:site" content="${u}">\\n`;
+        if(t) html += `<meta property="twitter:title" content="${t}">\\n`;
+        if(d) html += `<meta property="twitter:description" content="${d}">\\n`;
+        if(i) html += `<meta property="twitter:image" content="${i}">\\n`;
         
         el.querySelector('#tc-out').value = html;
       }
@@ -1062,7 +1062,7 @@ window.TOOLS.push(
         
         sorted.forEach(([word, count]) => {
           const density = ((count / total) * 100).toFixed(1) + '%';
-          html += \`<tr><td style="padding:6px 0">\${word}</td><td style="padding:6px 0">\${count}</td><td style="padding:6px 0">\${density}</td></tr>\`;
+          html += `<tr><td style="padding:6px 0">${word}</td><td style="padding:6px 0">${count}</td><td style="padding:6px 0">${density}</td></tr>`;
         });
         html += '</table>';
         el.querySelector('#kd-out').innerHTML = html;

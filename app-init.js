@@ -36,43 +36,43 @@
 
     /* 1c. Floating Meme Stickers */
     window.spawnStickers = function() {
-      if(window.innerWidth < 1400) return; // Only spawn on large screens
+      if(window.innerWidth < 1400) return;
       
       const existing = document.getElementById('sticker-container');
-      if(existing) existing.remove(); // Clean up if re-running
+      if(existing) existing.remove();
 
       const STICKERS = ['🗿', '🐸', '🐕', '💀', '🤡', '👽', '🚀', '💎', '🔥', '🧠'];
       const container = document.createElement('div');
       container.id = 'sticker-container';
-      container.style.position = 'absolute';
+      // Use FIXED so it NEVER adds to document scroll height
+      container.style.position = 'fixed';
       container.style.top = '0';
       container.style.left = '0';
       container.style.width = '100%';
-      // Use maximum possible height after full render
-      const totalHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-      container.style.height = totalHeight + 'px';
+      container.style.height = '100%';
       container.style.pointerEvents = 'none';
       container.style.overflow = 'hidden';
       container.style.zIndex = '0';
       document.body.prepend(container);
       
-      // Increase count to 40 so they cover the whole long page
+      // Distribute 40 stickers across the full viewport height on each side
       for(let i=0; i<40; i++) { 
         const s = document.createElement('div');
         s.textContent = STICKERS[Math.floor(Math.random() * STICKERS.length)];
         s.className = 'meme-sticker';
         
         const isLeft = i % 2 === 0;
-        const x = isLeft ? (Math.random() * 8 + 2) : (Math.random() * 8 + 85); 
-        const y = Math.random() * (totalHeight - 200) + 100;
+        const x = isLeft ? (Math.random() * 8 + 1) : (Math.random() * 8 + 86);
+        // Use vh-based positioning so they spread evenly across visible viewport
+        const yVh = Math.random() * 95 + 2;
         
         s.style.left = x + 'vw';
-        s.style.top = y + 'px';
+        s.style.top = yVh + 'vh';
         s.style.animationDelay = (Math.random() * 5) + 's';
         
         let rot = Math.random() * 60 - 30;
         s.style.transform = `rotate(${rot}deg)`;
-        s.style.pointerEvents = 'auto'; 
+        s.style.pointerEvents = 'auto';
         
         s.onclick = () => {
           if(window.playFunnySound) window.playFunnySound();
@@ -165,12 +165,7 @@
       });
     }
 
-    // Hook into openTool to track recently used
-    const origOpen2 = window.openTool;
-    window.openTool = function (id) {
-      addRecent(id);
-      if (origOpen2) origOpen2(id);
-    };
+    // Hook into openTool - (merged with deep-link wrapper below)
 
     renderRecent(); // show on load if any exist
     renderNewTools(); // show newest tools
@@ -244,16 +239,17 @@
       setTimeout(() => openTool(hash), 400);
     }
 
-    /* 9. Update tool hash on open */
-    const origOpen = window.openTool;
+    /* 9. Single unified openTool wrapper: recent tracking + hash update */
+    const _baseOpen = window.openTool;
     window.openTool = function (id) {
+      addRecent(id);
       history.replaceState(null, '', '#' + id);
-      origOpen(id);
+      if (_baseOpen) _baseOpen(id);
     };
     const origClose = window.closeTool;
     window.closeTool = function () {
       history.replaceState(null, '', location.pathname);
-      origClose();
+      if (origClose) origClose();
     };
 
     /* 10. Lazy-scroll fade-in for tool cards */
