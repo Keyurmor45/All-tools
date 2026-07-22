@@ -134,32 +134,31 @@ img { display: block; max-width: 100%; }
   border-bottom: 2px solid var(--border);
 }
 .nav-container {
-  max-width: 1400px; margin: 0 auto; padding: 15px 40px;
+  max-width: 1600px; margin: 0 auto; padding: 10px 24px;
   display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  white-space: nowrap;
 }
 .logo {
-  display: flex; align-items: center; gap: 10px;
-  font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;
-  color: var(--text-primary); text-transform: uppercase; letter-spacing: -2px;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 900;
+  color: var(--text-primary); text-transform: uppercase; letter-spacing: -1px;
+  flex-shrink: 0;
 }
 .logo-icon { color: var(--accent); animation: spin 4s linear infinite; }
 .logo-text { position: relative; transition: all 0.2s; }
 .logo:hover .logo-text { color: var(--accent-warm); text-shadow: 3px 3px 0 var(--accent); }
 
-/* Force flex-wrap on nav links to prevent overflow with 7+ items */
+/* Nav links — single inline row, no wrapping */
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px !important;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
-
-.nav-container {
-  max-width: 1400px; margin: 0 auto; padding: 15px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
-}
+.nav-links::-webkit-scrollbar { display: none; }
 
 .nav-search {
   display: flex; align-items: center; gap: 10px;
@@ -174,7 +173,14 @@ img { display: block; max-width: 100%; }
 }
 .nav-right { display: flex; align-items: center; gap: 20px; }
 .tool-count-badge {
-  display: none; /* Hide globally as requested */
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 3px 8px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .mobile-search-btn {
   background: transparent; border: none; color: var(--white);
