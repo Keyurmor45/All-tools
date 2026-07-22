@@ -638,13 +638,30 @@
     }
 
     @media (max-width: 600px) {
-      .cyber-widget {
-        width: 210px;
-        bottom: 15px;
+      /* Sticky Note Button Override */
+      #sticky-notes-widget {
+        right: 15px !important;
+        bottom: 15px !important;
       }
-      .cyber-widget-left { left: 10px; }
-      .cyber-widget-right { right: 10px; }
-      .pomo-time { font-size: 1.6rem; }
+      #sticky-notes-panel {
+        width: calc(100vw - 30px) !important;
+        bottom: 55px !important;
+      }
+
+      /* Stack Lofi and Pomodoro Widgets */
+      .cyber-widget {
+        width: calc(100vw - 30px) !important;
+        left: 15px !important;
+        right: 15px !important;
+        bottom: auto;
+      }
+      .cyber-widget-right { 
+        bottom: 75px !important; 
+      }
+      .cyber-widget-left { 
+        bottom: 125px !important; 
+      }
+      .pomo-time { font-size: 1.4rem !important; }
     }
   `;
   document.head.appendChild(style);
