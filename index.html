@@ -88,6 +88,7 @@
         <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
         <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
         <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
+        <a href="stats.html" style="color: var(--text-secondary); transition: color 0.2s;">Stats</a>
         <a href="about.html" style="color: var(--text-secondary); transition: color 0.2s;">About</a>
       </div>
 
@@ -185,6 +186,13 @@
       </div>
       <button class="carousel-btn right" onclick="scrollTrading(1)" aria-label="Scroll right">►</button>
     </div>
+  </section>
+
+  <!-- ==========================================
+       TOOL OF THE DAY
+       ========================================== -->
+  <section id="tool-of-day" class="tool-of-day-section">
+    <!-- Rendered by JS -->
   </section>
 
   <!-- ==========================================
@@ -324,5 +332,94 @@
   <script src="tools-22.js"></script>
   <script src="app-init.js"></script>
   <script src="unique-features.js"></script>
+  <script>
+    (function renderToolOfDay() {
+      function render() {
+        const container = document.getElementById('tool-of-day');
+        if (!container || !window.TOOLS || !window.TOOLS.length) return;
+        const index = Math.floor(Date.now() / 86400000) % window.TOOLS.length;
+        const tool = window.TOOLS[index];
+        if (!tool) return;
+
+        container.innerHTML = `
+          <div class="tod-card">
+            <div class="tod-header">
+              <span class="tod-badge">★ DAILY FEATURE</span>
+              <h2 class="tod-title">TOOL OF THE DAY</h2>
+            </div>
+            <div class="tod-body">
+              <div class="tod-icon" aria-hidden="true">${tool.icon || '🛠️'}</div>
+              <div class="tod-details">
+                <h3 class="tod-name">${tool.name}</h3>
+                <p class="tod-desc">${tool.description}</p>
+                <div class="tod-actions">
+                  <button class="tod-open-btn" onclick="openTool('${tool.id}')">
+                    OPEN TOOL ↗
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', render);
+      } else {
+        render();
+      }
+    })();
+  </script>
+
+  <!-- Floating Theme Switcher Widget -->
+  <div id="theme-switcher-widget" class="theme-switcher-widget">
+    <span class="theme-switcher-label">THEME:</span>
+    <button class="theme-dot" data-theme="" style="background:#ccff00;" title="Default (Acid Green)" aria-label="Acid Green Theme"></button>
+    <button class="theme-dot" data-theme="theme-red" style="background:#ff2244;" title="Blood Red Theme" aria-label="Blood Red Theme"></button>
+    <button class="theme-dot" data-theme="theme-ocean" style="background:#00d4ff;" title="Ocean Theme" aria-label="Ocean Theme"></button>
+    <button class="theme-dot" data-theme="theme-matrix" style="background:#00ff41;" title="Matrix Theme" aria-label="Matrix Theme"></button>
+    <button class="theme-dot" data-theme="theme-purple" style="background:#cc44ff;" title="Purple Theme" aria-label="Purple Theme"></button>
+  </div>
+
+  <script>
+    (function initThemeSwitcher() {
+      const THEME_KEY = 'alltools-theme';
+      const themeClasses = ['theme-red', 'theme-ocean', 'theme-matrix', 'theme-purple'];
+      const dots = document.querySelectorAll('#theme-switcher-widget .theme-dot');
+
+      function applyTheme(themeName) {
+        document.body.classList.remove(...themeClasses);
+        document.documentElement.style.removeProperty('--accent');
+        document.documentElement.style.removeProperty('--accent-warm');
+
+        if (themeClasses.includes(themeName)) {
+          document.body.classList.add(themeName);
+        } else if (themeName && themeName.startsWith('#')) {
+          document.documentElement.style.setProperty('--accent', themeName);
+        }
+
+        dots.forEach(dot => {
+          const t = dot.getAttribute('data-theme');
+          if (t === themeName || (!t && (!themeName || themeName === 'default' || themeName === '#ccff00'))) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      // Restore saved theme on page load
+      const savedTheme = localStorage.getItem(THEME_KEY);
+      applyTheme(savedTheme);
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const themeName = dot.getAttribute('data-theme');
+          applyTheme(themeName);
+          localStorage.setItem(THEME_KEY, themeName || 'default');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
+

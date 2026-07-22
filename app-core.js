@@ -61,6 +61,9 @@ window.addRecent = function(id) {
   recents.unshift(id);
   if (recents.length > 5) recents.pop();
   localStorage.setItem('alltools_recents', JSON.stringify(recents));
+  // Track total opens for stats page
+  const opens = parseInt(localStorage.getItem('alltools-total-opens') || 0) + 1;
+  localStorage.setItem('alltools-total-opens', opens);
   renderRecents();
 }
 window.clearRecents = function() {

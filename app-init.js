@@ -117,6 +117,13 @@
       }, 180);
     });
 
+    /* Track active session */
+    if (!sessionStorage.getItem('alltools_session_active')) {
+      sessionStorage.setItem('alltools_session_active', 'true');
+      let sessions = parseInt(localStorage.getItem('alltools-sessions') || '0', 10);
+      localStorage.setItem('alltools-sessions', (sessions + 1).toString());
+    }
+
     /* 5. Recently Used — stored in localStorage, max 8 */
     const RECENT_KEY = 'alltools-recent';
     function getRecent() {
@@ -127,6 +134,10 @@
       list.unshift(id);
       list = list.slice(0, 8);
       localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+      
+      let opens = parseInt(localStorage.getItem('alltools-total-opens') || '0', 10);
+      localStorage.setItem('alltools-total-opens', (opens + 1).toString());
+
       renderRecent();
     }
     function renderRecent() {
