@@ -15,7 +15,7 @@
 
     const widgetWrap = document.createElement('div');
     widgetWrap.id = 'sticky-notes-widget';
-    widgetWrap.style.cssText = 'position:fixed; right:80px; bottom:30px; z-index:9990; font-family:"JetBrains Mono", monospace;';
+    widgetWrap.style.cssText = 'position:fixed; right:310px; bottom:30px; z-index:9990; font-family:"JetBrains Mono", monospace;';
 
     widgetWrap.innerHTML = `
       <!-- Floating Button -->
