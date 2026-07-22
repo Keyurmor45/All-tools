@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. INJECT SETTINGS & CRT UI
   // ==========================================
   const cyberUI = `
+    
     <!-- CRT Overlay -->
     <div id="crt-overlay" class="crt-overlay"></div>
-
-    <!-- Settings Gear -->
-    <button id="cyber-settings-btn" class="cyber-settings-btn" aria-label="Settings">⚙</button>
 
     <!-- Settings Panel -->
     <div id="cyber-settings-panel" class="cyber-settings-panel">
@@ -30,9 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="color-swatch" data-color="#ff5500" style="background:#ff5500;" title="Terminal Orange"></button>
           <button class="color-swatch" data-color="#ffffff" style="background:#ffffff;" title="Monochrome"></button>
         </div>
-        <div class="toggle-row">
+        
+        <div class="toggle-row" style="margin-top:20px; margin-bottom:10px;">
           <label for="crt-toggle">CRT SCANLINES</label>
           <input type="checkbox" id="crt-toggle">
+        </div>
+        
+        <div class="toggle-row">
+          <label for="meme-toggle">MEME SOUNDS</label>
+          <input type="checkbox" id="meme-toggle">
         </div>
       </div>
     </div>
@@ -65,9 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 3. EVENT LISTENERS
   // ==========================================
-  const settingsBtn = document.getElementById('cyber-settings-btn');
+  const settingsBtn = document.getElementById('settings-btn');
   const settingsPanel = document.getElementById('cyber-settings-panel');
   const closeBtn = document.getElementById('close-settings');
+
+  const memeToggle = document.getElementById('meme-toggle');
+  if (memeToggle) {
+    memeToggle.checked = localStorage.getItem('alltools-muted') !== '1';
+    memeToggle.addEventListener('change', (e) => {
+      const isMuted = !e.target.checked;
+      localStorage.setItem('alltools-muted', isMuted ? '1' : '0');
+      if (window.MemeEngine) window.MemeEngine.setMuted(isMuted);
+    });
+  }
+
   const swatches = document.querySelectorAll('.color-swatch');
 
   settingsBtn.addEventListener('click', () => {

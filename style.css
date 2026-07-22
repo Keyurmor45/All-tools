@@ -682,18 +682,10 @@ body.crt-active { animation: textShadow 1.6s infinite; }
   100% { text-shadow: 0.267px 0 1px rgba(0,30,255,0.5), -0.267px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
 }
 
-.cyber-settings-btn {
-  position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px;
-  background: var(--bg-card); color: var(--accent); border: 2px solid var(--accent);
-  border-radius: var(--r-sm); font-size: 1.5rem; cursor: pointer; z-index: 9900;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 4px 4px 0 var(--accent); transition: transform 0.2s, box-shadow 0.2s;
-}
-.cyber-settings-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--accent); }
 .cyber-settings-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0 var(--accent); }
 
 .cyber-settings-panel {
-  position: fixed; bottom: 80px; left: 20px; width: 300px;
+  position: fixed; top: 60px; right: 20px; width: 300px;
   background: var(--bg-card); border: 2px solid var(--accent);
   padding: 20px; z-index: 9901; box-shadow: 8px 8px 0 var(--accent);
   transform: translateY(20px); opacity: 0; pointer-events: none;
