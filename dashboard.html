@@ -92,7 +92,7 @@
       </a>
       <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
       <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
-      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.7rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
         <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
         <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
         <a href="dashboard.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Dashboard</a>
@@ -109,6 +109,13 @@
       <div class="nav-right">
         <label for="mobile-menu-toggle" class="hamburger">☰</label>
         <span class="tool-count-badge">LIVE</span>
+      
+        <button id="mute-btn" aria-label="Toggle sound" title="Toggle meme sounds" onclick="
+          const muted = localStorage.getItem('alltools-muted')==='1';
+          localStorage.setItem('alltools-muted', muted ? '0' : '1');
+          this.textContent = muted ? '🔊' : '🔇';
+          this.title = muted ? 'Mute sounds' : 'Unmute sounds';
+        " style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">🔊</button>
       </div>
     </div>
   </nav>
@@ -300,5 +307,16 @@
 
   <script src="cyber-core.js"></script>
   <script src="unique-features.js"></script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
 </body>
 </html>
