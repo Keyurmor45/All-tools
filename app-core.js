@@ -33,25 +33,83 @@ const CATEGORIES = [
    FAVORITES & RECENTS
    ================================================================ */
 window.getFavorites = function() {
-  try { return JSON.parse(localStorage.getItem('alltools_favs')) || []; } catch { return []; }
-}
+  try {
+    const favs = localStorage.getItem('alltools-favorites') || localStorage.getItem('alltools_favs');
+    return favs ? JSON.parse(favs) : [];
+  } catch { return []; }
+};
+
 window.toggleFavorite = function(id, e) {
   if (e) { e.preventDefault(); e.stopPropagation(); }
   let favs = getFavorites();
-  if (favs.includes(id)) favs = favs.filter(x => x !== id);
-  else favs.push(id);
+  if (favs.includes(id)) {
+    favs = favs.filter(x => x !== id);
+  } else {
+    favs.push(id);
+  }
+  localStorage.setItem('alltools-favorites', JSON.stringify(favs));
   localStorage.setItem('alltools_favs', JSON.stringify(favs));
   
-  // Re-render button if possible
-  if(e && e.target) {
-     e.target.textContent = favs.includes(id) ? '⭐' : '☆';
-     e.target.style.transform = 'scale(1.2)';
-     setTimeout(()=> e.target.style.transform = 'scale(1)', 200);
-  }
-  
-  if(state.category === 'favorites') filterAndRender();
+  if (window.renderFavoritesSection) window.renderFavoritesSection();
+  if (state.category === 'favorites') filterAndRender();
   renderCategories();
-}
+  filterAndRender();
+};
+
+window.clearFavorites = function() {
+  localStorage.setItem('alltools-favorites', JSON.stringify([]));
+  localStorage.setItem('alltools_favs', JSON.stringify([]));
+  if (window.renderFavoritesSection) window.renderFavoritesSection();
+  if (state.category === 'favorites') filterAndRender();
+  renderCategories();
+  filterAndRender();
+};
+
+window.renderFavoritesSection = function() {
+  const section = document.getElementById('favorites-section');
+  if (!section) return;
+  const favIds = getFavorites();
+  const favTools = (window.TOOLS || []).filter(t => favIds.includes(t.id));
+  
+  if (favTools.length === 0) {
+    section.style.display = 'none';
+    section.innerHTML = '';
+    return;
+  }
+
+  section.style.display = 'block';
+  section.innerHTML = `
+    <div class="fav-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:2px solid var(--accent, #ccff00); padding-bottom:8px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-family:var(--font-display, 'Syncopate', sans-serif); font-weight:700; font-size:1.1rem; color:var(--accent, #ccff00); letter-spacing:1px;">📌 PINNED</span>
+        <span class="fav-count-badge" style="background:var(--accent, #ccff00); color:#000; font-family:var(--font-mono, 'JetBrains Mono', monospace); font-size:0.8rem; font-weight:bold; padding:2px 8px; border-radius:0px;">${favTools.length}</span>
+      </div>
+      <button id="clear-pins-btn" onclick="clearFavorites()" style="background:transparent; border:1px solid #ff0055; color:#ff0055; font-family:var(--font-mono, 'JetBrains Mono', monospace); font-size:0.75rem; padding:4px 10px; cursor:pointer; font-weight:bold; transition:all 0.2s; text-transform:uppercase;" onmouseover="this.style.background='#ff0055';this.style.color='#000';" onmouseout="this.style.background='transparent';this.style.color='#ff0055';">
+        CLEAR PINS
+      </button>
+    </div>
+    <div class="tools-grid fav-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px; margin-bottom:25px;">
+      ${favTools.map(tool => `
+        <div class="tool-card cat-${tool.category}" role="listitem" data-tool-id="${tool.id}" tabindex="0" onclick="openTool('${tool.id}')" style="border:1px solid var(--accent, #ccff00);">
+          <div class="card-bg"></div>
+          <div class="tool-card-inner">
+            <div class="tool-card-meta">
+              <span class="tool-card-category">${getCategoryLabel(tool.category)}</span>
+              <button class="fav-btn active" onclick="toggleFavorite('${tool.id}', event)" aria-label="Toggle Favorite" style="background:none;border:none;cursor:pointer;font-size:1.2rem;color:#ff0055;">
+                ♥
+              </button>
+            </div>
+            <div class="tool-card-icon" aria-hidden="true">${tool.icon}</div>
+            <div class="tool-card-name">
+              <span>${tool.name}</span>
+            </div>
+            <div class="tool-card-desc">${tool.description}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+};
 window.getRecents = function() {
   try { return JSON.parse(localStorage.getItem('alltools_recents')) || []; } catch { return []; }
 }
@@ -61,6 +119,9 @@ window.addRecent = function(id) {
   recents.unshift(id);
   if (recents.length > 5) recents.pop();
   localStorage.setItem('alltools_recents', JSON.stringify(recents));
+  // Track total opens for stats page
+  const opens = parseInt(localStorage.getItem('alltools-total-opens') || 0) + 1;
+  localStorage.setItem('alltools-total-opens', opens);
   renderRecents();
 }
 window.clearRecents = function() {
@@ -306,6 +367,7 @@ function updateCategoryUI() {
 }
 
 function filterAndRender() {
+  if (window.renderFavoritesSection) window.renderFavoritesSection();
   let tools = TOOLS.filter(t => t.category !== 'trading');
   if (state.category === 'favorites') { const favs = getFavorites(); tools = tools.filter(t => favs.includes(t.id)); } else if (state.category !== 'all') tools = tools.filter(t => t.category === state.category);
   if (state.query) {
@@ -337,8 +399,10 @@ function filterAndRender() {
 function renderToolCards(tools) {
   const grid = document.getElementById('tools-grid');
   if (!grid) return;
+  const favs = getFavorites();
   grid.innerHTML = tools.map((tool, i) => {
     const isFeatured = (tool.category === 'trading' || tool.category === 'pdf');
+    const isFav = favs.includes(tool.id);
     return `
     <div class="tool-card cat-${tool.category} ${isFeatured ? 'featured-tool-card' : ''}" role="listitem"
          style="animation-delay:${Math.min(i * 0.03, 0.5)}s; ${isFeatured ? 'border-color: var(--accent); box-shadow: 0 0 10px rgba(204, 255, 0, 0.2);' : ''}"
@@ -348,8 +412,8 @@ function renderToolCards(tools) {
       <div class="tool-card-inner">
         <div class="tool-card-meta">
           <span class="tool-card-category">${getCategoryLabel(tool.category)}</span>
-          <button class="fav-btn" onclick="toggleFavorite('${tool.id}', event)" aria-label="Toggle Favorite" style="background:none;border:none;cursor:pointer;font-size:1.2rem;transition:transform 0.2s;">
-            ${getFavorites().includes(tool.id) ? '⭐' : '☆'}
+          <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${tool.id}', event)" aria-label="Toggle Favorite" style="background:none;border:none;cursor:pointer;font-size:1.2rem;transition:transform 0.2s, color 0.2s;color:${isFav ? '#ff0055' : 'var(--text-muted)'};">
+            ${isFav ? '♥' : '♡'}
           </button>
         </div>
         <div class="tool-card-icon" aria-hidden="true">${tool.icon}</div>

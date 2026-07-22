@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AllTools Code Playground - Real-time HTML, CSS, and JavaScript editor and live preview sandbox.">
+  <meta name="theme-color" content="#ccff00">
+  <title>Code Playground | AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --pg-bg: #050505;
+      --pg-panel-bg: #0d0d0d;
+      --pg-border: #ccff00;
+      --pg-accent: #ccff00;
+      --pg-muted: #555555;
+      --pg-text: #e0e0e0;
+    }
+
+    body {
+      background-color: var(--pg-bg);
+      color: var(--pg-text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playground-container {
+      display: flex;
+      flex-direction: column;
+      max-width: 1800px;
+      width: 100%;
+      margin: 75px auto 10px;
+      padding: 0 15px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    /* Toolbar */
+    .pg-toolbar {
+      background: #111111;
+      border: 2px solid var(--pg-border);
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      box-shadow: 5px 5px 0 var(--pg-border);
+      margin-bottom: 15px;
+    }
+
+    .pg-title {
+      font-family: 'Syncopate', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--pg-accent);
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .pg-title-icon {
+      background: var(--pg-accent);
+      color: #000;
+      font-weight: 900;
+      padding: 2px 6px;
+      font-size: 0.9rem;
+    }
+
+    .pg-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pg-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccff00;
+      box-shadow: 0 0 8px #ccff00;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .pg-status-dot.saving {
+      background: #ffaa00;
+      box-shadow: 0 0 8px #ffaa00;
+    }
+
+    .pg-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pg-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid var(--pg-border);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 7px 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pg-btn:hover {
+      background: var(--pg-accent);
+      color: #000;
+      box-shadow: 3px 3px 0 #fff;
+      transform: translate(-1px, -1px);
+    }
+
+    .pg-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: none;
+    }
+
+    .pg-btn-danger:hover {
+      background: #ff3355;
+      color: #fff;
+      border-color: #ff3355;
+      box-shadow: 3px 3px 0 #fff;
+    }
+
+    /* Main Workspace Split */
+    .pg-workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      flex: 1;
+      min-height: 600px;
+      height: calc(100vh - 170px);
+    }
+
+    /* Left Panel: Tabs + Editor */
+    .pg-panel-left {
+      background: var(--pg-panel-bg);
+      border: 2px solid var(--pg-border);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 5px 5px 0 rgba(204, 255, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .pg-tabs-bar {
+      display: flex;
+      background: #161616;
+      border-bottom: 2px solid var(--pg-border);
+    }
+
+    .pg-tab {
+      padding: 10px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #888;
+      background: #161616;
+      border: none;
+      border-right: 1px solid #2a2a2a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .pg-tab:hover {
+      color: #fff;
+      background: #222;
+    }
+
+    .pg-tab.active {
+      color: #000;
+      background: var(--pg-accent);
+      border-bottom: 2px solid var(--pg-accent);
+    }
+
+    .pg-tab-tag {
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    /* Editor Wrapper with Line Numbers */
+    .pg-editor-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+
+    .pg-editor-pane {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .pg-editor-pane.active {
+      display: flex;
+    }
+
+    .pg-line-numbers {
+      width: 45px;
+      background: #111111;
+      border-right: 1px solid #222;
+      color: #555;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      padding: 12px 5px 12px 0;
+      text-align: right;
+      user-select: none;
+      overflow: hidden;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .pg-line-numbers div {
+      padding-right: 8px;
+    }
+
+    .pg-textarea {
+      flex: 1;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      padding: 12px;
+      border: none;
+      outline: none;
+      resize: none;
+      white-space: pre;
+      overflow-wrap: normal;
+      overflow-x: auto;
+      tab-size: 2;
+      box-sizing: border-box;
+      caret-color: var(--pg-accent);
+    }
+
+    .pg-textarea::selection {
+      background: rgba(204, 255, 0, 0.3);
+      color: #fff;
+    }
+
+    /* Right Panel: Preview */
+    .pg-panel-right {
+      background: #fff;
+      border: 2px solid var(--pg-border);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 5px 5px 0 rgba(204, 255, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pg-preview-header {
+      background: #161616;
+      border-bottom: 2px solid var(--pg-border);
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .pg-preview-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--pg-accent);
+      font-weight: 700;
+    }
+
+    .pg-iframe-wrapper {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #ffffff;
+    }
+
+    #preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
+      display: block;
+    }
+
+    /* Fullscreen Mode for Preview */
+    .pg-panel-right.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      border: none;
+      box-shadow: none;
+    }
+
+    /* Toast notification */
+    .pg-toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--pg-accent);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 12px 20px;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      z-index: 100000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .pg-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Mobile Layout */
+    @media (max-width: 900px) {
+      .playground-container {
+        margin-top: 65px;
+      }
+      .pg-workspace {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .pg-panel-left {
+        height: 450px;
+      }
+      .pg-panel-right {
+        height: 450px;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--text-secondary);transition:color 0.2s;">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--text-secondary);transition:color 0.2s;">Stats</a>
+        <a href="changelog.html" style="color:var(--text-secondary);transition:color 0.2s;">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Playground Main Container -->
+  <main class="playground-container">
+    
+    <!-- Top Toolbar -->
+    <div class="pg-toolbar">
+      <div class="pg-title">
+        <span class="pg-title-icon">&lt;/&gt;</span> CODE_PLAYGROUND
+      </div>
+
+      <div class="pg-status" id="pg-status">
+        <span class="pg-status-dot" id="status-dot"></span>
+        <span id="status-text">LIVE PREVIEW READY</span>
+      </div>
+
+      <div class="pg-actions">
+        <button class="pg-btn" id="btn-format" title="Auto-format active code editor">
+          <span>⚡</span> FORMAT
+        </button>
+        <button class="pg-btn pg-btn-danger" id="btn-clear" title="Clear current editor code">
+          <span>🗑️</span> CLEAR
+        </button>
+        <button class="pg-btn" id="btn-copy" title="Copy full HTML/CSS/JS document">
+          <span>📋</span> COPY HTML
+        </button>
+        <button class="pg-btn" id="btn-fullscreen" title="Toggle preview full screen">
+          <span>⛶</span> FULLSCREEN
+        </button>
+      </div>
+    </div>
+
+    <!-- Workspace Split -->
+    <div class="pg-workspace">
+      
+      <!-- LEFT PANEL: Editors -->
+      <div class="pg-panel-left">
+        <div class="pg-tabs-bar">
+          <button class="pg-tab active" data-tab="html">
+            <span>HTML</span> <span class="pg-tab-tag">&lt;/&gt;</span>
+          </button>
+          <button class="pg-tab" data-tab="css">
+            <span>CSS</span> <span class="pg-tab-tag">#</span>
+          </button>
+          <button class="pg-tab" data-tab="js">
+            <span>JS</span> <span class="pg-tab-tag">{ }</span>
+          </button>
+        </div>
+
+        <div class="pg-editor-container">
+          
+          <!-- HTML Editor Pane -->
+          <div class="pg-editor-pane active" id="pane-html">
+            <div class="pg-line-numbers" id="lines-html"></div>
+            <textarea class="pg-textarea" id="editor-html" spellcheck="false" placeholder="Write HTML here..."></textarea>
+          </div>
+
+          <!-- CSS Editor Pane -->
+          <div class="pg-editor-pane" id="pane-css">
+            <div class="pg-line-numbers" id="lines-css"></div>
+            <textarea class="pg-textarea" id="editor-css" spellcheck="false" placeholder="Write CSS here..."></textarea>
+          </div>
+
+          <!-- JS Editor Pane -->
+          <div class="pg-editor-pane" id="pane-js">
+            <div class="pg-line-numbers" id="lines-js"></div>
+            <textarea class="pg-textarea" id="editor-js" spellcheck="false" placeholder="Write JavaScript here..."></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: Live Preview -->
+      <div class="pg-panel-right" id="preview-panel">
+        <div class="pg-preview-header">
+          <div class="pg-preview-title">
+            <span>●</span> LIVE PREVIEW SANDBOX
+          </div>
+          <span style="color: #666; font-size: 0.7rem;">SANDBOXED IFRAME</span>
+        </div>
+        <div class="pg-iframe-wrapper">
+          <iframe id="preview" sandbox="allow-scripts allow-modals allow-forms allow-same-origin" title="Code Live Preview"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div class="pg-toast" id="pg-toast">CODE COPIED TO CLIPBOARD!</div>
+
+  <!-- Global Scripts -->
+  <script src="style.css"></script>
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+  <script src="widgets.js"></script>
+
+  <!-- Playground Engine Logic -->
+  <script>
+    (function() {
+      // Starter Templates
+      const defaultHtml = `<div class="card">
+  <div class="badge">⚡ CYBERCORE UI</div>
+  <h1>BUILD THE FUTURE</h1>
+  <p>Live, client-side code execution engine powered by <strong>AllTools</strong>.</p>
+  <button id="btn" class="cyber-btn">
+    <span class="btn-text">INITIALIZE SYSTEM</span>
+  </button>
+  <div id="output" class="console-output">Status: Standby</div>
+</div>`;
+
+      const defaultCss = `body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #08080c;
+  color: #fff;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.card {
+  background: #12121a;
+  border: 2px solid #ccff00;
+  box-shadow: 0 0 25px rgba(204, 255, 0, 0.25), 8px 8px 0 #ccff00;
+  padding: 40px;
+  border-radius: 4px;
+  text-align: center;
+  max-width: 420px;
+  width: 85%;
+}
+
+.badge {
+  display: inline-block;
+  background: #ccff00;
+  color: #000;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+p {
+  color: #a0a0b0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.cyber-btn {
+  background: linear-gradient(135deg, #ff0055, #7928ca, #00dfd8);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.cyber-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 223, 216, 0.6);
+}
+
+.cyber-btn:active {
+  transform: translateY(1px);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.console-output {
+  margin-top: 25px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #ccff00;
+  background: #000000;
+  padding: 10px;
+  border: 1px dashed #333333;
+}`;
+
+      const defaultJs = `const btn = document.getElementById('btn');
+const output = document.getElementById('output');
+let count = 0;
+
+btn.addEventListener('click', () => {
+  count++;
+  output.textContent = \`SYSTEM ONLINE: Triggered \${count} time\${count > 1 ? 's' : ''}! 🚀\`;
+  output.style.borderColor = '#ccff00';
+  
+  // Pulse animation effect
+  btn.style.transform = 'scale(0.95)';
+  setTimeout(() => btn.style.transform = 'none', 100);
+});`;
+
+      // DOM Elements
+      const editors = {
+        html: document.getElementById('editor-html'),
+        css: document.getElementById('editor-css'),
+        js: document.getElementById('editor-js')
+      };
+
+      const lineGutters = {
+        html: document.getElementById('lines-html'),
+        css: document.getElementById('lines-css'),
+        js: document.getElementById('lines-js')
+      };
+
+      const previewIframe = document.getElementById('preview');
+      const tabs = document.querySelectorAll('.pg-tab');
+      const panes = document.querySelectorAll('.pg-editor-pane');
+      const statusDot = document.getElementById('status-dot');
+      const statusText = document.getElementById('status-text');
+      const toast = document.getElementById('pg-toast');
+
+      let activeTab = 'html';
+      let debounceTimer = null;
+      let saveTimer = null;
+
+      // Initialize Content from LocalStorage or Defaults
+      function initContent() {
+        const savedHtml = localStorage.getItem('pg-html');
+        const savedCss = localStorage.getItem('pg-css');
+        const savedJs = localStorage.getItem('pg-js');
+
+        editors.html.value = savedHtml !== null ? savedHtml : defaultHtml;
+        editors.css.value = savedCss !== null ? savedCss : defaultCss;
+        editors.js.value = savedJs !== null ? savedJs : defaultJs;
+
+        updateLineNumbers('html');
+        updateLineNumbers('css');
+        updateLineNumbers('js');
+
+        updatePreview();
+      }
+
+      // Update Line Numbers & Sync Scroll
+      function updateLineNumbers(type) {
+        const textarea = editors[type];
+        const gutter = lineGutters[type];
+        const lineCount = textarea.value.split('\n').length;
+        
+        let linesHtml = '';
+        for (let i = 1; i <= lineCount; i++) {
+          linesHtml += `<div>${i}</div>`;
+        }
+        gutter.innerHTML = linesHtml;
+        gutter.scrollTop = textarea.scrollTop;
+      }
+
+      // Tab Switching Logic
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          panes.forEach(p => p.classList.remove('active'));
+
+          tab.classList.add('active');
+          activeTab = tab.getAttribute('data-tab');
+          
+          const pane = document.getElementById(`pane-${activeTab}`);
+          if (pane) {
+            pane.classList.add('active');
+            updateLineNumbers(activeTab);
+            editors[activeTab].focus();
+          }
+        });
+      });
+
+      // Update Sandbox Preview iframe
+      function updatePreview() {
+        const html = editors.html.value;
+        const css = editors.css.value;
+        const js = editors.js.value;
+
+        const combinedDoc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+${css}
+  </style>
+</head>
+<body>
+${html}
+  <script>
+    try {
+      ${js}
+    } catch(err) {
+      console.error('JS Execution Error:', err);
+    }
+  <\/script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>`;
+
+        previewIframe.srcdoc = combinedDoc;
+        
+        statusDot.classList.remove('saving');
+        statusText.textContent = 'LIVE PREVIEW READY';
+      }
+
+      // Schedule Debounced Preview Update
+      function onCodeChange(type) {
+        updateLineNumbers(type);
+        
+        statusDot.classList.add('saving');
+        statusText.textContent = 'UPDATING...';
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          updatePreview();
+        }, 300);
+      }
+
+      // Save Code to LocalStorage
+      function saveToLocalStorage() {
+        localStorage.setItem('pg-html', editors.html.value);
+        localStorage.setItem('pg-css', editors.css.value);
+        localStorage.setItem('pg-js', editors.js.value);
+      }
+
+      // Attach Event Listeners to Textareas
+      Object.keys(editors).forEach(type => {
+        const textarea = editors[type];
+
+        textarea.addEventListener('input', () => onCodeChange(type));
+        
+        textarea.addEventListener('scroll', () => {
+          lineGutters[type].scrollTop = textarea.scrollTop;
+        });
+
+        // Tab Key Indentation handling (2 spaces)
+        textarea.addEventListener('keydown', (e) => {
+          if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+
+            textarea.value = textarea.value.substring(0, start) + '  ' + textarea.value.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + 2;
+            
+            onCodeChange(type);
+          }
+        });
+      });
+
+      // Auto-save every 2 seconds
+      setInterval(() => {
+        saveToLocalStorage();
+      }, 2000);
+
+      // Toolbar Action: FORMAT
+      document.getElementById('btn-format').addEventListener('click', () => {
+        const textarea = editors[activeTab];
+        let val = textarea.value;
+
+        if (activeTab === 'html') {
+          // Simple HTML formatter (adds indentation after opening tags)
+          let formatted = '';
+          let indent = 0;
+          val.split(/>\s*</).forEach(node => {
+            if (node.match(/^\/\w/)) indent = Math.max(0, indent - 1);
+            formatted += '  '.repeat(indent) + '<' + node + '>\n';
+            if (node.match(/^<?\w[^>]*[^\/]$/) && !node.startsWith('input') && !node.startsWith('img') && !node.startsWith('br') && !node.startsWith('hr') && !node.startsWith('!')) {
+              indent++;
+            }
+          });
+          val = formatted.trim().replace(/^</, '').replace(/>$/, '');
+          // Fallback if tag parsing simplified too much:
+          if (!val) val = textarea.value;
+        } else if (activeTab === 'css') {
+          // Clean up CSS spacing
+          val = val.replace(/\s*\{\s*/g, ' {\n  ')
+                   .replace(/;\s*/g, ';\n  ')
+                   .replace(/\s*\}\s*/g, '\n}\n\n')
+                   .replace(/  \n/g, '')
+                   .trim();
+        } else if (activeTab === 'js') {
+          // Clean up JS spacing around blocks
+          val = val.replace(/\{\s*/g, '{\n  ')
+                   .replace(/;\s*/g, ';\n  ')
+                   .replace(/\s*\}\s*/g, '\n}\n')
+                   .trim();
+        }
+
+        textarea.value = val;
+        onCodeChange(activeTab);
+        showToast(`FORMATTED ${activeTab.toUpperCase()} CODE`);
+      });
+
+      // Toolbar Action: CLEAR
+      document.getElementById('btn-clear').addEventListener('click', () => {
+        if (confirm(`Clear all contents in ${activeTab.toUpperCase()} editor?`)) {
+          editors[activeTab].value = '';
+          onCodeChange(activeTab);
+          saveToLocalStorage();
+          showToast(`CLEARED ${activeTab.toUpperCase()} EDITOR`);
+        }
+      });
+
+      // Toolbar Action: COPY HTML
+      document.getElementById('btn-copy').addEventListener('click', () => {
+        const fullDoc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+${editors.css.value}
+  </style>
+</head>
+<body>
+${editors.html.value}
+  <script>
+${editors.js.value}
+  <\/script>
+</body>
+</html>`;
+
+        navigator.clipboard.writeText(fullDoc).then(() => {
+          showToast('FULL HTML DOCUMENT COPIED!');
+        }).catch(() => {
+          showToast('FAILED TO COPY CODE');
+        });
+      });
+
+      // Toolbar Action: FULLSCREEN
+      document.getElementById('btn-fullscreen').addEventListener('click', () => {
+        const rightPanel = document.getElementById('preview-panel');
+        rightPanel.classList.toggle('fullscreen');
+        
+        const isFS = rightPanel.classList.contains('fullscreen');
+        document.getElementById('btn-fullscreen').innerHTML = isFS ? '<span>✕</span> EXIT FS' : '<span>⛶</span> FULLSCREEN';
+      });
+
+      // Toast Display Helper
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2200);
+      }
+
+      // Initialize Playground
+      document.addEventListener('DOMContentLoaded', () => {
+        initContent();
+        
+        // Restore sound mute button state
+        const btn = document.getElementById('mute-btn');
+        if (btn && localStorage.getItem('alltools-muted') === '1') {
+          btn.textContent = '🔇';
+          btn.title = 'Unmute sounds';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

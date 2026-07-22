@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The Matrix — Developer Cheat Sheets">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#ccff00">
   <title>The Matrix — Cheat Sheets</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,7 @@
       );
     }
   </style>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <div class="matrix-overlay"></div>
@@ -56,21 +57,27 @@
       <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
       <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
 
-      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
         <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
-        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
-        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
-        <a href="cheatsheets.html" style="color: var(--accent); text-shadow: 2px 2px 0 var(--border);">Matrix</a>
-        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
-        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
-        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
-        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
-        <a href="about.html" style="color: var(--text-secondary); transition: color 0.2s;">About</a>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--text-secondary);transition:color 0.2s;">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--text-secondary);transition:color 0.2s;">Stats</a>
+        <a href="changelog.html" style="color:var(--text-secondary);transition:color 0.2s;">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--text-secondary);transition:color 0.2s;">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
       </div>
 
       <div class="nav-right">
         <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
-        <span class="tool-count-badge" aria-label="Modules">3 MODULES</span>
+        
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
       </div>
     </div>
   </nav>
@@ -192,5 +199,23 @@
   <script src="cyber-core.js"></script>
   <script src="cursor.js"></script>
   <script src="unique-features.js"></script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
+  <script src="widgets.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
 </body>
 </html>

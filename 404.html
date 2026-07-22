@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404 - Page Not Found | AllTools Cybercore Terminal">
+  <meta name="theme-color" content="#ccff00">
+  <title>404 - SIGNAL LOST | ALL*TOOLS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Brutalist 404 Page Custom Styles */
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .error-container {
+      min-height: calc(100vh - 160px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .error-card {
+      background: #000000;
+      border: 4px solid var(--accent, #ccff00);
+      box-shadow: 12px 12px 0px var(--accent, #ccff00);
+      padding: 50px 30px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-badge {
+      display: inline-block;
+      background: var(--accent, #ccff00);
+      color: #000000;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 16px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    /* 404 Glitch Animation */
+    .glitch-wrapper {
+      position: relative;
+      display: inline-block;
+      margin: 10px 0;
+    }
+
+    .glitch-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 700;
+      color: var(--accent, #ccff00);
+      text-shadow: 0 0 25px rgba(204, 255, 0, 0.8), 0 0 50px rgba(204, 255, 0, 0.4), 4px 4px 0 #000000;
+      position: relative;
+      line-height: 1;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .glitch-title::before,
+    .glitch-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      overflow: hidden;
+    }
+
+    .glitch-title::before {
+      left: 3px;
+      text-shadow: -3px 0 #ff0055;
+      animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+    }
+
+    .glitch-title::after {
+      left: -3px;
+      text-shadow: -3px 0 #00ffff;
+      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { clip-path: inset(20% 0 50% 0); transform: skew(0.5deg); }
+      10% { clip-path: inset(65% 0 10% 0); transform: skew(-1.5deg); }
+      20% { clip-path: inset(10% 0 75% 0); transform: skew(1deg); }
+      30% { clip-path: inset(40% 0 35% 0); transform: skew(2.5deg); }
+      40% { clip-path: inset(80% 0 5% 0); transform: skew(-0.8deg); }
+      50% { clip-path: inset(15% 0 60% 0); transform: skew(0deg); }
+      60% { clip-path: inset(70% 0 15% 0); transform: skew(2deg); }
+      70% { clip-path: inset(30% 0 45% 0); transform: skew(-2.5deg); }
+      80% { clip-path: inset(50% 0 20% 0); transform: skew(1deg); }
+      90% { clip-path: inset(5% 0 80% 0); transform: skew(-1.5deg); }
+      100% { clip-path: inset(25% 0 40% 0); transform: skew(0deg); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip-path: inset(75% 0 10% 0); transform: skew(-1deg); }
+      15% { clip-path: inset(15% 0 65% 0); transform: skew(2deg); }
+      30% { clip-path: inset(50% 0 20% 0); transform: skew(-2.5deg); }
+      45% { clip-path: inset(5% 0 80% 0); transform: skew(0.8deg); }
+      60% { clip-path: inset(85% 0 5% 0); transform: skew(-1.5deg); }
+      75% { clip-path: inset(35% 0 45% 0); transform: skew(2.5deg); }
+      90% { clip-path: inset(60% 0 15% 0); transform: skew(-1deg); }
+      100% { clip-path: inset(10% 0 70% 0); transform: skew(0deg); }
+    }
+
+    .signal-header {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Retro ASCII Decoration */
+    .ascii-wrapper {
+      margin: 30px 0;
+      background: #080808;
+      border: 2px dashed var(--accent, #ccff00);
+      padding: 20px;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .ascii-art {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.2;
+      color: var(--accent, #ccff00);
+      text-shadow: 0 0 8px rgba(204, 255, 0, 0.5);
+      white-space: pre;
+      display: inline-block;
+      text-align: left;
+    }
+
+    /* Countdown & Status */
+    .status-panel {
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: #050505;
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .countdown-text {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent, #ccff00);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #111111;
+      border: 1px solid var(--accent, #ccff00);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent, #ccff00);
+      box-shadow: 0 0 10px var(--accent, #ccff00);
+      transition: width 1s linear, background 0.3s ease;
+    }
+
+    /* Brutalist Buttons */
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .brutalist-btn {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 28px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.15s ease-in-out;
+      border: 3px solid var(--accent, #ccff00);
+      outline: none;
+    }
+
+    .btn-home {
+      background: var(--accent, #ccff00);
+      color: #000000;
+      box-shadow: 6px 6px 0px #ffffff;
+    }
+
+    .btn-home:hover {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      box-shadow: 8px 8px 0px var(--accent, #ccff00);
+      transform: translate(-2px, -2px);
+    }
+
+    .btn-cancel {
+      background: #000000;
+      color: var(--accent, #ccff00);
+      box-shadow: 6px 6px 0px var(--accent, #ccff00);
+    }
+
+    .btn-cancel:hover {
+      background: var(--accent, #ccff00);
+      color: #000000;
+      box-shadow: 8px 8px 0px #ffffff;
+      transform: translate(-2px, -2px);
+    }
+
+    .btn-cancel:disabled {
+      border-color: #555555;
+      color: #555555;
+      box-shadow: none;
+      transform: none;
+      cursor: not-allowed;
+      background: #111111;
+    }
+
+    @media (max-width: 600px) {
+      .error-card {
+        padding: 30px 15px;
+      }
+      .ascii-art {
+        font-size: 0.55rem;
+      }
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .brutalist-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- Marquee Banner -->
+  <div class="marquee">
+    <span>ERROR 404 * SIGNAL LOST * PAGE NOT FOUND * CONNECTION TERMINATED * ERROR 404 * SIGNAL LOST * PAGE NOT FOUND * CONNECTION TERMINATED * ERROR 404 * SIGNAL LOST * PAGE NOT FOUND * CONNECTION TERMINATED * </span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      
+      <div class="nav-links" style="display: flex; gap: 20px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color: var(--text-secondary); transition: color 0.2s;">Tools</a>
+        <a href="news.html" style="color: var(--text-secondary); transition: color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color: var(--text-secondary); transition: color 0.2s;">Matrix</a>
+        <a href="games.html" style="color: var(--text-secondary); transition: color 0.2s;">Arcade</a>
+        <a href="portfolio.html" style="color: var(--text-secondary); transition: color 0.2s;">Portfolio</a>
+        <a href="ai-lab.html" style="color: var(--text-secondary); transition: color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color: var(--text-secondary); transition: color 0.2s;">BBS Chat</a>
+        <a href="about.html" style="color: var(--text-secondary); transition: color 0.2s;">About</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main 404 Brutalist Container -->
+  <main class="error-container" id="main">
+    <div class="error-card">
+      <div class="error-badge">[ CRITICAL SYSTEM ERROR ]</div>
+      
+      <div class="glitch-wrapper">
+        <h1 class="glitch-title" data-text="404">404</h1>
+      </div>
+
+      <h2 class="signal-header">SIGNAL LOST</h2>
+
+      <!-- Retro ASCII Art Decoration -->
+      <div class="ascii-wrapper">
+        <pre class="ascii-art" aria-hidden="true">
+╔═════════════════════════════════════════════════════════════════════════════╗
+║  [!] UNHANDLED DISCONNECT :: LOCATION UNRESOLVED                            ║
+║  ERR_CODE : 0x00000404                                                      ║
+║  TARGET   : REALM_NOT_FOUND                                                 ║
+║                                                                             ║
+║      ██╗  ██╗  ██████╗  ██╗  ██╗                                            ║
+║      ██║  ██║ ██╔═══██╗ ██║  ██║                                            ║
+║      ███████║ ██║   ██║ ███████║                                            ║
+║      ╚════██║ ██║   ██║ ╚════██║                                            ║
+║           ██║ ╚██████╔╝      ██║                                            ║
+║           ╚═╝  ╚═════╝       ╚═╝                                            ║
+║                                                                             ║
+║  STATUS : NO PACKET ROUTE AVAILABLE                                         ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+        </pre>
+      </div>
+
+      <!-- Countdown Panel -->
+      <div class="status-panel">
+        <div class="countdown-text" id="countdown-text">
+          REDIRECTING IN <span id="timer-seconds">10</span> SECONDS...
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Brutalist Buttons -->
+      <div class="btn-group">
+        <a href="index.html" class="brutalist-btn btn-home" id="home-btn">[ TAKE ME HOME ]</a>
+        <button type="button" class="brutalist-btn btn-cancel" id="cancel-btn">[ CANCEL REDIRECT ]</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Countdown Script -->
+  <script>
+    (function() {
+      let count = 10;
+      const totalTime = 10;
+      const timerEl = document.getElementById('timer-seconds');
+      const countdownText = document.getElementById('countdown-text');
+      const progressFill = document.getElementById('progress-fill');
+      const cancelBtn = document.getElementById('cancel-btn');
+
+      // Update progress bar immediately
+      if (progressFill) progressFill.style.width = '0%';
+
+      const timerId = setInterval(() => {
+        count--;
+        if (timerEl) timerEl.textContent = count;
+        if (progressFill) {
+          const percent = ((totalTime - count) / totalTime) * 100;
+          progressFill.style.width = percent + '%';
+        }
+        
+        if (count <= 0) {
+          clearInterval(timerId);
+          window.location.href = 'index.html';
+        }
+      }, 1000);
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+          clearInterval(timerId);
+          if (countdownText) {
+            countdownText.textContent = 'REDIRECT CANCELLED. SYSTEM STANDBY.';
+            countdownText.style.color = '#ff0055';
+          }
+          if (progressFill) {
+            progressFill.style.background = '#ff0055';
+            progressFill.style.boxShadow = '0 0 10px #ff0055';
+          }
+          cancelBtn.disabled = true;
+          cancelBtn.textContent = '[ CANCELLED ]';
+        });
+      }
+    })();
+  </script>
+
+  <!-- Required Scripts -->
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>

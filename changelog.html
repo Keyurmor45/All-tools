@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AllTools Changelog — Timeline of everything built.">
+  <meta name="theme-color" content="#ccff00">
+  <title>Changelog | AllTools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px; background: var(--border); transform: translateX(-50%);
+    }
+    @media(max-width:700px){ .timeline::before { left: 20px; } }
+
+    .tl-entry {
+      display: grid; grid-template-columns: 1fr 60px 1fr;
+      gap: 0 20px; margin-bottom: 40px; align-items: start;
+    }
+    @media(max-width:700px){
+      .tl-entry { grid-template-columns: 40px 1fr; }
+      .tl-left { display: none; }
+    }
+
+    .tl-left { text-align: right; }
+    .tl-right { }
+    .tl-center { display: flex; flex-direction: column; align-items: center; padding-top: 12px; }
+    .tl-dot {
+      width: 20px; height: 20px; border: 3px solid var(--accent);
+      background: var(--bg); border-radius: 0; transform: rotate(45deg);
+      flex-shrink: 0; box-shadow: 0 0 10px var(--accent);
+    }
+    .tl-card {
+      border: 2px solid var(--border); padding: 18px 22px;
+      background: var(--bg-card);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tl-card:hover { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+    .tl-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+    .tl-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: var(--text-primary); margin-bottom: 8px; }
+    .tl-desc { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tl-tag {
+      font-family: var(--font-mono); font-size: 0.7rem; padding: 2px 8px;
+      border: 1px solid var(--border); color: var(--text-muted); text-transform: uppercase;
+    }
+    .tl-tag.new { border-color: var(--accent); color: var(--accent); }
+    .tl-tag.fix { border-color: #ff4500; color: #ff4500; }
+    .tl-tag.perf { border-color: #00d4ff; color: #00d4ff; }
+    .tl-tag.feat { border-color: #cc44ff; color: #cc44ff; }
+  </style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <div class="marquee">
+    <span>CHANGELOG * SITEMAP * WHAT WE BUILT * VERSION HISTORY * ROADMAP * CHANGELOG *</span>
+  </div>
+
+  <nav class="navbar" id="navbar" role="navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link">
+        <div class="logo-icon">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--text-secondary);transition:color 0.2s;">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--text-secondary);transition:color 0.2s;">Stats</a>
+        <a href="changelog.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--text-secondary);transition:color 0.2s;">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
+      </div>
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger">☰</label>
+        
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="main" style="max-width:1200px;margin-top:60px;">
+
+    <div style="margin-bottom:40px;border-bottom:2px solid var(--accent);padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;">
+      <h1 style="font-family:var(--font-display);font-size:2.8rem;font-weight:700;text-transform:uppercase;margin:0;color:var(--accent);letter-spacing:-2px;">
+        Changelog
+      </h1>
+      <span style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.85rem;">BUILD LOG // 2025–2026</span>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 22 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 22 2026 — v2.5</div>
+            <div class="tl-title">Massive Platform Expansion</div>
+            <div class="tl-desc">Added Live Dashboard with real-time crypto prices & world clocks. Guestbook / Community Wall. Personal Stats page. Theme Switcher (5 themes). Custom 404 page. Changelog timeline. Tool of the Day widget.</div>
+            <div class="tl-tags">
+              <span class="tl-tag new">NEW</span>
+              <span class="tl-tag feat">DASHBOARD</span>
+              <span class="tl-tag feat">GUESTBOOK</span>
+              <span class="tl-tag feat">THEMES</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 20 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 20 2026 — v2.4</div>
+            <div class="tl-title">Arcade Expanded to 6 Games</div>
+            <div class="tl-desc">Added Flappy Cyber, Minesweeper (flood-fill reveal), Cyber Pong (vs AI), and Tic Tac Toe (Minimax unbeatable AI). All games use IIFE pattern and are fully isolated.</div>
+            <div class="tl-tags"><span class="tl-tag new">NEW</span><span class="tl-tag feat">GAMES</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 17 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 17 2026 — v2.3</div>
+            <div class="tl-title">Performance Overhaul + 6 Unique World-First Features</div>
+            <div class="tl-desc">Reduced particles 80→35, switched cursor trail from DOM to canvas, throttled all handlers. Added: Living Particle BG, CRT Terminal Mode (Konami Code), RAGE MODE, Cursor Trail, Secret Clock, Hero Glitch. Fixed category scroll-space bug.</div>
+            <div class="tl-tags"><span class="tl-tag perf">PERF</span><span class="tl-tag feat">CRT MODE</span><span class="tl-tag feat">RAGE MODE</span><span class="tl-tag fix">BUG FIX</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 16 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 16 2026 — v2.2</div>
+            <div class="tl-title">Meme Engine + Floating Stickers + Fire Carousel</div>
+            <div class="tl-desc">Added random meme sound effects on tool open. Floating interactive meme stickers in widescreen margins (click them!). Fixed Trading Carousel fire animation to bottom-only on cards. Added About page.</div>
+            <div class="tl-tags"><span class="tl-tag feat">MEME SOUNDS</span><span class="tl-tag feat">STICKERS</span><span class="tl-tag feat">FIRE</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 15 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 15 2026 — v2.1</div>
+            <div class="tl-title">Trading Fire Carousel + 24-Hour Rotation Algorithm</div>
+            <div class="tl-desc">Implemented the Trading Tools Fire Carousel section below the hero. Built a deterministic shuffling algorithm using Day-of-Year as seed — tools rotate every 24 hours automatically. Global cyber-btn style standardisation.</div>
+            <div class="tl-tags"><span class="tl-tag new">NEW</span><span class="tl-tag feat">TRADING</span><span class="tl-tag feat">CAROUSEL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">JUL 13 2026</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">JUL 13 2026 — v2.0</div>
+            <div class="tl-title">Cybercore Brutalist Redesign + PDF Studio</div>
+            <div class="tl-desc">Complete UI overhaul to Y2K Cybercore / Brutalist aesthetic. Added PDF Studio with PDF.js canvas previews. Built custom cursor with glitch trail. Introduced Live Crypto ticker marquee. Added 512+ tools across 11 categories.</div>
+            <div class="tl-tags"><span class="tl-tag new">MAJOR</span><span class="tl-tag feat">PDF STUDIO</span><span class="tl-tag feat">REDESIGN</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-left"><div class="tl-date">2025</div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right">
+          <div class="tl-card">
+            <div class="tl-date">2025 — v1.0</div>
+            <div class="tl-title">Initial Launch</div>
+            <div class="tl-desc">First version of AllTools. Basic tool grid, categories, and a handful of developer utilities. The project that started it all.</div>
+            <div class="tl-tags"><span class="tl-tag new">LAUNCH</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <p class="footer-tagline">AllTools is built incrementally. Every feature ships when it's ready.</p>
+      <div class="footer-links">
+        <a href="index.html">Tools</a><span class="dot">·</span>
+        <a href="changelog.html">Changelog</a><span class="dot">·</span>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
+  <script src="widgets.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>

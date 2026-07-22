@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AllTools Live Dashboard — Real-time crypto prices, world clocks, and system status.">
+  <meta name="theme-color" content="#ccff00">
+  <title>Live Dashboard | AllTools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 30px; }
+    @media(max-width:1100px){.dash-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:700px){.dash-grid{grid-template-columns:1fr;}}
+    .dash-panel {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      padding: 0;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .dash-panel:hover { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+    .dash-panel-header {
+      padding: 12px 18px;
+      border-bottom: 2px solid var(--border);
+      font-family: var(--font-display);
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 3px; color: var(--accent);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .dash-panel-body { padding: 18px; flex: 1; }
+    .live-dot { width: 8px; height: 8px; background: #00ff41; border-radius: 50%; display: inline-block; animation: pulse-dot 1.5s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+    /* Crypto */
+    .crypto-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+    }
+    .crypto-row:last-child { border-bottom: none; }
+    .crypto-name { font-weight: 700; font-size: 1rem; }
+    .crypto-price { font-size: 1.1rem; color: var(--accent); }
+    .crypto-change { font-size: 0.85rem; }
+    .up { color: #00ff41; } .down { color: #ff2244; }
+
+    /* World Clock */
+    .clock-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+    }
+    .clock-row:last-child { border-bottom: none; }
+    .clock-city { font-size: 0.85rem; color: var(--text-secondary); }
+    .clock-time { font-size: 1.2rem; color: var(--accent); font-weight: 700; letter-spacing: 2px; }
+
+    /* System Status */
+    .stat-big { font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+    .stat-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Trending GitHub */
+    .github-row {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 0.85rem;
+    }
+    .github-row:last-child { border-bottom: none; }
+    .github-name { color: var(--accent); font-weight: 700; margin-bottom: 2px; }
+    .github-desc { color: var(--text-secondary); font-size: 0.78rem; }
+    .github-stars { color: #ffdd00; font-size: 0.78rem; }
+
+    /* Countdown */
+    .big-clock { font-size: 4rem; font-family: var(--font-display); font-weight: 700; color: var(--accent); letter-spacing: 4px; text-align: center; text-shadow: 0 0 15px var(--accent); }
+    .big-date { font-family: var(--font-mono); color: var(--text-secondary); text-align: center; font-size: 0.9rem; margin-top: 8px; }
+
+    .full-width { grid-column: 1 / -1; }
+  </style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <div class="marquee">
+    <span id="dash-marquee">LIVE DASHBOARD * LOADING DATA... * CONNECTING TO MARKETS... *</span>
+  </div>
+
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--text-secondary);transition:color 0.2s;">Stats</a>
+        <a href="changelog.html" style="color:var(--text-secondary);transition:color 0.2s;">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--text-secondary);transition:color 0.2s;">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
+      </div>
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger">☰</label>
+        
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content" id="main" style="max-width:1400px;margin-top:60px;">
+
+    <div style="margin-bottom:20px;border-bottom:2px solid var(--accent);padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;">
+      <h1 style="font-family:var(--font-display);font-size:2.8rem;font-weight:700;text-transform:uppercase;margin:0;color:var(--accent);letter-spacing:-2px;">
+        Live_Dashboard
+      </h1>
+      <span style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.85rem;"><span class="live-dot"></span> ALL SYSTEMS OPERATIONAL</span>
+    </div>
+
+    <div class="dash-grid">
+
+      <!-- Live Clock -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>⏱ System Clock</span><span class="live-dot"></span></div>
+        <div class="dash-panel-body" style="display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;">
+          <div class="big-clock" id="sys-clock">--:--:--</div>
+          <div class="big-date" id="sys-date">---</div>
+        </div>
+      </div>
+
+      <!-- World Clocks -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>🌍 World Clocks</span><span class="live-dot"></span></div>
+        <div class="dash-panel-body" id="world-clocks">Loading...</div>
+      </div>
+
+      <!-- Site Stats -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>📊 Your Stats</span><span>LOCAL</span></div>
+        <div class="dash-panel-body">
+          <div class="stat-mini-grid">
+            <div><div class="stat-big" id="stat-opens">0</div><div class="stat-label">Tools Opened</div></div>
+            <div><div class="stat-big" id="stat-sessions">0</div><div class="stat-label">Sessions</div></div>
+            <div><div class="stat-big" id="stat-recent">0</div><div class="stat-label">Unique Tools</div></div>
+            <div><div class="stat-big" id="stat-streak">🔥</div><div class="stat-label">Streak</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crypto Prices -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>₿ Crypto Prices</span><span class="live-dot"></span></div>
+        <div class="dash-panel-body" id="crypto-panel">
+          <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;">Fetching prices...</div>
+        </div>
+      </div>
+
+      <!-- Trending on GitHub -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>🔥 Trending Tech</span><span>DAILY</span></div>
+        <div class="dash-panel-body" id="github-panel">
+          <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;">Loading trends...</div>
+        </div>
+      </div>
+
+      <!-- Fun Facts Counter -->
+      <div class="dash-panel">
+        <div class="dash-panel-header"><span>⚡ Fun Facts</span><span>RANDOM</span></div>
+        <div class="dash-panel-body" id="fun-facts" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+          <div style="font-family:var(--font-mono);font-size:0.9rem;color:var(--accent);line-height:1.6;" id="fact-text">Loading...</div>
+          <button onclick="nextFact()" style="background:transparent;border:2px solid var(--accent);color:var(--accent);padding:8px;font-family:var(--font-display);font-size:0.75rem;font-weight:700;text-transform:uppercase;cursor:pointer;letter-spacing:2px;" id="fact-btn">NEXT FACT</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <p class="footer-tagline">Live Dashboard — All data is public API or locally computed. No personal data sent anywhere.</p>
+      <div class="footer-links">
+        <a href="index.html">Tools</a><span class="dot">·</span>
+        <a href="dashboard.html">Dashboard</a><span class="dot">·</span>
+        <a href="games.html">Arcade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── System Clock ── */
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('sys-clock').textContent = now.toLocaleTimeString('en-US',{hour12:false});
+      document.getElementById('sys-date').textContent = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    /* ── World Clocks ── */
+    const zones = [
+      {city:'New York', tz:'America/New_York'},
+      {city:'London', tz:'Europe/London'},
+      {city:'Dubai', tz:'Asia/Dubai'},
+      {city:'Mumbai', tz:'Asia/Kolkata'},
+      {city:'Singapore', tz:'Asia/Singapore'},
+      {city:'Tokyo', tz:'Asia/Tokyo'},
+    ];
+    function updateWorldClocks() {
+      const now = new Date();
+      document.getElementById('world-clocks').innerHTML = zones.map(z => {
+        const t = now.toLocaleTimeString('en-US',{hour12:false,timeZone:z.tz});
+        return `<div class="clock-row"><span class="clock-city">${z.city}</span><span class="clock-time">${t}</span></div>`;
+      }).join('');
+    }
+    setInterval(updateWorldClocks, 1000); updateWorldClocks();
+
+    /* ── Personal Stats ── */
+    const opens = parseInt(localStorage.getItem('alltools-total-opens')||0);
+    const sessions = parseInt(localStorage.getItem('alltools-sessions')||0);
+    const recent = JSON.parse(localStorage.getItem('alltools-recent')||'[]');
+    document.getElementById('stat-opens').textContent = opens;
+    document.getElementById('stat-sessions').textContent = sessions;
+    document.getElementById('stat-recent').textContent = recent.length;
+
+    /* ── Crypto Prices (CoinGecko free API) ── */
+    async function loadCrypto() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,dogecoin,binancecoin&vs_currencies=usd&include_24hr_change=true');
+        const data = await res.json();
+        const coins = [
+          {id:'bitcoin',symbol:'BTC'},
+          {id:'ethereum',symbol:'ETH'},
+          {id:'solana',symbol:'SOL'},
+          {id:'binancecoin',symbol:'BNB'},
+          {id:'dogecoin',symbol:'DOGE'},
+        ];
+        document.getElementById('crypto-panel').innerHTML = coins.map(c => {
+          const price = data[c.id]?.usd;
+          const change = data[c.id]?.usd_24h_change?.toFixed(2);
+          if(!price) return '';
+          const updown = change >= 0 ? 'up' : 'down';
+          const arrow = change >= 0 ? '▲' : '▼';
+          return `<div class="crypto-row">
+            <span class="crypto-name">${c.symbol}</span>
+            <span class="crypto-price">$${price.toLocaleString()}</span>
+            <span class="crypto-change ${updown}">${arrow} ${Math.abs(change)}%</span>
+          </div>`;
+        }).join('');
+      } catch(e) {
+        document.getElementById('crypto-panel').innerHTML = '<div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.8rem;">API rate limited. Try again in 60s.</div>';
+      }
+    }
+    loadCrypto(); setInterval(loadCrypto, 60000);
+
+    /* ── Trending Tech (curated, updates daily) ── */
+    const trendingRepos = [
+      {name:'openai/whisper', desc:'Robust Speech Recognition via Large-Scale Weak Supervision', stars:'73k'},
+      {name:'microsoft/autogen', desc:'Enable Next-Gen LLM Applications via Multi-Agent Conversation', stars:'36k'},
+      {name:'meta-llama/llama', desc:'Inference code for Llama models from Meta', stars:'58k'},
+      {name:'ggerganov/llama.cpp', desc:'LLM inference in C/C++ — run on CPU', stars:'71k'},
+      {name:'Stability-AI/stablediffusion', desc:'High-Resolution Image Synthesis with Latent Diffusion Models', stars:'39k'},
+      {name:'langchain-ai/langchain', desc:'Build LLM-powered applications', stars:'94k'},
+    ];
+    const dayIdx = Math.floor(Date.now() / 86400000);
+    const todayRepos = [...trendingRepos].sort((_a,_b) => Math.sin(dayIdx*_a.name.length) - Math.sin(dayIdx*_b.name.length)).slice(0,4);
+    document.getElementById('github-panel').innerHTML = todayRepos.map(r => `
+      <div class="github-row">
+        <div class="github-name">📦 ${r.name}</div>
+        <div class="github-desc">${r.desc}</div>
+        <div class="github-stars">⭐ ${r.stars}</div>
+      </div>`).join('');
+
+    /* ── Fun Dev Facts ── */
+    const facts = [
+      '🧠 The first computer bug was an actual bug — a moth found in a relay at Harvard in 1947.',
+      '⚡ The average developer writes 10–12 lines of production code per day.',
+      '🌍 Over 700 programming languages exist in the world.',
+      '💡 The first website ever created is still live at info.cern.ch.',
+      '🔥 JavaScript was created in just 10 days by Brendan Eich in 1995.',
+      '🤯 The first hard drive (1956) weighed over 900 kg and held only 5MB.',
+      '🐍 Python was named after Monty Python, not the snake.',
+      '📱 There are more mobile phones on Earth than there are people.',
+      '🎮 The first video game was "Tennis for Two" built on an oscilloscope in 1958.',
+      '🔐 SHA-256, the algo behind Bitcoin, generates 2^256 possible hashes — more than atoms in the universe.',
+      '💾 The entire Apollo 11 mission computer had 4KB of RAM.',
+      '🌐 As of 2024, over 1.9 billion websites exist — but only ~200 million are active.',
+    ];
+    let factIdx = Math.floor(Math.random() * facts.length);
+    function nextFact() { factIdx = (factIdx + 1) % facts.length; document.getElementById('fact-text').textContent = facts[factIdx]; }
+    document.getElementById('fact-text').textContent = facts[factIdx];
+
+    /* ── Track sessions ── */
+    let s = parseInt(localStorage.getItem('alltools-sessions')||0) + 1;
+    localStorage.setItem('alltools-sessions', s);
+  </script>
+
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
+  <script src="widgets.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>

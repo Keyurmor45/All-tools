@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Stats & Hacker Rank - Track your tool executions, sessions, favorite category, and user rank on AllTools.">
+  <meta name="theme-color" content="#ccff00">
+  <title>Personal Stats & Hacker Rank | AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- Crypto / System Ticker Marquee -->
+  <div class="marquee">
+    <span id="crypto-marquee">SYSTEM TELEMETRY ONLINE * LOCAL USAGE DATA * PRIVACY FIRST * ALL DATA STORED IN BROWSER * SYSTEM TELEMETRY ONLINE * LOCAL USAGE DATA * PRIVACY FIRST * ALL DATA STORED IN BROWSER *</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--text-secondary);transition:color 0.2s;">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--accent);text-shadow:2px 2px 0 var(--border);">Stats</a>
+        <a href="changelog.html" style="color:var(--text-secondary);transition:color 0.2s;">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--text-secondary);transition:color 0.2s;">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+        
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main id="main" style="padding: 110px 20px 60px; max-width: 1100px; margin: 0 auto; color: var(--text-primary);">
+    
+    <!-- Hero Header -->
+    <div style="margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <span style="font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;">[ SYSTEM_DIAGNOSTICS_v2.0 ]</span>
+          <h1 style="font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; text-transform: uppercase; color: var(--white); margin: 5px 0;">
+            PERSONAL <span style="color: var(--accent);">STATS</span>
+          </h1>
+          <p style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.95rem;">
+            Browser telemetry, local execution metrics, & hacker rank progression.
+          </p>
+        </div>
+        <button id="clear-stats-btn" style="font-family: var(--font-mono); background: transparent; color: #ff0055; border: 2px solid #ff0055; padding: 10px 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: all 0.2s;">
+          [ 🗑️ RESET TELEMETRY ]
+        </button>
+      </div>
+    </div>
+
+    <!-- 4 Big Neon Stat Cards -->
+    <section class="stats-grid">
+      <!-- Total Opens -->
+      <div class="neon-stat-card">
+        <div class="neon-stat-label">TOTAL OPENS</div>
+        <div class="neon-stat-num" id="stat-total-opens">0</div>
+        <div class="neon-stat-sub">⚡ Tool executions logged</div>
+      </div>
+
+      <!-- Active Sessions -->
+      <div class="neon-stat-card">
+        <div class="neon-stat-label">SESSIONS</div>
+        <div class="neon-stat-num" id="stat-sessions">0</div>
+        <div class="neon-stat-sub">🖥️ Browser sessions active</div>
+      </div>
+
+      <!-- Favorite Category -->
+      <div class="neon-stat-card">
+        <div class="neon-stat-label">FAVORITE CATEGORY</div>
+        <div class="neon-stat-num" id="stat-fav-cat" style="font-size: 1.8rem; padding-top: 10px; line-height: 1.3;">N/A</div>
+        <div class="neon-stat-sub">📊 Most accessed tool genre</div>
+      </div>
+
+      <!-- Recent History Buffer -->
+      <div class="neon-stat-card">
+        <div class="neon-stat-label">RECENT BUFFER</div>
+        <div class="neon-stat-num" id="stat-recent-count">0 / 8</div>
+        <div class="neon-stat-sub">🔄 Saved in local memory</div>
+      </div>
+    </section>
+
+    <!-- Motivational HACKER RANK Card -->
+    <section class="hacker-rank-card" id="hacker-rank">
+      <div class="rank-header">
+        <div class="rank-badge" id="rank-badge">BEGINNER</div>
+        <span style="font-family: var(--font-mono); color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1.5px;">RANK_SYS_EVALUATION</span>
+      </div>
+
+      <h2 class="rank-title" id="rank-title">🌱 NOVICE OPERATOR</h2>
+      <p class="rank-desc" id="rank-desc">
+        Initialization phase. You are just beginning your cyber journey across AllTools. Execute tool operations to level up your hacker rank!
+      </p>
+
+      <div style="margin-top: 25px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.8rem;">
+          <span style="color: var(--accent); font-weight: bold;">PROGRESS TO NEXT RANK</span>
+          <span id="rank-progress-text" class="rank-progress-text">0% (0 / 10 OPENS)</span>
+        </div>
+        <div class="rank-progress-container">
+          <div class="rank-progress-bar" id="rank-progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Rank Tier Indicators -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 25px; border-top: 1px solid var(--border-light); padding-top: 20px;">
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">
+          <span style="color: var(--text-muted); display: block;">&lt; 10 OPENS</span>
+          <strong style="color: var(--white);">BEGINNER</strong>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">
+          <span style="color: var(--text-muted); display: block;">10 - 49 OPENS</span>
+          <strong style="color: var(--accent);">INTERMEDIATE</strong>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">
+          <span style="color: var(--text-muted); display: block;">50 - 99 OPENS</span>
+          <strong style="color: #ff00ff;">EXPERT</strong>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">
+          <span style="color: var(--text-muted); display: block;">&gt;= 100 OPENS</span>
+          <strong style="color: #00ffff;">ELITE</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top 5 Recently Used Tools Section -->
+    <section>
+      <div style="margin-bottom: 25px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+        <h2 style="font-family: var(--font-display); font-size: 1.6rem; text-transform: uppercase; color: var(--accent);">
+          YOUR TOP TOOLS
+        </h2>
+        <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.8rem;">TOP 5 RECENTLY EXECUTED</span>
+      </div>
+
+      <div class="top-tools-grid" id="top-tools-grid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-logo" aria-label="AllTools">
+          <div class="logo-icon" aria-hidden="true">✷</div>
+          <span class="logo-text">[ ALL*TOOLS ]</span>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.reddit.com/user/keyurmor45" target="_blank" rel="noopener" class="footer-social-link">Reddit</a>
+        </div>
+      </div>
+      <p class="footer-tagline">512+ tools, no signup required. All metrics stored locally in your browser.</p>
+      <p class="footer-credits">© 2026 AllTools · Made with ❤️ · Local Execution Only</p>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="app-core.js"></script>
+  <script src="tools-1.js"></script>
+  <script src="tools-2.js"></script>
+  <script src="tools-3.js"></script>
+  <script src="tools-trading.js"></script>
+  <script src="tools-pdf.js"></script>
+  <script src="tools-4.js"></script>
+  <script src="tools-5.js"></script>
+  <script src="tools-6.js"></script>
+  <script src="tools-7.js"></script>
+  <script src="tools-8.js"></script>
+  <script src="tools-9.js"></script>
+  <script src="tools-10.js"></script>
+  <script src="tools-11.js"></script>
+  <script src="tools-12.js"></script>
+  <script src="tools-13.js"></script>
+  <script src="tools-19.js"></script>
+  <script src="tools-20.js"></script>
+  <script src="tools-21.js"></script>
+  <script src="tools-22.js"></script>
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+
+  <!-- Inline Stats Page Logic & Theme Switcher -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Total Opens
+      const totalOpens = parseInt(localStorage.getItem('alltools-total-opens') || '0', 10);
+      const elOpens = document.getElementById('stat-total-opens');
+      if (elOpens) elOpens.textContent = totalOpens;
+
+      // 2. Active Sessions
+      const sessions = parseInt(localStorage.getItem('alltools-sessions') || '1', 10);
+      const elSessions = document.getElementById('stat-sessions');
+      if (elSessions) elSessions.textContent = sessions;
+
+      // 3. Recents Buffer
+      let recents = [];
+      try {
+        recents = JSON.parse(localStorage.getItem('alltools-recent') || '[]');
+      } catch (e) {
+        recents = [];
+      }
+      const elRecentCount = document.getElementById('stat-recent-count');
+      if (elRecentCount) elRecentCount.textContent = `${recents.length} / 8`;
+
+      // 4. Favorite Category Calculation
+      let favCatName = 'N/A';
+      let favCatIcon = '🛠️';
+      if (recents.length > 0 && window.TOOLS) {
+        const catCounts = {};
+        recents.forEach(id => {
+          const tool = window.TOOLS.find(t => t.id === id);
+          if (tool && tool.category) {
+            catCounts[tool.category] = (catCounts[tool.category] || 0) + 1;
+          }
+        });
+        let topCatId = null;
+        let maxCount = 0;
+        for (const [catId, count] of Object.entries(catCounts)) {
+          if (count > maxCount) {
+            maxCount = count;
+            topCatId = catId;
+          }
+        }
+        if (topCatId) {
+          const catObj = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === topCatId) : null;
+          if (catObj) {
+            favCatName = catObj.label;
+            favCatIcon = catObj.icon;
+          } else {
+            favCatName = topCatId.toUpperCase();
+          }
+        }
+      }
+      const elFavCat = document.getElementById('stat-fav-cat');
+      if (elFavCat) elFavCat.textContent = `${favCatIcon} ${favCatName}`;
+
+      // 5. Motivational Hacker Rank
+      let rankName = 'BEGINNER';
+      let rankIcon = '🌱 NOVICE OPERATOR';
+      let rankDesc = 'Initialization phase. You are just beginning your cyber journey. Execute 10 tool operations to unlock Intermediate rank!';
+      let nextRankOpens = 10;
+      let prevRankOpens = 0;
+
+      if (totalOpens >= 100) {
+        rankName = 'ELITE';
+        rankIcon = '👑 MAINFRAME OVERLORD';
+        rankDesc = 'Absolute legend! You have attained root-level system access across AllTools. 100+ tool executions logged!';
+        nextRankOpens = 100;
+        prevRankOpens = 100;
+      } else if (totalOpens >= 50) {
+        rankName = 'EXPERT';
+        rankIcon = '🔥 NET RUNNER';
+        rankDesc = 'Mastering the matrix! You are a power user executing complex web utilities. 50+ tool executions logged!';
+        nextRankOpens = 100;
+        prevRankOpens = 50;
+      } else if (totalOpens >= 10) {
+        rankName = 'INTERMEDIATE';
+        rankIcon = '⚡ CYBER DECKER';
+        rankDesc = 'System access granted. You are actively exploring the digital toolbox. 10+ tool executions logged!';
+        nextRankOpens = 50;
+        prevRankOpens = 10;
+      }
+
+      document.getElementById('rank-badge').textContent = rankName;
+      document.getElementById('rank-title').textContent = rankIcon;
+      document.getElementById('rank-desc').textContent = rankDesc;
+
+      // Progress Bar Calculation
+      const bar = document.getElementById('rank-progress-bar');
+      const barText = document.getElementById('rank-progress-text');
+      if (totalOpens >= 100) {
+        if (bar) bar.style.width = '100%';
+        if (barText) barText.textContent = `100% (MAX RANK ATTAINED: ${totalOpens} OPENS)`;
+      } else {
+        const range = nextRankOpens - prevRankOpens;
+        const progress = Math.min(100, Math.max(0, Math.round(((totalOpens - prevRankOpens) / range) * 100)));
+        if (bar) bar.style.width = `${progress}%`;
+        if (barText) barText.textContent = `${progress}% (${totalOpens} / ${nextRankOpens} OPENS TO NEXT RANK)`;
+      }
+
+      // 6. Top 5 Recently Used Tools Display
+      const topToolsGrid = document.getElementById('top-tools-grid');
+      const top5Ids = recents.slice(0, 5);
+
+      if (top5Ids.length === 0) {
+        topToolsGrid.innerHTML = `
+          <div class="empty-top-tools">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
+            <h3 style="font-family: var(--font-display); color: var(--accent); margin-bottom: 8px;">NO TOOL HISTORY LOGGED YET</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Open tools from the main directory to automatically build your top tools profile.</p>
+            <a href="index.html" class="btn-surprise" style="display:inline-block; text-decoration:none; padding: 12px 24px;">EXPLORE 512+ TOOLS ↗</a>
+          </div>
+        `;
+      } else {
+        topToolsGrid.innerHTML = top5Ids.map((id, idx) => {
+          const tool = (window.TOOLS || []).find(t => t.id === id);
+          if (!tool) {
+            return `
+              <div class="top-tool-card">
+                <div class="top-tool-badge">RANK #${idx + 1}</div>
+                <div class="top-tool-header">
+                  <span class="top-tool-icon">🛠️</span>
+                  <div class="top-tool-title-group">
+                    <h3 class="top-tool-name">${id}</h3>
+                    <span class="top-tool-cat">UTILITY</span>
+                  </div>
+                </div>
+                <p class="top-tool-desc">Local browser utility tool.</p>
+                <a href="index.html#${id}" class="top-tool-btn">LAUNCH TOOL ↗</a>
+              </div>
+            `;
+          }
+          return `
+            <div class="top-tool-card">
+              <div class="top-tool-badge">RANK #${idx + 1}</div>
+              <div class="top-tool-header">
+                <span class="top-tool-icon">${tool.icon || '🛠️'}</span>
+                <div class="top-tool-title-group">
+                  <h3 class="top-tool-name">${tool.name}</h3>
+                  <span class="top-tool-cat">${(tool.category || 'GENERAL').toUpperCase()}</span>
+                </div>
+              </div>
+              <p class="top-tool-desc">${tool.description || 'Browser-based brutalist utility tool.'}</p>
+              <a href="index.html#${tool.id}" class="top-tool-btn">LAUNCH TOOL ↗</a>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Reset Telemetry Handler
+      const clearBtn = document.getElementById('clear-stats-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset all local usage statistics and tool history?')) {
+            localStorage.removeItem('alltools-recent');
+            localStorage.removeItem('alltools-total-opens');
+            localStorage.removeItem('alltools-sessions');
+            location.reload();
+          }
+        });
+      }
+    });
+  </script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
+  <script src="widgets.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>
