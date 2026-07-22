@@ -926,10 +926,7 @@ body.crt-active { animation: textShadow 1.6s infinite; }
   100% { transform: translateY(0); }
 }
 
-/* Hide on mobile screens because there is no blank margin space */
-@media (max-width: 1400px) {
-  #sticker-container { display: none !important; }
-}
+
 
 /* ==========================================================================
    UNIQUE FEATURES CSS
