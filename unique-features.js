@@ -291,11 +291,15 @@
 
   let logoClicks = 0, logoTimer;
   document.querySelector('.logo')?.addEventListener('click', e => {
-    e.preventDefault();
     logoClicks++;
     clearTimeout(logoTimer);
     logoTimer = setTimeout(() => logoClicks = 0, 1500);
-    if (logoClicks >= 5) { logoClicks = 0; window.activateRageMode(); }
+    if (logoClicks >= 5) {
+      e.preventDefault(); // Only block navigation when triggering rage mode
+      logoClicks = 0;
+      window.activateRageMode();
+    }
+    // Otherwise: let the link navigate normally to index.html
   });
 
 
