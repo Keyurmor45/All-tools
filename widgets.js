@@ -527,6 +527,7 @@
       gap: 10px;
     }
 
+    .cyber-widget:has(.cyber-widget-body.collapsed) .cyber-widget-header { border-bottom: none; }
     .cyber-widget-body.collapsed {
       display: none !important;
     }
