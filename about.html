@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About AllTools - The ultimate free online toolbox.">
+  <meta name="description" content="AllTools is a free online toolbox with 500+ browser-based tools for developers, designers, and creators. No signup required. 100% private and works offline.">
   <meta name="theme-color" content="#ccff00">
   <title>About Us | AllTools</title>
   
@@ -51,33 +51,177 @@
   </nav>
 
   <!-- About Content -->
-  <main id="main" style="padding: 120px 20px 50px; max-width: 900px; margin: 0 auto; color: var(--text);">
+  <main id="main" style="padding: 120px 20px 50px; max-width: 950px; margin: 0 auto; color: var(--text);">
     
-    <div style="background: var(--bg-card); padding: 50px; border: 4px solid var(--border); box-shadow: 15px 15px 0 var(--border);">
-      <h1 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
-        WHO ARE WE?
-      </h1>
+    <div style="background: var(--bg-card); padding: 50px; border: 4px solid var(--border); box-shadow: 15px 15px 0 var(--border); display: flex; flex-direction: column; gap: 40px;">
       
-      <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
-        Welcome to <strong>ALL*TOOLS</strong>, the internet's most comprehensive, brutalist, and entirely free utility platform.
-      </p>
+      <!-- WHO WE ARE -->
+      <section id="who-we-are">
+        <h1 style="font-family: var(--font-display); font-size: 2.8rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent); letter-spacing: -1px;">
+          WHO WE ARE
+        </h1>
+        
+        <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">
+          Welcome to <strong>ALL*TOOLS</strong>, the internet's most comprehensive, brutalist, and entirely free utility platform built specifically for developers, digital artists, privacy advocates, power users, and everyday web browsers. Launched as a direct counter-reaction to the bloatware and monetization traps of the modern web, AllTools provides an all-in-one suite of high-performance utilities that operate entirely within your local device ecosystem.
+        </p>
 
-      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; color: var(--text-secondary);">
-        We got tired of tool websites that were loaded with intrusive ads, forced you to create accounts, and ran slow server-side scripts to do basic tasks like format JSON or pick a color. 
-        <br><br>
-        So we built this. A hyper-fast, client-side, privacy-respecting platform that gives developers, creators, and traders instant access to <strong>512+ tools</strong> running directly inside their browser.
-      </p>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+          We got tired of tool websites that were loaded with intrusive pop-up ads, subscription paywalls, forced account registrations, and slow server-side APIs that required sending your private text and sensitive code snippet payloads across the internet just to format JSON, hash a string, or convert an image format. So we engineered this: a hyper-fast, client-side, privacy-respecting platform that gives creators instant, unrestricted access to over <strong>500+ browser-native tools</strong> running at bare-metal browser speeds.
+        </p>
+      </section>
 
-      <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
-        <div style="flex: 1; min-width: 200px; border: 2px solid var(--accent); padding: 20px; background: rgba(204,255,0,0.05);">
-          <h3 style="color: var(--accent); margin-bottom: 10px;">🔒 100% Private</h3>
-          <p style="font-size: 0.9rem;">No databases. No servers reading your text. Everything executes in your browser.</p>
+      <!-- OUR PHILOSOPHY -->
+      <section id="our-philosophy" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          OUR PHILOSOPHY
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px;">
+          We firmly believe that fundamental web tools should be free, lightning-fast, and unconditionally private. The contemporary web has become cluttered with subscription models for basic tasks like string manipulation, file conversion, and cryptographic hashing. We reject the premise that users must trade their personal data, endure intrusive tracking cookies, or pay monthly fees simply to perform daily workflow operations.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px;">
+          Privacy is not an optional feature or an upsell tier on AllTools; it is our core architecture. When you paste sensitive code snippets, confidential documents, API keys, or financial calculations into our software, none of that data ever leaves your web browser's runtime environment. There are no remote backend servers processing your input, no analytics tracking your clipboard data, and no third-party telemetry harvesting your keystrokes.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px;">
+          Furthermore, we champion web minimalism and independence. Software should execute as close to the user as physically possible. By eliminating middleman servers and heavy framework dependencies, we deliver instant UI response times, zero network latency, and complete user autonomy over their digital toolkit.
+        </p>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          HOW IT WORKS
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px;">
+          Every single utility hosted on AllTools is constructed exclusively using modern standard Web APIs, vanilla JavaScript (ES6+), HTML5, and CSS3. When you load any page on this site, your browser downloads the visual layout and lightweight execution scripts once. From that exact moment onwards, all processing, calculation, formatting, and rendering occur locally inside your browser engine's V8 or JavaScriptCore runtime.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px;">
+          Because there is zero backend server involved in data processing, AllTools eliminates all network round-trips and server overhead. Whether you are generating complex cryptographic hashes, manipulating large text files, encoding images, or running interactive canvas audio-visualizers, the computations happen instantaneously using your device's native CPU and GPU capabilities.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8;">
+          Thanks to our integrated Progressive Web App (PWA) service worker technology, AllTools caches its resources directly on your local disk. This means you can save AllTools to your desktop or mobile home screen and utilize the entire suite of 500+ tools offline without an active internet connection—making it the ultimate portable survival kit for remote developers and travelers.
+        </p>
+      </section>
+
+      <!-- WHAT YOU GET -->
+      <section id="what-you-get" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 25px; color: var(--accent);">
+          WHAT YOU GET
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+          <div style="border: 2px solid var(--accent); padding: 22px; background: rgba(204,255,0,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: var(--accent); font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">🔒 100% Private</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Your data stays on your machine. Zero backend servers process or store your text, files, or inputs. Experience total confidentiality with browser-isolated execution.</p>
+          </div>
+
+          <div style="border: 2px solid #ff4500; padding: 22px; background: rgba(255,69,0,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: #ff4500; font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">⚡ Lightning Fast</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Experience zero network latency and instant execution. All operations leverage client-side vanilla JavaScript for immediate output without waiting on remote API calls.</p>
+          </div>
+
+          <div style="border: 2px solid #00e5ff; padding: 22px; background: rgba(0,229,255,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: #00e5ff; font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">📱 Works Offline (PWA)</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Install AllTools as a Progressive Web App on your laptop or mobile phone. Access your complete digital toolbox anywhere, anytime, even without internet access.</p>
+          </div>
+
+          <div style="border: 2px solid #ff007f; padding: 22px; background: rgba(255,0,127,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: #ff007f; font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">🆓 Always Free</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Enjoy complete access to every single tool without subscriptions, paywalls, or hidden tier limits. AllTools is built to remain forever free for the web community.</p>
+          </div>
+
+          <div style="border: 2px solid #7000ff; padding: 22px; background: rgba(112,0,255,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: #7000ff; font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">🛠️ 500+ Tools</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Access a massive ecosystem covering developer code utilities, text formatters, image manipulators, math calculators, crypto tools, games, and AI generators.</p>
+          </div>
+
+          <div style="border: 2px solid #00ff66; padding: 22px; background: rgba(0,255,102,0.04); box-shadow: 4px 4px 0 var(--border);">
+            <h3 style="color: #00ff66; font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">🌐 No Account Needed</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Skip tedious registration forms, passwords, and email verifications. Open the webpage, select your desired tool, and get your work done immediately.</p>
+          </div>
         </div>
-        <div style="flex: 1; min-width: 200px; border: 2px solid #ff4500; padding: 20px; background: rgba(255,69,0,0.05);">
-          <h3 style="color: #ff4500; margin-bottom: 10px;">⚡ Lightning Fast</h3>
-          <p style="font-size: 0.9rem;">Zero latency. Every single calculation happens instantly without API calls.</p>
+      </section>
+
+      <!-- FREQUENTLY ASKED QUESTIONS -->
+      <section id="faq" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 25px; color: var(--accent);">
+          FREQUENTLY ASKED QUESTIONS
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Who built AllTools?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: AllTools was built by an indie developer passionate about free, open, and privacy-first software. The site is built using HTML, CSS, and vanilla JavaScript with no frameworks.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Is AllTools really free?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Yes, completely. Every single tool on AllTools is free to use with no premium tier, no paywalls, and no sign-up required.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Does AllTools collect my data?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: No. AllTools has zero backend servers. All tools execute entirely inside your browser. Your text, files, and inputs never leave your device.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: How many tools are there?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: AllTools currently offers 500+ tools across categories including developer utilities, text tools, image tools, crypto, math, AI tools, games, and more.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Can I use AllTools offline?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Yes! AllTools is a PWA (Progressive Web App). Install it on your device and use all tools even without an internet connection.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: How do I suggest a new tool?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Visit The Wall (guestbook) page and leave a suggestion. We regularly add new tools based on community requests.
+            </p>
+          </div>
+
         </div>
-      </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section id="tech-stack" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          TECH STACK
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+          AllTools is proudly engineered with modern standards and minimal overhead: <strong>HTML5</strong> for semantic accessibility and static indexing, <strong>CSS3 (custom properties/variables)</strong> for modern brutalist design systems, <strong>Vanilla JavaScript (ES6+)</strong> for framework-free performance, native browser <strong>Web APIs (Canvas, AudioContext, Clipboard, etc.)</strong> for powerful client-side processing, high-grade typography powered by <strong>Google Fonts (Syncopate, JetBrains Mono, Inter)</strong>, and a robust <strong>PWA Service Worker</strong> for seamless offline operation.
+        </p>
+      </section>
 
     </div>
 

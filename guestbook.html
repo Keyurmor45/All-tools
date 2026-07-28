@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AllTools Community Guestbook — Leave your mark on the cybercore wall.">
+  <meta name="description" content="The AllTools community wall — leave messages, tool suggestions, and feedback. No account required. Messages stored locally in your browser.">
   <meta name="theme-color" content="#ccff00">
   <title>Guestbook — The Wall | AllTools</title>
   
@@ -62,6 +62,51 @@
         <h1 class="wall-title">THE WALL</h1>
         <p class="wall-subtitle">// COMMUNITY GUESTBOOK — LEAVE YOUR MARK IN THE MATRIX</p>
       </header>
+
+      <!-- Editorial Section for Community Guestbook -->
+      <section class="wall-editorial" style="margin-bottom: 40px; font-family: var(--font-mono); color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; background: var(--bg-card); border: 1px solid var(--border); padding: 30px;">
+        
+        <h2 style="font-family: var(--font-display); color: var(--accent); font-size: 1.3rem; font-weight: 700; margin-top: 0; margin-bottom: 15px; text-transform: uppercase;">
+          1. What is The Wall?
+        </h2>
+        <p style="margin-bottom: 15px;">
+          Welcome to <strong style="color: var(--text-primary);">The Wall</strong> — AllTools' decentralized community message board and public guestbook. The Wall was created as an open space where developers, designers, hackers, and curious web travelers from around the globe can leave notes, share tool requests, give feedback, or simply declare their presence in the digital matrix.
+        </p>
+        <p style="margin-bottom: 25px;">
+          Unlike modern corporate social networks, baseline web forums, or algorithmically curated feeds, The Wall operates on a philosophy of pure, unadulterated web minimalism. There are no user registrations, no email verifications, no tracking cookies, no engagement algorithms, and zero third-party advertisements. It is an unfiltered stream of raw text entries contributed directly by members of our growing community.
+        </p>
+
+        <h2 style="font-family: var(--font-display); color: var(--accent); font-size: 1.3rem; font-weight: 700; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase;">
+          2. Community Guidelines
+        </h2>
+        <p style="margin-bottom: 10px;">To maintain a constructive and enjoyable environment for everyone visiting AllTools, we ask all contributors to adhere to our core community standards:</p>
+        <ul style="margin-bottom: 25px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <li><strong>Be respectful and constructive:</strong> Engage positively with fellow developers and enthusiasts who share this space.</li>
+          <li><strong>No spam, self-promotion links, or advertisements:</strong> Commercial promotion, affiliate links, and repetitive automated submissions are strictly prohibited.</li>
+          <li><strong>Tool suggestions are always welcome:</strong> Have an idea for a new client-side developer utility, converter, or generator? Write it down on the wall!</li>
+          <li><strong>Keep messages under 150 characters:</strong> Brevity fosters punchy, memorable, and readable entries for all visitors.</li>
+          <li><strong>Messages are stored locally in your browser (localStorage):</strong> You retain full ownership and control over your client-side data store — they're yours.</li>
+          <li><strong>Have fun and be creative:</strong> Express yourself within this brutalist tech space using ascii art, tech quotes, or friendly greetings.</li>
+        </ul>
+
+        <h2 style="font-family: var(--font-display); color: var(--accent); font-size: 1.3rem; font-weight: 700; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase;">
+          3. How It Works
+        </h2>
+        <p style="margin-bottom: 15px;">
+          The Wall is built entirely on privacy-first client-side web technologies. When you compose and submit a message, it is processed instantly within your web browser using HTML5 <code>localStorage</code> APIs without sending data to any server. No message payload is ever transmitted over the network to remote backend database servers or external analytics providers.
+        </p>
+        <p style="margin-bottom: 25px;">
+          The wall interface displays up to 50 active message entries concurrently. Your newly created posts appear immediately at the top of the stream. Because all records reside inside your browser session memory, you hold full authority to clear your personal message store at any time using the clear button in the toolbar below.
+        </p>
+
+        <h2 style="font-family: var(--font-display); color: var(--accent); font-size: 1.3rem; font-weight: 700; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase;">
+          4. Leave Your Mark
+        </h2>
+        <p style="margin: 0;">
+          Ready to join the log? Type your handle or alias into the input field below, craft your 150-character dispatch, and hit submit to etch your voice into the AllTools cybercore matrix. Whether you are suggesting the next big utility, reporting an edge-case bug, or simply saying hi and sending greetings from your corner of the internet, we are thrilled to have you here!
+        </p>
+
+      </section>
 
       <!-- Post Form -->
       <section class="wall-form-card">
