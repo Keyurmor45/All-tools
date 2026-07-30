@@ -126,6 +126,24 @@
       <span style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.85rem;"><span class="live-dot"></span> ALL SYSTEMS OPERATIONAL</span>
     </div>
 
+    <!-- Editorial Section for AdSense & SEO -->
+    <div style="background:var(--bg-card);border:2px solid var(--border);padding:24px;margin-bottom:30px;">
+      <h2 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-top:0;margin-bottom:16px;">
+        [ ABOUT THE LIVE DASHBOARD SYSTEM ]
+      </h2>
+      <div style="font-family:var(--font-body);font-size:0.95rem;line-height:1.7;color:var(--text-primary);display:flex;flex-direction:column;gap:14px;">
+        <p>
+          Welcome to the <strong>AllTools Real-Time System Dashboard</strong>, a centralized monitoring hub engineered for developers, tech enthusiasts, and digital professionals. This live command center aggregates telemetry data, high-precision world clocks, live cryptocurrency market valuations, personal tool usage statistics, and open-source software trends into a single, cohesive interface. Designed with a brutalist cybercore aesthetic, the dashboard provides instantaneous visual feedback without requiring account registrations, passwords, or persistent session tracking.
+        </p>
+        <p>
+          The telemetry presented on this page updates continuously using asynchronous web APIs and client-side background workers. System clocks compute precise local and UTC time offsets dynamically, while cryptocurrency prices—including Bitcoin (BTC), Ethereum (ETH), Solana (SOL), XRP, and BNB—are queried from decentralized market endpoints. The statistics panel provides localized insight into your browser activity, tracking tool executions, unique session occurrences, and active usage streaks directly from your device's isolated storage environment.
+        </p>
+        <p>
+          Unlike modern telemetry platforms that monetize user data, AllTools operates under a strict privacy-first architecture. No personal metrics or browsing habits are transmitted to external servers; all computation occurs locally inside your web browser. Whether you are checking market fluctuations, inspecting trending repository movements across GitHub, or timing critical system routines, the AllTools Live Dashboard delivers reliable, transparent, and ultra-fast system monitoring built for the modern open web.
+        </p>
+      </div>
+    </div>
+
     <div class="dash-grid">
 
       <!-- Live Clock -->
@@ -134,13 +152,21 @@
         <div class="dash-panel-body" style="display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;">
           <div class="big-clock" id="sys-clock">--:--:--</div>
           <div class="big-date" id="sys-date">---</div>
+          <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);margin-top:12px;text-align:center;">Real-time system clock synchronized to your device. Displays hours, minutes and seconds in your local timezone.</p>
         </div>
       </div>
 
       <!-- World Clocks -->
       <div class="dash-panel">
         <div class="dash-panel-header"><span>🌍 World Clocks</span><span class="live-dot"></span></div>
-        <div class="dash-panel-body" id="world-clocks">Loading...</div>
+        <div class="dash-panel-body" id="world-clocks">
+          <div class="clock-row"><span class="clock-city">🌏 NEW YORK (UTC-5)</span><span class="clock-time" data-tz="America/New_York">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">🌍 LONDON (UTC+1)</span><span class="clock-time" data-tz="Europe/London">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">🌏 DUBAI (UTC+4)</span><span class="clock-time" data-tz="Asia/Dubai">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">🌏 MUMBAI (UTC+5:30)</span><span class="clock-time" data-tz="Asia/Kolkata">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">🌏 SINGAPORE (UTC+8)</span><span class="clock-time" data-tz="Asia/Singapore">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">🌏 TOKYO (UTC+9)</span><span class="clock-time" data-tz="Asia/Tokyo">--:--:--</span></div>
+        </div>
       </div>
 
       <!-- Site Stats -->
@@ -160,7 +186,11 @@
       <div class="dash-panel">
         <div class="dash-panel-header"><span>₿ Crypto Prices</span><span class="live-dot"></span></div>
         <div class="dash-panel-body" id="crypto-panel">
-          <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;">Fetching prices...</div>
+          <div class="crypto-row"><span class="crypto-name">₿ BITCOIN</span><span class="crypto-price" id="btc-price">$--,---</span><span class="crypto-change" id="btc-change">---%</span></div>
+          <div class="crypto-row"><span class="crypto-name">Ξ ETHEREUM</span><span class="crypto-price" id="eth-price">$--,---</span><span class="crypto-change" id="eth-change">---%</span></div>
+          <div class="crypto-row"><span class="crypto-name">◎ SOLANA</span><span class="crypto-price" id="sol-price">$---</span><span class="crypto-change" id="sol-change">---%</span></div>
+          <div class="crypto-row"><span class="crypto-name">✕ XRP</span><span class="crypto-price" id="xrp-price">$--</span><span class="crypto-change" id="xrp-change">---%</span></div>
+          <div class="crypto-row"><span class="crypto-name">◉ BNB</span><span class="crypto-price" id="bnb-price">$---</span><span class="crypto-change" id="bnb-change">---%</span></div>
         </div>
       </div>
 
@@ -168,7 +198,8 @@
       <div class="dash-panel">
         <div class="dash-panel-header"><span>🔥 Trending Tech</span><span>DAILY</span></div>
         <div class="dash-panel-body" id="github-panel">
-          <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;">Loading trends...</div>
+          <div class="github-row"><div class="github-name">📦 openai/whisper</div><div class="github-desc">Robust Speech Recognition via Large-Scale Weak Supervision</div><div class="github-stars">⭐ 73k</div></div>
+          <div class="github-row"><div class="github-name">📦 ggerganov/llama.cpp</div><div class="github-desc">LLM inference in C/C++ — run on CPU</div><div class="github-stars">⭐ 71k</div></div>
         </div>
       </div>
 
@@ -176,7 +207,7 @@
       <div class="dash-panel">
         <div class="dash-panel-header"><span>⚡ Fun Facts</span><span>RANDOM</span></div>
         <div class="dash-panel-body" id="fun-facts" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
-          <div style="font-family:var(--font-mono);font-size:0.9rem;color:var(--accent);line-height:1.6;" id="fact-text">Loading...</div>
+          <div style="font-family:var(--font-mono);font-size:0.9rem;color:var(--accent);line-height:1.6;" id="fact-text">🧠 The first computer bug was an actual bug — a moth found in a relay at Harvard in 1947.</div>
           <button onclick="nextFact()" style="background:transparent;border:2px solid var(--accent);color:var(--accent);padding:8px;font-family:var(--font-display);font-size:0.75rem;font-weight:700;text-transform:uppercase;cursor:pointer;letter-spacing:2px;" id="fact-btn">NEXT FACT</button>
         </div>
       </div>
@@ -188,6 +219,10 @@
     <div class="footer-content">
       <p class="footer-tagline">Live Dashboard — All data is public API or locally computed. No personal data sent anywhere.</p>
       <div class="footer-links">
+        <a href="privacy.html">Privacy</a><span class="dot">·</span>
+        <a href="terms.html">Terms</a><span class="dot">·</span>
+        <a href="contact.html">Contact</a><span class="dot">·</span>
+        <a href="about.html">About</a><span class="dot">·</span>
         <a href="index.html">Tools</a><span class="dot">·</span>
         <a href="dashboard.html">Dashboard</a><span class="dot">·</span>
         <a href="games.html">Arcade</a>

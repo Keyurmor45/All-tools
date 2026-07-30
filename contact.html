@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact AllTools — suggest new tools, report bugs, or give feedback. Visit the community wall or find us on social media. No email required.">
+  <meta name="theme-color" content="#ccff00">
+  <title>Contact & Support | AllTools</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link" aria-label="AllTools Home">
+        <div class="logo-icon" aria-hidden="true">✷</div>
+        <span class="logo-text">[ ALL*TOOLS ]</span>
+      </a>
+      
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+      <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
+      
+      <div class="nav-links" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;overflow-x:auto;">
+        <label for="mobile-menu-toggle" class="sidebar-close" aria-label="Close menu">✕</label>
+        <a href="index.html" style="color:var(--text-secondary);transition:color 0.2s;">Tools</a>
+        <a href="dashboard.html" style="color:var(--text-secondary);transition:color 0.2s;">Dashboard</a>
+        <a href="games.html" style="color:var(--text-secondary);transition:color 0.2s;">Arcade</a>
+        <a href="news.html" style="color:var(--text-secondary);transition:color 0.2s;">News</a>
+        <a href="cheatsheets.html" style="color:var(--text-secondary);transition:color 0.2s;">Matrix</a>
+        <a href="guestbook.html" style="color:var(--text-secondary);transition:color 0.2s;">Wall</a>
+        <a href="stats.html" style="color:var(--text-secondary);transition:color 0.2s;">Stats</a>
+        <a href="changelog.html" style="color:var(--text-secondary);transition:color 0.2s;">Changelog</a>
+        <a href="ai-lab.html" style="color:var(--text-secondary);transition:color 0.2s;">AI Lab</a>
+        <a href="chat.html" style="color:var(--text-secondary);transition:color 0.2s;">BBS Chat</a>
+        <a href="playground.html" style="color:var(--text-secondary);transition:color 0.2s;">Playground</a>
+        <a href="about.html" style="color:var(--text-secondary);transition:color 0.2s;">About</a>
+      </div>
+
+      <div class="nav-right">
+        <label for="mobile-menu-toggle" class="hamburger" aria-label="Open menu">☰</label>
+      
+        <button id="settings-btn" aria-label="System Settings" title="System Settings" style="background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:1.2rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">⚙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main id="main" style="padding: 120px 20px 50px; max-width: 950px; margin: 0 auto; color: var(--text);">
+    
+    <div style="background: var(--bg-card); padding: 50px; border: 4px solid var(--border); box-shadow: 15px 15px 0 var(--border); display: flex; flex-direction: column; gap: 40px;">
+      
+      <!-- 1. CONTACT & SUPPORT HEADER -->
+      <section id="contact-header">
+        <h1 style="font-family: var(--font-display); font-size: 2.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--accent); letter-spacing: -1px;">
+          CONTACT & SUPPORT
+        </h1>
+        <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">
+          DIRECT COMMUNITY DISPATCH · NO FORMAL TICKETS REQUIRED
+        </p>
+      </section>
+
+      <!-- 2. HOW TO REACH US -->
+      <section id="how-to-reach-us" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          HOW TO REACH US
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8;">
+          AllTools is an independent, indie developer project engineered and maintained by a small team dedicated to creating free, privacy-first software. In line with our anti-bloat philosophy, we do not operate a traditional corporate support email inbox or automated ticketing desk. Instead, we maintain direct, open, and instant communication channels with our community. Here is how you can connect with us:
+        </p>
+      </section>
+
+      <!-- 3. COMMUNITY WALL CARD -->
+      <section id="community-wall">
+        <a href="guestbook.html" style="text-decoration: none; display: block;">
+          <div style="border: 3px solid var(--accent); padding: 30px; background: rgba(204, 255, 0, 0.05); box-shadow: 8px 8px 0 var(--border); transition: transform 0.2s, box-shadow 0.2s;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+              <h3 style="font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; color: var(--accent); margin: 0;">
+                💬 COMMUNITY WALL (GUESTBOOK)
+              </h3>
+              <span style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent); border: 1px solid var(--accent); padding: 4px 10px;">GO TO WALL ↗</span>
+            </div>
+            <p style="font-family: var(--font-mono); font-size: 1.05rem; line-height: 1.7; color: var(--white); margin: 0; font-weight: 700;">
+              The fastest way to leave feedback, suggest a new tool, or report a bug. Messages appear instantly. No account required.
+            </p>
+          </div>
+        </a>
+      </section>
+
+      <!-- 4. SUGGEST A TOOL -->
+      <section id="suggest-tool" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          💡 SUGGEST A NEW TOOL
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 15px;">
+          Have an idea for a web developer utility, text converter, calculation tool, or privacy helper that should be part of AllTools? We regularly review community requests and build new tools based on your feedback.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 12px; color: var(--white); font-weight: bold;">
+          When suggesting a new tool on <a href="guestbook.html" style="color: var(--accent);">The Wall</a>, tell us:
+        </p>
+
+        <ul style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.9; color: var(--text-primary); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <li><strong style="color: var(--accent);">Tool Function:</strong> What the tool does and its main purpose.</li>
+          <li><strong style="color: var(--accent);">Use Case:</strong> How you would use it in your daily workflow or projects.</li>
+          <li><strong style="color: var(--accent);">Inputs & Outputs:</strong> What inputs you expect to provide and what outputs it should generate.</li>
+        </ul>
+      </section>
+
+      <!-- 5. REPORT A BUG -->
+      <section id="report-bug" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          🐛 REPORT A BUG
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 15px;">
+          Found a bug, visual layout issue, or unexpected behavior in any of our 500+ tools? We appreciate detailed bug reports to keep AllTools running flawlessly.
+        </p>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 12px; color: var(--white); font-weight: bold;">
+          When reporting an issue on <a href="guestbook.html" style="color: var(--accent);">The Wall</a>, please include:
+        </p>
+
+        <ul style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.9; color: var(--text-primary); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <li><strong style="color: var(--accent);">Location:</strong> The exact page or tool ID where the bug occurred.</li>
+          <li><strong style="color: var(--accent);">Behavior:</strong> What you expected to happen vs. what actually happened.</li>
+          <li><strong style="color: var(--accent);">Environment:</strong> Your browser name and version (e.g. Chrome 126, Firefox 128, Safari 17) and device OS.</li>
+        </ul>
+      </section>
+
+      <!-- 6. FREQUENTLY ASKED QUESTIONS -->
+      <section id="contact-faq" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 25px; color: var(--accent);">
+          FREQUENTLY ASKED QUESTIONS
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Can I request a custom tool?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Yes! Leave a detailed suggestion on <a href="guestbook.html" style="color: var(--accent);">The Wall</a> explaining what the tool should do and how it benefits your workflow.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Is there a premium version?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: No. AllTools is and will always be completely free for all users with no premium tiers, paywalls, or feature locks.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Can I use AllTools in my own project?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: AllTools is built for end-users. If you are interested in embedding individual tools or code snippets into your own project, reach out to us via <a href="guestbook.html" style="color: var(--accent);">The Wall</a>.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: Why is a tool not working?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Most issues are caused by cached browser data or conflicting extensions. Try refreshing the page, clearing site data, or testing in an incognito window / different browser. If it still doesn't work, report it on <a href="guestbook.html" style="color: var(--accent);">The Wall</a>.
+            </p>
+          </div>
+
+          <div style="border: 2px solid var(--border); padding: 20px; background: var(--bg);">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent); margin-bottom: 8px;">
+              Q: How do I delete my local data?
+            </h3>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+              A: Go to your browser settings → Privacy & Security → Site Data / Storage → find the AllTools domain → Clear Site Data. You can also use the reset buttons available on the Stats and System Settings panels.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7. SOCIAL / COMMUNITY LINKS -->
+      <section id="social-community" style="border-top: 2px dashed var(--border); padding-top: 30px;">
+        <h2 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; color: var(--accent);">
+          🌐 SOCIAL & COMMUNITY
+        </h2>
+
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px;">
+          AllTools is discussed across developer communities worldwide. Join the conversation or check out discussions on:
+        </p>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <a href="https://www.reddit.com/r/webdev" target="_blank" rel="noopener" style="border: 2px solid var(--border); padding: 16px 24px; background: var(--bg); text-decoration: none; color: var(--accent); font-family: var(--font-mono); font-weight: bold; display: inline-flex; align-items: center; gap: 10px;">
+            <span>🤖 REDDIT (r/webdev) ↗</span>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener" style="border: 2px solid var(--border); padding: 16px 24px; background: var(--bg); text-decoration: none; color: var(--accent); font-family: var(--font-mono); font-weight: bold; display: inline-flex; align-items: center; gap: 10px;">
+            <span>📦 GITHUB ↗</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-logo" aria-label="AllTools">
+          <div class="logo-icon" aria-hidden="true">✷</div>
+          <span class="logo-text">[ ALL*TOOLS ]</span>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.reddit.com/user/keyurmor45" target="_blank" rel="noopener" class="footer-social-link" aria-label="Reddit profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+            Reddit
+          </a>
+        </div>
+      </div>
+      <p class="footer-tagline">500+ tools, no signup required. Everything runs in your browser. Your data never leaves your device.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a><span class="dot">·</span>
+        <a href="terms.html">Terms</a><span class="dot">·</span>
+        <a href="contact.html">Contact</a><span class="dot">·</span>
+        <a href="about.html">About</a><span class="dot">·</span>
+        <a href="guestbook.html">Wall</a><span class="dot">·</span>
+        <a href="index.html">Tools</a>
+      </div>
+      <p class="footer-credits">© 2026 AllTools · Made with ❤️ · No data sent to any server · All tools run locally</p>
+    </div>
+  </footer>
+
+  <script src="cyber-core.js"></script>
+  <script src="unique-features.js"></script>
+
+<script>
+  // Restore mute button state on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('mute-btn');
+    if (btn && localStorage.getItem('alltools-muted') === '1') {
+      btn.textContent = '🔇';
+      btn.title = 'Unmute sounds';
+    }
+  });
+</script>
+  <script src="widgets.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>
