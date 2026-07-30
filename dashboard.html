@@ -39,11 +39,12 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 0; border-bottom: 1px solid var(--border);
       font-family: var(--font-mono);
+      flex-wrap: wrap; gap: 4px;
     }
     .crypto-row:last-child { border-bottom: none; }
-    .crypto-name { font-weight: 700; font-size: 1rem; }
-    .crypto-price { font-size: 1.1rem; color: var(--accent); }
-    .crypto-change { font-size: 0.85rem; }
+    .crypto-name { font-weight: 700; font-size: 0.95rem; }
+    .crypto-price { font-size: 1rem; color: var(--accent); }
+    .crypto-change { font-size: 0.8rem; }
     .up { color: #00ff41; } .down { color: #ff2244; }
 
     /* World Clock */
@@ -53,29 +54,66 @@
       font-family: var(--font-mono);
     }
     .clock-row:last-child { border-bottom: none; }
-    .clock-city { font-size: 0.85rem; color: var(--text-secondary); }
-    .clock-time { font-size: 1.2rem; color: var(--accent); font-weight: 700; letter-spacing: 2px; }
+    .clock-city { font-size: 0.8rem; color: var(--text-secondary); }
+    .clock-time { font-size: 1.1rem; color: var(--accent); font-weight: 700; letter-spacing: 2px; }
 
     /* System Status */
-    .stat-big { font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: var(--accent); line-height: 1; }
-    .stat-label { font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+    .stat-big { font-size: 2.5rem; font-weight: 900; font-family: var(--font-display); color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.7rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
     .stat-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-    /* Trending GitHub */
+    /* Trending */
     .github-row {
       padding: 10px 0; border-bottom: 1px solid var(--border);
       font-family: var(--font-mono); font-size: 0.85rem;
     }
     .github-row:last-child { border-bottom: none; }
-    .github-name { color: var(--accent); font-weight: 700; margin-bottom: 2px; }
-    .github-desc { color: var(--text-secondary); font-size: 0.78rem; }
-    .github-stars { color: #ffdd00; font-size: 0.78rem; }
+    .github-name { color: var(--accent); font-weight: 700; margin-bottom: 2px; font-size: 0.8rem; word-break: break-all; }
+    .github-desc { color: var(--text-secondary); font-size: 0.75rem; line-height:1.4; }
+    .github-stars { color: #ffdd00; font-size: 0.75rem; }
 
-    /* Countdown */
-    .big-clock { font-size: 4rem; font-family: var(--font-display); font-weight: 700; color: var(--accent); letter-spacing: 4px; text-align: center; text-shadow: 0 0 15px var(--accent); }
-    .big-date { font-family: var(--font-mono); color: var(--text-secondary); text-align: center; font-size: 0.9rem; margin-top: 8px; }
+    /* Big Clock */
+    .big-clock { font-size: 3.5rem; font-family: var(--font-display); font-weight: 700; color: var(--accent); letter-spacing: 4px; text-align: center; text-shadow: 0 0 15px var(--accent); }
+    .big-date { font-family: var(--font-mono); color: var(--text-secondary); text-align: center; font-size: 0.85rem; margin-top: 8px; }
 
     .full-width { grid-column: 1 / -1; }
+
+    /* Page title row */
+    .dash-title-row { margin-bottom:20px; border-bottom:2px solid var(--accent); padding-bottom:10px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px; }
+    .dash-title-row h1 { font-family:var(--font-display); font-size:2.8rem; font-weight:700; text-transform:uppercase; margin:0; color:var(--accent); letter-spacing:-2px; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .dash-grid { gap: 16px; margin-top: 20px; }
+
+      .dash-title-row h1 { font-size: 1.8rem; letter-spacing: -1px; }
+      .dash-title-row span { font-size: 0.75rem; }
+
+      .dash-panel-header { font-size: 0.7rem; padding: 10px 14px; letter-spacing: 1px; }
+      .dash-panel-body { padding: 14px; }
+
+      .big-clock { font-size: 2.4rem; letter-spacing: 2px; }
+      .big-date { font-size: 0.75rem; }
+
+      .clock-city { font-size: 0.72rem; }
+      .clock-time { font-size: 0.95rem; letter-spacing: 1px; }
+
+      .crypto-name { font-size: 0.82rem; }
+      .crypto-price { font-size: 0.9rem; }
+      .crypto-change { font-size: 0.75rem; }
+
+      .stat-big { font-size: 2rem; }
+      .stat-label { font-size: 0.62rem; }
+      .stat-mini-grid { gap: 12px; }
+
+      .github-name { font-size: 0.72rem; }
+      .github-desc { font-size: 0.68rem; }
+
+      /* Editorial block */
+      .dash-editorial { padding: 16px !important; }
+      .dash-editorial h2 { font-size: 0.9rem !important; }
+      .dash-editorial p { font-size: 0.85rem !important; }
+    }
   </style>
   <link rel="manifest" href="manifest.json">
 </head>
@@ -119,15 +157,13 @@
 
   <main class="main-content" id="main" style="max-width:1400px;margin-top:60px;">
 
-    <div style="margin-bottom:20px;border-bottom:2px solid var(--accent);padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;">
-      <h1 style="font-family:var(--font-display);font-size:2.8rem;font-weight:700;text-transform:uppercase;margin:0;color:var(--accent);letter-spacing:-2px;">
-        Live_Dashboard
-      </h1>
+    <div class="dash-title-row">
+      <h1>Live_Dashboard</h1>
       <span style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.85rem;"><span class="live-dot"></span> ALL SYSTEMS OPERATIONAL</span>
     </div>
 
     <!-- Editorial Section for AdSense & SEO -->
-    <div style="background:var(--bg-card);border:2px solid var(--border);padding:24px;margin-bottom:30px;">
+    <div class="dash-editorial" style="background:var(--bg-card);border:2px solid var(--border);padding:24px;margin-bottom:30px;">
       <h2 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-top:0;margin-bottom:16px;">
         [ ABOUT THE LIVE DASHBOARD SYSTEM ]
       </h2>
