@@ -152,20 +152,25 @@
     </section>
 
     <!-- Top 5 Recently Used Tools Section -->
-    <section>
-      <div style="margin-bottom: 25px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
-        <h2 style="font-family: var(--font-display); font-size: 1.6rem; text-transform: uppercase; color: var(--accent);">
-          YOUR TOP TOOLS
-        </h2>
-        <span style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.8rem;">TOP 5 RECENTLY EXECUTED</span>
-      </div>
+    </section>
 
-      <div class="top-tools-grid" id="top-tools-grid">
-        <!-- Rendered dynamically by JS -->
+    <!-- Editorial Section for AdSense & SEO -->
+    <section style="margin-top:50px; background:var(--bg-card); border:2px solid var(--border); padding:30px;">
+      <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-top:0;margin-bottom:20px;">[ ABOUT YOUR STATS ]</h2>
+      <div style="font-family:var(--font-mono);font-size:0.9rem;line-height:1.8;color:var(--text-secondary);display:flex;flex-direction:column;gap:16px;">
+        <p>The <strong style="color:var(--text-primary);">AllTools Stats Dashboard</strong> gives you a personal, private view of your tool usage history. Everything on this page is calculated using data stored exclusively in your browser's <code>localStorage</code> — a local key-value store that never syncs to any remote server. No account is required, no data is ever uploaded, and no one at AllTools can see your stats.</p>
+        <p>Your <strong style="color:var(--text-primary);">Hacker Rank</strong> is calculated based on total tools opened, number of sessions, and variety of categories used. It starts at "Novice Operator" and advances through ranks like Script Kiddie, Code Monkey, Sys Admin, Elite Hacker, and finally — Zero Cool. Each rank unlocks a new title displayed at the top of this page.</p>
+        <p>The <strong style="color:var(--text-primary);">Top Tools</strong> section shows your five most recently executed tools. This helps you quickly jump back to the tools you rely on most. The list updates automatically every time you open a tool from the main AllTools index.</p>
+        <p>Your <strong style="color:var(--text-primary);">session count</strong> increases by one every time you visit any AllTools page. A session is counted once per browser tab opened. If you leave and return later, that counts as a new session. This metric helps you understand how frequently you rely on AllTools in your workflow.</p>
+        <h3 style="font-family:var(--font-display);color:var(--accent);text-transform:uppercase;font-size:0.9rem;letter-spacing:1px;margin-top:10px;">HOW TO RESET YOUR STATS</h3>
+        <p>To clear all your AllTools statistics, go to your browser settings, find the Site Data section, locate keyurmor.live, and click Clear Data. This will erase all localStorage entries for AllTools, resetting your stats, rank, favorites, and theme preferences to default. This is irreversible, so only do it if you want a fresh start.</p>
+        <h3 style="font-family:var(--font-display);color:var(--accent);text-transform:uppercase;font-size:0.9rem;letter-spacing:1px;margin-top:10px;">PRIVACY GUARANTEE</h3>
+        <p>AllTools does not run any analytics platform, session recording software, or third-party tracking on the Stats page. The numbers you see are generated entirely by JavaScript running inside your own browser. They belong to you and only you. We believe your usage data is private by default — not a product to be sold.</p>
       </div>
     </section>
 
   </main>
+
 
   <!-- Footer -->
   <footer class="footer" role="contentinfo">
